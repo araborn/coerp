@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<div xmlns="http://www.w3.org/1999/xhtml" class="templates:surround?with=templates/page.html&amp;at=content">
+    <script class="helpers:app-root" type="text/javascript" src="resources/js/elements_controll.js"/>
+    <script class="helpers:app-root" type="text/javascript" src="resources/js/jquery.scrollTo-1.4.3.1.js"/>
+    <script class="helpers:app-root" type="text/javascript" src="resources/js/jquery.scrollToTop.min.js"/>
+    <script class="helpers:app-root" type="text/javascript" src="resources/js/jquery.numeric.js"/>
+    <link class="helpers:app-root" rel="stylesheet" href="resources/css/TextStyle.css"/>
+    
+    <div id="text-elements" class="whiteBorder">
+            <h3 onclick="$('#text-display-tools-wrapper').toggle('blind','slow')">
+                Text Elements
+                <i class="glyphicon glyphicon-chevron-down"/>
+            </h3>
+            <div id="text-display-tools-wrapper" class="text_display">
+                <noscript>
+                    To use our text element highlighting functionality, JavaScript has to be enable in your browser!
+                </noscript>
+            
+                <div id="highlightButtons">
+                    <ul id="topLevelHighlightButtons"/>
+                </div>
+            </div>
+    </div>
+    <div class="row-fluid">
+        <div class="content texts">
+            <div class="doc:fetchDatasetByRequestedId">
+                 
+                     <div class="text_header doc:analyzeTextHeader">
+                         
+                         <div id="TextHeadline">
+                             <div class="Profiles" id="TextTitle">  <h3><i class="doc:printMapEntry?type=author"></i></h3></div>
+                             <div id="TextAuthorProfile" class="Profiles">
+                                <div >Author Profile</div>
+                                <div class="TextTooltip" id="ToolAuthorProfile">
+                                    <div></div>
+                                </div>
+                            </div>
+
+                         </div>
+                         <div class="clear"/>
+                             <div id="TitleLine">
+                             <div  id="TextTextProfile">
+                                 <div><p class="doc:printMapEntry?type=stitle"></p></div>
+                                 <div class="TextTooltip" id="ToolTextProfile">
+                                     <div>Text Profile</div>
+                                     <div><span>Genre</span><span><i class="doc:printMapEntry?type=genre"></i></span></div>
+                                     <div><span>Date</span><span><i class=""></i></span></div>
+                                     <div><span>Full Title</span><span><i class="doc:printMapEntry?type=title"></i></span></div>
+                                     <div><span>Source</span><span><i class="doc:printMapEntry?type=source"></i></span></div>
+                                     <div><span>Sampling</span><span><i class="doc:printMapEntry?type=sampling"></i></span></div>
+                                     
+                                 </div>
+                             </div>
+                         </div>
+                         </div>
+                    <br />
+                <div class="clear"/>
+                    <div class="doc:printFormattedText"/>
+                 </div>
+            </div>
+        </div>
+    </div>

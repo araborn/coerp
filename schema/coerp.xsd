@@ -1,0 +1,650 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--<xs:schema xmlns="cceh.uni-koeln.de/coerp" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="cceh.uni-koeln.de/coerp"> -->
+<xs:schema xmlns="http://www.coerp.uni-koeln.de/schema" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xlink="http://www.w3.org/1999/xlink" targetNamespace="http://www.coerp.uni-koeln.de/schema">
+    <xs:import namespace="http://www.w3.org/1999/xlink" schemaLocation="http://www.loc.gov/standards/xlink/xlink.xsd"/>
+    <!-- 
+        Die verschiedenen möglichen root-Elemente der Texte.
+        Zugleich Angabe des Genres
+    -->
+    <xs:element name="coerp" type="coerpDataset"/>
+    <!-- 
+        Allgemeiner Dokumenttyp
+        Jedes Dokument hat genau ein coerp_header-Element und genau ein text-Element    
+    -->
+    <xs:complexType name="coerpDataset">
+        <xs:sequence>
+            <xs:element name="coerp_header" type="coerp_headerType"/>
+            <xs:element name="text" type="textType"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    
+    
+    <!-- 
+        **********
+        HEADER-ELEMENTE
+        **********
+        Jeder Header besteht aus einer Abfolge von Elementen, die alle zusammen vorhanden
+        sein müssen. Elemente, die auch leer sein können sind vom Type xs:string, solche die
+        gefüllt sein müssen sind vom Typ nonEmptyString.
+        
+        author, translator und author_preface müssen immer mit einem Großbuchstaben beginnen
+        
+        gYear für Jahreszahlen, bezeichnet eine Jahreszahl im gregorianischen Kalender.
+        Jahreszahlen müssen immer vierstellig angegeben werden. Daten v. Chr. durch ein 
+        beigefügtes Minus. 
+        Erlaubt sind z.B. -0023, 0345, 1247, nicht aber: "23 v. Chr.", "345" oder "1247 n." etc.
+    -->
+    <xs:complexType name="coerp_headerType">
+        <xs:sequence>
+            <xs:element name="author_profile" type="author_profileType"/>
+            <xs:element name="text_profile" type="text_profileType"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <!-- 
+        Es kann mehrere Autoren geben
+    -->
+    <xs:complexType name="author_profileType">
+        <xs:sequence>
+            <xs:sequence minOccurs="1" maxOccurs="unbounded">
+                <xs:element name="author" type="nonEmptyString"/>
+            </xs:sequence>
+            <xs:element name="author_preface" type="xs:string" minOccurs="0"/>
+            <xs:element name="translator" type="xs:string"/>
+            <xs:element name="denom" type="nonEmptyString"/>
+            <xs:element name="bio_info" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+<!-- TEXT PROFLE TYPE
+        -->
+    <xs:complexType name="text_profileType">
+        <xs:sequence>
+            <xs:element name="genre" type="genreType"/>
+            <xs:element name="year" type="from_to"/>
+            <xs:element name="this_edition" type="from_to"/>
+            <xs:element name="title" type="titleType"/>
+            <xs:element name="short_title" type="nonEmptyString"/>
+            <xs:element name="source" type="xs:string"/>
+            <xs:choice minOccurs="0" maxOccurs="1">
+                <xs:element name="song_type" type="xs:string"/>
+            </xs:choice>
+            <xs:element name="sampling" type="samplingType"/>
+            <xs:element name="layout_profile" type="layout_profileType"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <!-- 
+        Im title soll das hochstellen von Buchstaben mit <sup> möglich sein 
+    -->
+    <xs:complexType name="titleType" mixed="true">
+        <xs:sequence>
+            <xs:choice minOccurs="0" maxOccurs="unbounded">
+                <xs:group ref="textOnlyElements"/>
+            </xs:choice>
+        </xs:sequence>
+    </xs:complexType>
+    
+    
+    <!-- 
+        Es soll die Möglichkeit bestehen das ein Text in mehreren Jahren entstanden ist.
+        
+         gYear für Jahreszahlen, bezeichnet eine Jahreszahl im gregorianischen Kalender.
+        Jahreszahlen müssen immer vierstellig angegeben werden. Daten v. Chr. durch ein 
+        beigefügtes Minus. 
+        Erlaubt sind z.B. -0023, 0345, 1247, nicht aber: "23 v. Chr.", "345" oder "1247 n." etc.
+    -->
+    <xs:complexType name="from_to">
+        <xs:sequence>
+            <xs:element name="from" type="xs:gYear"/>
+            <xs:element name="to" type="xs:gYear"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    
+    <!-- 
+        Ein Sample besteht immer aus mindestens einem Element info, dass sich
+        über das id-Attribut auf ein Sample im Text beziehen lässt.
+    -->
+    <xs:complexType name="samplingType">
+        <xs:sequence minOccurs="1" maxOccurs="unbounded">
+            <xs:element name="info" type="idRefType"/>
+        </xs:sequence>
+        <xs:attribute name="id"/>
+    </xs:complexType>
+    
+    <!-- 
+        Elemente mit beliebigem Text als Inhalt, die über ein id-Attribut verfügen müssen    
+    -->
+    <xs:complexType name="idRefType">
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute name="id" type="xs:positiveInteger" use="required"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:complexType name="genreType">
+        <xs:simpleContent>
+            <xs:extension base="nonEmptyString">
+                <xs:attribute name="key" type="nonEmptyString" use="required"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <!--
+        Layout Profile 
+        -->
+    <xs:complexType name="layout_profileType">
+        <xs:sequence>
+            <xs:element name="format" type="formatType" minOccurs="0"/>
+            <xs:element name="headings_paragraphs" type="headings_paragraphsType" minOccurs="0"/>
+            <xs:element name="text_body" type="text_bodyType" minOccurs="0"/>
+            <xs:element name="bible_languages" type="biblequotationType" minOccurs="0"/>
+            <xs:element name="text_edition" type="xs:boolean"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="posAttr">
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute name="pos" type="xs:string" use="required"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:complexType name="adaptedAttr">
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute name="pos" type="xs:string" use="required"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <!-- 
+        format_type
+        -->
+    <xs:complexType name="formatType">
+        <xs:sequence>
+            <xs:element name="format_original" type="nonEmptyString"/>
+            <xs:element name="contains" type="typeAttr" minOccurs="0"/>
+            <xs:element name="satb_scores" type="satbAttr" minOccurs="0" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="satbAttr">
+        <xs:simpleContent>
+            <xs:extension base="xs:boolean">
+                <xs:attribute name="scoretext" type="xs:string"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <!-- 
+     text_bodyType
+    -->
+    <xs:complexType name="headings_paragraphsType">
+        <xs:sequence>
+            <xs:element name="paragraphs" type="posAttr" maxOccurs="unbounded"/>
+            <xs:element name="cong_song" type="xs:string" minOccurs="0"/>
+            <xs:element name="columns" type="columnsType" minOccurs="0"/>
+            <xs:element name="song_titels_added" type="existAttr" minOccurs="0"/>
+            <xs:element name="metatext" type="existAttr" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="columnsType">
+        
+    </xs:complexType>
+    <xs:complexType name="text_bodyType">
+        <xs:sequence>
+            <xs:element name="elements" type="styleType"/>
+            <xs:element name="illegible" type="damagedType" minOccurs="0"/>
+            <xs:element name="missing" type="damagedType" minOccurs="0"/>
+            <xs:element name="footnotes" type="existAttr"/>
+            <xs:element name="comments_references" type="existAttr"/>
+            <xs:element name="line_breaks" type="adaptedAttr" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="styleType">
+        <xs:sequence minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="style" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="damagedType">
+        <xs:sequence minOccurs="1" maxOccurs="unbounded">
+            <xs:element name="due_to" type="xs:string" minOccurs="0"/>
+            <xs:element name="replaced_by" type="xs:string" minOccurs="0"/>
+            <xs:element name="page" type="pageType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="pageType">
+        <xs:sequence>
+            <xs:sequence minOccurs="0" maxOccurs="1">
+                <xs:element name="from" type="xs:integer"/>
+                <xs:element name="to" type="xs:integer"/>
+            </xs:sequence>
+            <xs:element name="pageNR" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="type" type="xs:string" use="required"/>
+    </xs:complexType>
+    <xs:complexType name="typeAttr">
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute name="type" type="xs:string" use="required"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:complexType name="existAttr">
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute name="exists" type="xs:boolean" use="required"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <!-- 
+        biblequotationType
+        -->
+    <xs:complexType name="biblequotationType">
+        <xs:sequence>
+            <xs:element name="quotation" type="typeAttr" minOccurs="0" maxOccurs="2"/>
+            <xs:element name="foreign" type="foreignbibleType"/>
+            <xs:element name="additonal_references" type="existAttr"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="quotesType">
+        <xs:sequence minOccurs="1" maxOccurs="unbounded">
+            <xs:element name="quote" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="foreignbibleType">
+        <xs:sequence>
+            <xs:element name="lang" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <!-- 
+        **********
+        TEXT-MARKUP
+        **********
+    -->
+    
+    <!-- 
+        Jeder Text besteht aus mindestens einem Sample, das Text und weiteres Markup enthält 
+    -->
+    <xs:complexType name="textType">
+        <xs:sequence minOccurs="1" maxOccurs="unbounded">
+            <xs:element name="sample" type="sampleType"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <!-- 
+        Ein sample besteht aus einer Mischung von Text und Markup, das diesen Text auszeichnet.
+        TODO: Es verfügt über ein id-Attribut, dass sich auf das id-Attribut des sampling->info-Tags beziehen lässt
+        <sampleN> ist ein Pflichttag und muss immer auf <sample> folgen. In sampleN werden die Samples durchnummeriert (Sample 1, Sample 2...)
+    -->
+    <xs:complexType name="sampleType" mixed="true">
+        <xs:sequence>
+            <xs:element name="sampleN" type="nonEmptyString"/>
+            <xs:choice minOccurs="1" maxOccurs="unbounded">
+                <xs:group ref="simpleElements"/>
+                <xs:group ref="bibleElements"/>
+                <xs:group ref="letterOrderingElements"/>
+                <xs:group ref="commentElements"/>
+                <xs:element name="lg" type="lineGroupElements"/>
+                <xs:element name="foreign" type="foreignType"/>
+                <xs:element name="foreign_omitted" type="foreign_omittedTextType"/>
+                <xs:element name="verse" type="verseType"/>
+                <xs:element name="quotation" type="quotationType"/>
+                <xs:element name="head" type="headType"/>
+                <xs:element name="speaker" type="speakerType"/>
+                <xs:element name="litany_repetition" type="litanyType"/>
+                <xs:element name="metatext" type="metatextType"/>
+            </xs:choice>
+        </xs:sequence>
+        <xs:attribute name="id" type="xs:positiveInteger" use="required"/>
+        <xs:attribute name="type" type="xs:string" use="optional"/>
+    </xs:complexType>   
+    
+    <!--
+        **********
+        EINFACHE TEXTELEMENTE
+        **********
+        beinhalten nur Text oder sind leer, beinhalten aber niemals weitere Elemente
+    -->
+    <xs:group name="simpleElements">
+        <xs:sequence>
+            <xs:choice minOccurs="0" maxOccurs="unbounded">
+                <xs:group ref="pageNumberingElements"/>
+                <xs:group ref="textOnlyElements"/>
+            </xs:choice>
+        </xs:sequence>
+    </xs:group>
+    <!-- 
+        Elemente, die Seitenzahlen definieren
+            pb
+            fol
+    -->
+    <xs:group name="pageNumberingElements">
+        <xs:sequence>
+            <xs:choice minOccurs="0" maxOccurs="unbounded">
+                <xs:element name="pb" type="pageNumberingElement"/>
+                <xs:element name="fol" type="pageNumberingElement"/>
+            </xs:choice>
+        </xs:sequence>
+    </xs:group>
+    <!-- 
+        Seitenzahl-Elemente sind leer und haben nur ein "n" Attribut, das aber auch fehlen darf.
+        n gibt die korrekte Seitenfolge wieder. Weicht diese von der tatsächlichen ab, kann das über
+        ein reading-Attribut mit verbundenem type Attribut angegeben werden.
+    -->
+    <xs:complexType name="pageNumberingElement">
+        <xs:attribute name="n" use="optional"/>
+        <xs:attribute name="type" use="optional" type="commentTypeAttributeContent"/>
+        <xs:attribute name="reading" use="optional" type="nonEmptyString"/>
+    </xs:complexType>
+    
+    
+    <!-- 
+        Elemente, die nur Text und keine weiteren Tags beinhalten dürfen:
+            sup
+    -->
+    <xs:group name="textOnlyElements">
+        <xs:sequence>
+            <xs:choice minOccurs="0" maxOccurs="unbounded">
+                <xs:element name="sup" type="nonEmptyString"/>
+            </xs:choice>
+        </xs:sequence>
+    </xs:group>
+    
+    
+    
+    
+    <!-- 
+        **********
+        KOMPLEXE TEXTELEMENTE 
+        **********
+        
+        können alle leeren und reinen Textelemente beinhalten, sowie verschiedene weitere komplexe Elemente
+        (immer: comment und comment_editor) enthalten jedoch niemals eine Instanz ihrer selbst
+        
+        Für jedes komplexe Element sind die komplexen Elemente, die in diesem enthalten sein können, explizit oder
+        in minimalen Untergruppen angegeben. Eine komplexere Unterteilung in Gruppen wäre möglich und ggf.
+        ökonomischer, wurde aber unterlassen, damit bei jedem neuen Element genau geprüft werden muss, in welchen
+        anderen komplexen Elemente es auftauchen darf.
+    -->
+    
+    <!-- 
+        comment, comment_editor
+            entahlten keine weiteren komplexen Elemente
+            comment hat mindestens ein "type"-Attribut mit festen Werten ("typeset-error", "print-error" oder "illegible")
+            und ein "reading"-Attribut, das einen nichtleeren String enthält, um die Lesart im Text anzugeben
+    -->
+    <xs:group name="commentElements">
+        <xs:sequence>
+            <xs:choice minOccurs="0" maxOccurs="unbounded">
+                <xs:element name="comment" type="commentType"/>
+            </xs:choice>
+        </xs:sequence>
+    </xs:group>
+    <xs:complexType name="commentType" mixed="true">
+        <xs:sequence>
+            <xs:choice minOccurs="0" maxOccurs="unbounded">
+                <xs:group ref="simpleElements"/>
+            </xs:choice>
+        </xs:sequence>
+        <xs:attribute name="type" use="required" type="commentTypeAttributeContent"/>
+        <xs:attribute name="reading" use="optional" type="nonEmptyString"/>
+    </xs:complexType>
+    
+    <!-- 
+        lg
+        Die Attribute n und type sind required. n enthält eine fortlaufende Nummer (int) 
+        Das Attribut type kann entweder stanza oder refrain enthalten. 
+        kann andere Elemente enthalten.
+    -->
+    <xs:complexType name="lineGroupElements" mixed="true">
+        <xs:sequence>
+            <xs:choice minOccurs="0" maxOccurs="unbounded">
+                <xs:group ref="simpleElements"/>
+                <xs:group ref="commentElements"/>
+                <xs:group ref="bibleElements"/>
+                <xs:element name="quotation" type="quotationType"/>
+                <xs:element name="verse" type="verseType"/>
+                <xs:element name="foreign" type="foreignType"/>
+                <xs:element name="head" type="headType"/>
+            </xs:choice>
+        </xs:sequence>
+        <xs:attribute name="n" type="xs:integer" use="required"/>
+        <xs:attribute name="type" type="lineGroupAttributeContent" use="required"/>
+    </xs:complexType>
+    <xs:simpleType name="lineGroupAttributeContent">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="stanza"/>
+            <xs:enumeration value="refrain"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <!-- 
+        foreign 
+            kann komplexe Elemente enthalten: comment, comment_editor
+            erfordert ein nicht-leeres Attribut "language"       
+    -->
+    <xs:complexType name="foreignType" mixed="true">
+        <xs:sequence>
+            <xs:choice minOccurs="0" maxOccurs="unbounded">
+                <xs:group ref="simpleElements"/>
+                <xs:group ref="commentElements"/>
+            </xs:choice>
+        </xs:sequence>
+        <xs:attribute name="language" use="required" type="nonEmptyString"/>
+        <!-- <xs:attribute name="omitted" use="optional" type="xs:boolean"/>-->
+    </xs:complexType>
+    
+    <!-- foreign_omittedText 
+            kann komplexe Elemente enthalten: comment, comment_editor
+            erfordert ein nicht-leeres Attribut "language" -->
+    <xs:complexType name="foreign_omittedTextType" mixed="true">
+        <xs:sequence>
+            <xs:choice minOccurs="0" maxOccurs="unbounded">
+                <xs:group ref="simpleElements"/>
+                <xs:group ref="commentElements"/>
+            </xs:choice>
+        </xs:sequence>
+        <xs:attribute name="language" use="required" type="nonEmptyString"/>
+        <xs:attribute name="omitted" use="optional" type="xs:boolean"/>
+    </xs:complexType>
+    
+    <!-- 
+        verse
+            kann komplexe Elemente enthalten: foreign, comment, comment_editor
+    -->
+    <xs:complexType name="verseType" mixed="true">
+        <xs:sequence>
+            <xs:choice minOccurs="0" maxOccurs="unbounded">
+                <xs:group ref="simpleElements"/>
+                <xs:group ref="commentElements"/>
+                <xs:element name="foreign" type="foreignType"/>
+            </xs:choice>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <!-- 
+        bible, psalm
+            können komplexe Elemente enthalten: foreign, comment, comment_editor
+            enthalten stets ein Attribut "ref", das die Referenz auf die Bibelstelle angibt
+        TODO: Restriktionen auf "ref"-Attribut für einheitlichen Standard in Bibelzitation
+    -->
+    <xs:group name="bibleElements">
+        <xs:sequence>
+            <xs:choice minOccurs="0" maxOccurs="unbounded">
+                <xs:element name="bible" type="bibleType"/>
+                <xs:element name="psalm" type="bibleType"/>
+            </xs:choice>
+        </xs:sequence>
+    </xs:group>
+    <xs:complexType name="bibleType" mixed="true">
+        <xs:sequence>
+            <xs:choice minOccurs="0" maxOccurs="unbounded">
+                <xs:group ref="simpleElements"/>
+                <xs:group ref="commentElements"/>
+                <xs:element name="foreign" type="foreignType"/>
+            </xs:choice>
+        </xs:sequence>
+        <xs:attribute name="ref" use="required" type="bibleAbbreviation"/>
+    </xs:complexType>
+    
+    <!-- 
+        quotation
+            kann komplexe Elemente enthalten: bible, psalm, foreign, comment, comment_editor
+    -->
+    <xs:complexType name="quotationType" mixed="true">
+        <xs:sequence>
+            <xs:choice minOccurs="0" maxOccurs="unbounded">
+                <xs:group ref="simpleElements"/>
+                <xs:group ref="commentElements"/>
+                <xs:group ref="bibleElements"/>
+                <xs:element name="foreign" type="foreignType"/>
+            </xs:choice>
+        </xs:sequence>
+        <xs:attribute name="ref" use="required" type="nonEmptyString"/>
+    </xs:complexType>
+    
+    <!--
+        metatext
+            kann komplexe Elemente beinhalten: verse, bible, psalm, quotation, foreign, comment, comment_editor, head
+    -->
+    <xs:complexType name="metatextType" mixed="true">
+        <xs:sequence>
+            <xs:choice minOccurs="0" maxOccurs="unbounded">
+                <xs:group ref="simpleElements"/>
+                <xs:group ref="commentElements"/>
+                <xs:group ref="bibleElements"/>
+                <xs:element name="quotation" type="quotationType"/>
+                <xs:element name="verse" type="verseType"/>
+                <xs:element name="foreign" type="foreignType"/>
+                <xs:element name="head" type="headType"/>
+            </xs:choice>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <!-- 
+        superscr, subscr
+            können komplexe Elemente beinhalten: bible, psalm, foreign, comment, comment_editor
+    -->
+    <xs:group name="letterOrderingElements">
+        <xs:sequence>
+            <xs:choice minOccurs="0" maxOccurs="unbounded">
+                <xs:element name="superscr" type="letterOrderingType"/>
+                <xs:element name="subscr" type="letterOrderingType"/>
+            </xs:choice>
+        </xs:sequence>
+    </xs:group>
+    <xs:complexType name="letterOrderingType" mixed="true">
+        <xs:sequence>
+            <xs:choice minOccurs="0" maxOccurs="unbounded">
+                <xs:group ref="simpleElements"/>
+                <xs:group ref="commentElements"/>
+                <xs:group ref="bibleElements"/>
+                <xs:element name="foreign" type="foreignType"/>
+            </xs:choice>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <!-- 
+        head
+            kann komplexe Elemente beinhalten: quotation, verse, bible, psalm, foreign, comment, comment_editor
+    -->
+    <xs:complexType name="headType" mixed="true">
+        <xs:sequence>
+            <xs:choice minOccurs="0" maxOccurs="unbounded">
+                <xs:group ref="simpleElements"/>
+                <xs:group ref="commentElements"/>
+                <xs:group ref="bibleElements"/>
+                <xs:element name="quotation" type="quotationType"/>
+                <xs:element name="verse" type="verseType"/>
+                <xs:element name="foreign" type="foreignType"/>
+            </xs:choice>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <!-- 
+        speaker
+            kann komplexe Elemente beinhalten: quotation, verse, bible, psalm, foreign, comment, comment_editor
+            enthält ein Attribut id mit einem String, der aus Kleinbuchstaben des Alphabets besteht
+    -->
+    <xs:complexType name="speakerType" mixed="true">
+        <xs:sequence>
+            <xs:choice minOccurs="0" maxOccurs="unbounded">
+                <xs:group ref="simpleElements"/>
+                <xs:group ref="commentElements"/>
+                <xs:group ref="bibleElements"/>
+                <xs:element name="quotation" type="quotationType"/>
+                <xs:element name="verse" type="verseType"/>
+                <xs:element name="foreign" type="foreignType"/>
+                <xs:element name="head" type="headType"/>
+            </xs:choice>
+        </xs:sequence>
+        <xs:attribute name="id" use="required" type="alphabeticalIdentifier"/>
+    </xs:complexType>
+    
+    <!-- 
+        litany
+            kann die gleichen Elemente enthalten, wie auch das speaker tag. Nur das ID-Attribut entfällt.  
+    -->
+    <xs:complexType name="litanyType" mixed="true">
+        <xs:sequence>
+            <xs:choice minOccurs="0" maxOccurs="unbounded">
+                <xs:group ref="simpleElements"/>
+                <xs:group ref="commentElements"/>
+                <xs:group ref="bibleElements"/>
+                <xs:element name="quotation" type="quotationType"/>
+                <xs:element name="verse" type="verseType"/>
+                <xs:element name="foreign" type="foreignType"/>
+                <xs:element name="head" type="headType"/>
+            </xs:choice>
+        </xs:sequence>
+    </xs:complexType>
+    <!--
+        **********
+        VERSCHIEDENES: STRING-TYPEN
+        **********
+    -->
+    
+    <!-- 
+        commentTypeContent gibt den Typ eines Kommentars an.
+        Verwendet in: comment, comment_editor, pb, fol
+    -->
+    <xs:simpleType name="commentTypeAttributeContent">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="editor"/>
+            <xs:enumeration value="typeset-error"/>
+            <xs:enumeration value="print-error"/>
+            <xs:enumeration value="print"/>
+            <xs:enumeration value="illegible"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <!-- 
+        Ein nicht leerer String enthält mindestens ein Zeichen (kein Leerzeichen) und darf weder mit einem
+        Leerzeichen beginnen noch enden.
+        http://www.regular-expressions.info/xml.html
+    -->
+    <xs:simpleType name="nonEmptyString">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[^\s].*[^\s]|[^\s]"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <!-- 
+        Ein alphabeticher Identifizierer enthält genau einen Kleinbuchstaben des englischen Alphabets
+    -->
+    <xs:simpleType name="alphabeticalIdentifier">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[a-z]"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <!-- 
+        Ein Bibelstellen-Abkürzung, siehe "./Abbreviations Bible.doc", bzw. "./Bibleref_050509.doc"
+            enthält mindestens eine Bibelstelle
+    -->
+    <xs:simpleType name="bibleAbbreviation">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="(([12] Chr|[12] Kings|[12] Sam|Am|Dan|Deut|Eccl|Esth|Ex|Ezek|Ezra|Gen|Hab|Hag|Hos|Isa|Jer|Job|Joel|Jon|Josh|Judg|Lam|Lev|Mal|Mic|Nah|Neh|Num|Ob|Prov|Ps|Ruth|Song|Zech|Zeph|[12] Esd|[1-4] Mac|Add Esth|Bar|Bel|Jdt|Let Jer|Song of Thr|Pr Man|Ps 151|Sir|Sus|Tob|Wis|[12] Cor|[1-3] Jn|[12] Pet|[12] Thess|[12] Tim|Acts|Col|Eph|Gal|Heb|Jas|Jn|Jude|Lk|Mk|Mt|Philem|Phil|Rev|Rom|Titus) [1-9][0-9]*((-[1-9][0-9]*(\.[1-9][0-9]*|)|)|(\.[1-9][0-9]*)(-[1-9][0-9]*(\.[1-9][0-9]*|)|)|);?)+"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>

@@ -1,0 +1,245 @@
+ 
+        #text-elements {
+        margin-left: 435px;
+        display: block;
+        position: fixed;
+        padding: 3px 0px 7px 10px;
+        z-index:1;
+        cursor:pointer !important;
+        width:230px;
+        margin-top:20px;
+        }
+
+        #text-elements h3 {
+        border-bottom:1px solid #cac3db;
+        font-size:15px;
+        
+        }
+
+        .pull-right {
+        right: 0px;
+        }
+        
+        #highlightButtons ul {
+        list-style-type: none;
+        padding: 0px 0px 0px 20px;
+        }
+        
+        
+        #highlightButtons li {
+        width: 210px;
+        margin: 5px 0px 0px 0px;
+        }
+        #toTop {
+        display: none;
+        position: fixed;
+        bottom: 5px;
+        right: 5px;
+        width: 64px;
+        height: 64px;
+        background-image: url('http://geniuscarrier.com/images/up.png');
+        background-repeat: no-repeat;
+        opacity: 0.4;
+        
+        }
+        #toTop:hover {
+        opacity: 0.8;
+        
+        }
+        
+        /* 
+        REFERENCE ELEMENTS
+        werden kursiv und in verschiedenen gesetzten Farbtönen hervorgehoben 
+        */
+        
+        .bible, .psalm, .quotation {
+        display: inline;
+        }
+        
+        .bible-selected, .psalm-selected, .quotation-selected {
+        font-style: italic;
+        }
+        
+        .bible-selected {
+        color: #336699;
+        }
+        
+        .psalm-selected {
+        color: #007a3d;
+        }
+        
+        .quotation-selected {
+        color: #7a005c;
+        }
+        
+        
+        
+        /* LINGUISTIC ELEMENTS */
+        .foreign, .foreign_omitted, .verse {
+        display: inline;
+        }
+        
+        .foreign-selected {
+        border-bottom: 3px dotted #2FEB12;
+        }
+        .foreign_omitted-selected {
+        color: #FF7F50;
+        }
+        
+        .verse  {
+        display: inline;
+        }
+        
+        .verse-selected {
+        border-bottom: 3px dotted #cc6600;
+        }
+        
+        
+        /* 
+        STRUCTURAL ELEMENTS 
+        werden insgesamt leicht eingerückt und durch farbige Linien am linken Rand markiert 
+        Ausnahme sind Seiten- und Foliowechsel, die durch die entsprechenden Zahlen am rechten Rand
+        der Texte markiert werden, bzw. durch eine horizontale Linie.
+        Samples werden farblich hervorgehoben
+        */
+        
+        .sample {
+        margin: 3px 3px 5px 5px;
+        padding: 5px 2px 2px 5px;
+        }
+        
+        .sampleType    {
+        margin: 15px;
+        padding: 15px;
+        }
+        
+        
+        .head, .speaker, .metatext, .superscr, .subscr {
+        margin: 5px;
+        padding: 10px;
+        }
+        
+        .pb, .fol {
+        width: 50%;
+        text-align: right;
+        font-style: italic;
+        visibility: hidden;
+        }
+        
+        .pb {
+        border-bottom: 1px solid #DDDDDD;
+        }
+        
+        .sample-selected  {
+        background-color: #E0EEEE;
+        }
+        
+        .sampleType-selected    {
+        color: #7a005c;
+        }
+        
+        .pb-selected {
+        visibility: visible;
+        }
+        
+        .fol-selected {
+        visibility: visible;
+        }
+        
+        .head {
+        font-weight: bold;
+        }
+        
+        .head-selected {
+        border-left: 2px solid #003399;
+        }
+        
+        .speaker-selected {
+        border-left: 2px solid #a31919;
+        }
+        
+        .metatext-selected {
+        border-left: 2px solid #CC6600;
+        }
+        
+        .superscr-selected, .subscr-selected {
+        border-left: 2px solid #660033;
+        }
+        
+        /* COMMENT ELEMENTS */
+        /* werden durch Kursivschrift und größeren Zeichenabstand hervorgehoben */
+        
+        .comment, .comment_editor {
+        display: inline;
+        }
+        
+        .comment-selected {
+        font-style: italic;
+        letter-spacing: 0.12em;
+        }
+        
+        .comment_editor-selected {
+        font-style: italic;
+        }
+        
+        /* SAMPLE ELEMENTS */
+        /* existieren nur bei den congregational songs. Sie können ein- oder ausgeblendet werden */
+        
+        .metricalPsalm, .canticle, .otherBibleVersification  {
+        visibility: visible;
+        }
+        
+        .metricalPsalm-selected, .canticle-selected, .otherBibleVersification-selected  {
+        font-style: italic;
+        color: #BEBEBE;
+        } 
+        
+        #set_right_drop {
+        margin-left:20px;
+        
+        }
+        legend i, h6 i {
+        margin-left:20px;
+        }
+        .text_display {
+            display:none;
+        }
+        .InText {
+        margin-left:2px;
+        }
+        .CustomTooltip {
+        width:200px;
+        }
+        
+        /*#########Author & Text Profile ######*/
+        #TextHeadline {
+            width:100%;
+        }
+          .Profiles {
+            float:left;
+            display:block;
+        }
+        
+        
+        #TextAuthorProfile {
+            margin-left: 70px;
+            margin-top: 20px;
+        }
+        #TextTitle {
+            margin-left:20px;
+        }
+        #TextTextProfile {
+            
+        }
+        
+      
+        .TextTooltip {
+            display:none;
+        }
+        
+        
+        #ToolAuthorProfile {
+            
+        }
+        
+        #ToolTextProfile {}

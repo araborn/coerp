@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<collection xmlns="http://exist-db.org/collection-config/1.0">
+    <index xmlns:coerp="http://coerp.uni-koeln.de/schema" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+        <!-- Disable the old full text index -->
+        <fulltext default="none" attributes="false"/>
+        <!-- Lucene index is configured below -->
+        
+        <!-- ##### RANGE INDEX ##### -->
+        <lucene>
+            <analyzer class="org.apache.lucene.analysis.standard.StandardAnalyzer"/>
+            <analyzer id="ws" class="org.apache.lucene.analysis.WhitespaceAnalyzer"/>
+            <text qname="coerp:coerp"/>
+        </lucene>
+        <range>
+            <create qname="coerp:coerp">
+                <!-- ##### COERP HEADER ##### -->
+                    <!-- ##### Author Profile #####-->
+                <field name="author" match="coerp:coerp_header/coerp:author_profile/coerp:author" type="xs:string"/>
+                <field name="translator" match="coerp:coerp_header/coerp:author_profile/coerp:translator" type="xs:string"/>
+                <field name="denom" match="coerp:coerp_header/coerp:author_profile/coerp:denom" type="xs:string"/>
+               
+                    <!-- ##### Text Profile #####-->
+                <field name="genre" match="coerp:coerp_header/coerp:text_profile/coerp:genre/@key" type="xs:string"/>
+                <field name="year_from" match="coerp:coerp_header/coerp:text_profile/coerp:year/coerp:from" type="xs:string"/>
+                <field name="year_to" match="coerp:coerp_header/coerp:text_profile/coerp:year/coerp:to" type="xs:string"/>
+                <field name="edition_from" match="coerp:coerp_header/coerp:text_profile/coerp:this_edition/coerp:from" type="xs:string"/>
+                <field name="edition_to" match="coerp:coerp_header/coerp:text_profile/coerp:this_edition/coerp:to" type="xs:string"/>
+                <field name="title" match="coerp:coerp_header/coerp:text_profile/coerp:title" type="xs:string"/>
+                <field name="short_title" match="coerp:coerp_header/coerp:text_profile/coerp:short_title" type="xs:string"/>
+                <field name="source" match="coerp:coerp_header/coerp:text_profile/coerp:source" type="xs:string"/>
+                <field name="header_sampling" match="coerp:coerp_header/coerp:text_profile/coerp:sampling/coerp:info/@id" type="xs:string"/>
+                
+                        <!-- #### Layout Profile #### -->
+                    
+                
+                
+                <!-- ##### COERP TEXT ##### -->
+                <field name="text_sample" match="coerp:text/coerp:sample/@id" type="xs:string"/>
+                <field name="sampleN" match="coerp:text/coerp:sample/coerp:sampleN" type="xs:string"/>
+                <field name="head" match="coerp:text/coerp:sample/coerp:head" type="xs:string"/>
+            </create>
+        </range>
+    </index>
+</collection>

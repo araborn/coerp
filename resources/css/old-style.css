@@ -1,0 +1,231 @@
+
+
+/***** ALTER STYLE*******/
+* {
+    font-family: 'Noto Serif';
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    height: 100%;
+}
+/** LOGIN-PAGE **/
+
+
+div.login   {
+    text-align:left; 
+    margin-left:100px;
+    margin-right:50px;
+    border-width:medium;
+
+    border-style:none;
+    background:#E8E8E8;
+    padding:5px;
+}
+
+
+
+/** SEITEN-LAYOUT **/
+
+/* Fix für Bootstraps .navbar-fixed-top */
+#mainWrapper {
+    padding-top: 70px;
+    position: relative;
+    min-height: 90%;
+}
+
+
+/** LINKE SEITE: SUCH-LEISTE UND TEXT-INFO */
+
+/* content muss Bootstrap-Offset entsprechend gesetzt haben! */
+div#leftFields {
+    position: relative;  /*position=fixed;*/
+
+}
+
+div#leftFieldsFixed {
+    position:fixed;
+
+}
+
+
+div#rightContent    {
+    position:fixed;
+}
+
+
+/* Icons in Legenden sehen "anklickbar" aus */
+div#leftFields legend > i {
+    cursor: pointer;
+}
+
+/** SUCH-LEISTE LINKS */
+
+/* Alle Genre-Listen haben keine Bulletpoints und sind nicht eingerückt */
+div#collapseGenres ul {
+    list-style-type: none;
+    margin-left: 0px; 
+}
+
+/* Auf der obersten Listenebene der Genres werden die Listen vertikal voneinander apgesetzt */
+div#collapseGenres > div.accordion-inner > ul {
+    margin-bottom: 25px;
+}
+
+span.complexGenreName {
+    margin-top: 10px;
+}
+
+
+/** TEXT ELEMENTE LINKS */
+
+/* Listen im Highlight Buttons Feld haben keine Bulletpoints */
+#highlightButtons ul {
+    list-style-type: none;
+}
+
+/* Icons in der Text-Elemente-Box sehen anklickbar aus */
+#text-elements i {
+    cursor: pointer;
+}
+
+
+/** TEXT-PREVIEW **/
+
+.dataset-preview {
+    margin-top: 55px;
+}
+
+.dataset-preview .header {
+    margin-bottom: 15px;
+}
+
+.dataset-preview .header h4 {
+    display: inline;
+}
+
+.dataset-preview .header a {
+    margin-left: 15px;
+    font-variant: small-caps;
+    font-weight: bold;
+    font-size: larger;
+}
+
+.dataset-preview > table {
+    width: 85%;
+    margin-left: 5%;
+}
+
+.dataset-preview > table td {
+    border: none;
+}
+
+.miniInfoTable td {
+    padding-right: 35px;
+}
+
+/** FURTHER INFORMATION POPOVER (In Dataset.html)**/
+/*Link sieht anklickbar aus*/
+
+.popoverContent
+{
+    display:none;
+}
+#popoverFurtherInfo {
+    cursor: pointer;
+}
+
+.popover    {
+    color: black;
+    height: auto;
+    min-width: 600px;
+}
+
+.popover-title {
+    background: #E0EEEE;
+}
+
+/** Login POPOVER (in home.html)*/
+#popoverSignIn {
+    cursor: pointer;
+}
+
+#popoverForgotPassword  {
+    cursor:pointer;
+}
+/** SUCH-AUSGABE **/
+.hi {
+    font-weight:bold;
+    border-bottom: 1px dotted blue;
+}
+
+
+
+/** VOLLE TEXT-ANSICHT **/
+
+.sampleN   {
+    font-variant:small-caps;
+    letter-spacing:0.1em
+}
+
+article h2 small {
+    margin-left: 15px;
+}
+
+#dataset-text {
+    /*line-height: 160%;*/
+}
+
+
+/** TEXT-ELEMENTE 
+* 
+*  Einzelne Elemente des Textes werden alle im Template
+*  templates/text_elements behandelt
+* 
+* **/
+
+/* SCROLL TO TOP BUTTON */
+
+#toTop {
+    display: none;
+    position: fixed;
+    bottom: 5px;
+    right: 5px;
+    width: 64px;
+    height: 64px;
+    background-image: url('http://geniuscarrier.com/images/up.png');
+    background-repeat: no-repeat;
+    opacity: 0.4;
+
+}
+#toTop:hover {
+    opacity: 0.8;
+
+}
+
+/* Userdata Bereich */
+
+.personalDataTable td {
+    padding:6px;
+}
+
+/* Footer am unteren Bildrand rechts mit Link zum Impressum*/
+div.footer {
+    color: #696969;
+    text-align:right;
+    position:absolute;
+    bottom: 0;
+    width: 90%;
+    height: 2em;
+}
+
+/** DEBUG **/
+
+.debug {
+    margin: 40px;    
+}
+
+.debug-info {
+    font-size: small;    
+}
