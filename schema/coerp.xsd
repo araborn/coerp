@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--<xs:schema xmlns="cceh.uni-koeln.de/coerp" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="cceh.uni-koeln.de/coerp"> -->
-<xs:schema xmlns="http://www.coerp.uni-koeln.de/schema" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xlink="http://www.w3.org/1999/xlink" targetNamespace="http://www.coerp.uni-koeln.de/schema">
+<xs:schema xmlns="http://www.coerp.uni-koeln.de/schema" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.coerp.uni-koeln.de/schema">
     <xs:import namespace="http://www.w3.org/1999/xlink" schemaLocation="http://www.loc.gov/standards/xlink/xlink.xsd"/>
     <!-- 
         Die verschiedenen möglichen root-Elemente der Texte.
@@ -37,23 +37,25 @@
     -->
     <xs:complexType name="coerp_headerType">
         <xs:sequence>
-            <xs:element name="author_profile" type="author_profileType"/>
-            <xs:element name="text_profile" type="text_profileType"/>
+           <xs:element name="author_profile" type="author_profileType"/>
+           <xs:element name="text_profile" type="text_profileType"/>
         </xs:sequence>
     </xs:complexType>
     
     <!-- 
         Es kann mehrere Autoren geben
     -->
+ 
+    
     <xs:complexType name="author_profileType">
         <xs:sequence>
-            <xs:sequence minOccurs="1" maxOccurs="unbounded">
-                <xs:element name="author" type="nonEmptyString"/>
-            </xs:sequence>
-            <xs:element name="author_preface" type="xs:string" minOccurs="0"/>
-            <xs:element name="translator" type="xs:string"/>
-            <xs:element name="denom" type="nonEmptyString"/>
-            <xs:element name="bio_info" type="xs:string"/>
+        <xs:sequence minOccurs="1" maxOccurs="unbounded">
+            <xs:element name="author" type="nonEmptyString"/>
+        </xs:sequence>
+               <xs:element name="author_preface" type="xs:string" minOccurs="0"/>
+        <xs:element name="translator" type="xs:string"/>
+        <xs:element name="denom" type="nonEmptyString"/>
+            <xs:element name="bio_info" type="xs:string" />
         </xs:sequence>
     </xs:complexType>
 
@@ -125,6 +127,7 @@
             </xs:extension>
         </xs:simpleContent>
     </xs:complexType>
+
     <xs:complexType name="genreType">
         <xs:simpleContent>
             <xs:extension base="nonEmptyString">
@@ -141,9 +144,10 @@
             <xs:element name="headings_paragraphs" type="headings_paragraphsType" minOccurs="0"/>
             <xs:element name="text_body" type="text_bodyType" minOccurs="0"/>
             <xs:element name="bible_languages" type="biblequotationType" minOccurs="0"/>
-            <xs:element name="text_edition" type="xs:boolean"/>
+            <xs:element name="text_edition" type="xs:boolean" />
         </xs:sequence>
     </xs:complexType>
+    
     <xs:complexType name="posAttr">
         <xs:simpleContent>
             <xs:extension base="xs:string">
@@ -151,6 +155,7 @@
             </xs:extension>
         </xs:simpleContent>
     </xs:complexType>
+    
     <xs:complexType name="adaptedAttr">
         <xs:simpleContent>
             <xs:extension base="xs:string">
@@ -164,6 +169,7 @@
     <xs:complexType name="formatType">
         <xs:sequence>
             <xs:element name="format_original" type="nonEmptyString"/>
+            <xs:element name="pagination_erratic" type="existAttr" />
             <xs:element name="contains" type="typeAttr" minOccurs="0"/>
             <xs:element name="satb_scores" type="satbAttr" minOccurs="0" maxOccurs="1"/>
         </xs:sequence>
@@ -182,19 +188,16 @@
         <xs:sequence>
             <xs:element name="paragraphs" type="posAttr" maxOccurs="unbounded"/>
             <xs:element name="cong_song" type="xs:string" minOccurs="0"/>
-            <xs:element name="columns" type="columnsType" minOccurs="0"/>
+            <xs:element name="columns" type="xs:string" minOccurs="0" />
             <xs:element name="song_titels_added" type="existAttr" minOccurs="0"/>
-            <xs:element name="metatext" type="existAttr" minOccurs="0"/>
+            <xs:element name="metatext" type="existAttr" minOccurs="0" />
         </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="columnsType">
-        
     </xs:complexType>
     <xs:complexType name="text_bodyType">
         <xs:sequence>
             <xs:element name="elements" type="styleType"/>
             <xs:element name="illegible" type="damagedType" minOccurs="0"/>
-            <xs:element name="missing" type="damagedType" minOccurs="0"/>
+            <xs:element name="missing" type="damagedType_m" minOccurs="0"/>
             <xs:element name="footnotes" type="existAttr"/>
             <xs:element name="comments_references" type="existAttr"/>
             <xs:element name="line_breaks" type="adaptedAttr" minOccurs="0"/>
@@ -205,8 +208,17 @@
             <xs:element name="style" type="xs:string"/>
         </xs:sequence>
     </xs:complexType>
+    
     <xs:complexType name="damagedType">
         <xs:sequence minOccurs="1" maxOccurs="unbounded">
+            <xs:element name="due_to" type="xs:string" minOccurs="0"/>
+            <xs:element name="replaced_by" type="xs:string" minOccurs="0"/>
+            <xs:element name="page" type="pageType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="damagedType_m">
+        <xs:sequence minOccurs="1" maxOccurs="unbounded">
+            <xs:element name="empty_page" type="existAttr"/>
             <xs:element name="due_to" type="xs:string" minOccurs="0"/>
             <xs:element name="replaced_by" type="xs:string" minOccurs="0"/>
             <xs:element name="page" type="pageType"/>
@@ -219,9 +231,11 @@
                 <xs:element name="to" type="xs:integer"/>
             </xs:sequence>
             <xs:element name="pageNR" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+
         </xs:sequence>
         <xs:attribute name="type" type="xs:string" use="required"/>
     </xs:complexType>
+    
     <xs:complexType name="typeAttr">
         <xs:simpleContent>
             <xs:extension base="xs:string">

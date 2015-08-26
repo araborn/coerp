@@ -1,3 +1,20 @@
+
+$(document).ready(function(){ 
+    
+    $("span#TextElementBar").click(function() {
+        $("#highlightButtons").toggle("slide","slow");
+    })
+    
+    $("div.TextTooltipButton").click(function() {
+    $(this).next("div").toggle("blind","slow");
+        
+    })
+
+});
+
+
+/*##### Text Elemente ######*/
+
 var textElementsMap = {
     
     'references': {
@@ -239,7 +256,7 @@ function addCheckboxListItem(parentDiv, elemType, classToToggle, label, func, fa
         '<li id="' + classToToggle + '-listItem">' +
             '<label class="checkbox" style="font-size:14px;font-weight:normal;line-height: 20px;display:inline;">' +
                 '<input id="checkBox-' + classToToggle + '" type="checkbox" onclick="' + func + '"/>' +
-                '<span id="select-' + classToToggle + '">' +  label + '</span>' +
+                '<span id="select-' + classToToggle + '" class="ButtonTexts">' +  label + '</span>' +
                 '</label>' + 
             '<i class="glyphicon glyphicon-step-backward" title="next Element" onclick="scrollToTextElement(\'' + elemType + '\', \'' + classToToggle + '\', 1)"/>' +
             '<i class="glyphicon glyphicon-step-forward" title="previous Element" onclick="scrollToTextElement(\'' + elemType + '\', \'' + classToToggle + '\', -1)"/>' +
@@ -266,10 +283,10 @@ $(document).ready(function(){
     $.each(textElementsMap, function(elemType, elems) {
         topLevelList.append(
             '<li id="list-item' + elemType + '" class="toogle">' +
-                '<h6 id="toogle_'+elemType+'" >' + elemType.replace(/(\b[a-z])|(_)/g, function(str,c,d) { 
+                '<div class="ButtonLine"><h6 id="toogle_'+elemType+'" >' + elemType.replace(/(\b[a-z])|(_)/g, function(str,c,d) { 
                                                                 if(d) return ' '; 
-                                                                if(c) return c.toUpperCase() }) +"<i class='glyphicon glyphicon-chevron-down' >" +"</h6>" +
-                '<ul id="' + elemType + '" class="text_display"/>' +
+                                                                if(c) return c.toUpperCase() }) +"</h6>"+"<i class='glyphicon glyphicon-chevron-down' /></div>"  +
+                '<ul id="' + elemType + '" class="text_display InnerButtons"/>' +
             '</li>'
         );
         

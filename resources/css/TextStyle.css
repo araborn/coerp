@@ -1,13 +1,13 @@
  
-        #text-elements {
-        margin-left: 435px;
-        display: block;
-        position: fixed;
-        padding: 3px 0px 7px 10px;
-        z-index:1;
-        cursor:pointer !important;
-        width:230px;
-        margin-top:20px;
+        #TextElements {
+         cursor: pointer !important;
+         display: block;
+         margin-left: 475px;
+         margin-top: 20px;
+         padding: 3px 0 7px 10px;
+         position: fixed;
+         width: 300px;
+         z-index: 1;
         }
 
         #text-elements h3 {
@@ -16,10 +16,65 @@
         
         }
 
+        #TextElementList {
+            margin-left: 35px;
+            margin-top: -32px;
+        }
+        .text_display {
+                    display:none;
+                }
+        
+        #highlightButtons {
+            display:none;
+            padding-bottom: 5px;
+            padding-top: 3px;
+        }
+        
+        #highlightButtons ul {
+                list-style-type: none;
+                margin: 0;
+                padding-left: 8px;
+        }
+        #highlightButtons li {
+        }
+        
+
+        
+        #highlightButtons i {
+            
+        }
+        
+        .ButtonLine {
+            padding: 5px 0 5px 4px;
+}
+        
+        .ButtonLine h6 {
+               float: left;
+            font-size: 16px;
+            margin: 0;
+            width: 150px;
+        }
+        .ButtonTexts {
+             display: inline-block;
+    width: 160px;
+        }
+        .InnerButtons {
+            padding-left: 40px !important;
+            
+        }
+        #TextElementBar {
+            color:#CC270B;
+            font-size: 20px;
+    font-weight: 300 !important;
+        }
+        #TextElementBar:hover {
+            color:#FF310E;
+        }
+        
         .pull-right {
         right: 0px;
         }
-        
+        /*
         #highlightButtons ul {
         list-style-type: none;
         padding: 0px 0px 0px 20px;
@@ -30,6 +85,11 @@
         width: 210px;
         margin: 5px 0px 0px 0px;
         }
+        */
+        
+     
+        
+        
         #toTop {
         display: none;
         position: fixed;
@@ -104,7 +164,7 @@
         */
         
         .sample {
-        margin: 3px 3px 5px 5px;
+        margin: 3px 45px 5px 20px;
         padding: 5px 2px 2px 5px;
         }
         
@@ -201,14 +261,34 @@
         legend i, h6 i {
         margin-left:20px;
         }
-        .text_display {
-            display:none;
-        }
+        
         .InText {
         margin-left:2px;
         }
+        .comment-selected {
+            cursor:pointer !important;
+        }
         .CustomTooltip {
-        width:200px;
+        max-width:200px;
+        text-align:center;
+        padding-top:2px;
+        padding-bottom:2px;
+        
+         background-color:#fafafa;
+    border-top-left-radius: 10px; 
+    border-top-right-radius: 10px; 
+    border-bottom-right-radius: 10px; 
+    border-bottom-left-radius: 10px; 
+    moz-border-radius-topleft: 10px; 
+    -moz-border-radius-topright: 10px; 
+    -moz-border-radius-bottomright: 10px; 
+    -moz-border-radius-bottomleft: 10px; 
+    -webkit-border-top-left-radius: 10px; 
+    -webkit-border-top-right-radius: 10px; 
+    -webkit-border-bottom-right-radius: 10px; 
+    -webkit-border-bottom-left-radius: 10px;
+     box-shadow: 0px 1px 20px 2px #cac3db; -moz-box-shadow: 0px 1px 20px 2px #cac3db; -webkit-box-shadow: 0px 1px 20px 2px #cac3db;
+
         }
         
         /*#########Author & Text Profile ######*/
@@ -222,14 +302,19 @@
         
         
         #TextAuthorProfile {
-            margin-left: 70px;
+           width: 52%;
+
             margin-top: 20px;
+            margin-right: 45px;
         }
         #TextTitle {
             margin-left:20px;
+            width: 35%;
         }
         #TextTextProfile {
-            
+            margin-left: 27px;
+            margin-right: 45px;
+            margin-top: 10px;
         }
         
       
@@ -243,3 +328,39 @@
         }
         
         #ToolTextProfile {}
+        
+           .TextLeft {
+            display: inline-block;
+            width: 20%;
+        }
+        
+        .TextRight {
+            display: inline-block;
+             width: 79%;
+        }
+        
+        .TextLine {
+            padding: 1px 0 2px;
+            display: block;
+            border-bottom:1px solid #cac3db;
+        }
+        
+        #ToolAuthorProfile .TextLeft {
+            width:28%;
+        } 
+        
+         #ToolAuthorProfile .TextRight {
+            width:72%;
+        } 
+        
+        .TextTooltipButton {
+            cursor:pointer !Important;
+            font-style:italic;
+            color:#001E7F;
+        }
+        .TextTooltipButton:hover {
+            color:#003DFF;
+            
+        }
+        
+        
