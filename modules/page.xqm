@@ -105,13 +105,13 @@ declare function page:checkData($param as xs:string, $type as xs:string) as xs:b
 
 declare function page:createAdvSearch() as node() {
     let $code := <div class="adv_search">
-                   <div class="adv_types">
+                   <div class="adv_types PageBorders-none-top">
                        <div class="adv_types_tab" id="tab_periods">Periods</div>
                        <div class="adv_types_tab" id="tab_genres">Genres</div>
                        <div class="adv_types_tab" id="tab_denominations">Denominations</div>
                    </div>
                    <div class="adv_fields_div">
-                   <div class="adv_fields" id="adv_periods">
+                   <div class="adv_fields PageBorders-none-top-left" id="adv_periods">
                        <div class="adv_fields_tab">
                                 <form oninput="start.value=parseInt(a.value), end.value=parseInt(b.value)"> 
                              <input type="range" id="a" value="1150" min="1150" max="1699" /> 
@@ -121,7 +121,7 @@ declare function page:createAdvSearch() as node() {
                                 </form>
                        </div>
                    </div>
-                   <div class="adv_fields" id="adv_genres">
+                   <div class="adv_fields PageBorders-none-top-left" id="adv_genres">
                        <div class="adv_fields_tab">
                            <h4>core</h4>
                            <form>
@@ -145,7 +145,7 @@ declare function page:createAdvSearch() as node() {
                            </form>
                        </div>
                    </div>
-                   <div class="adv_fields" id="adv_denominations">
+                   <div class="adv_fields PageBorders-none-top-left" id="adv_denominations">
                        <div class="adv_fields_tab">
                            <form>
                                <ul>
