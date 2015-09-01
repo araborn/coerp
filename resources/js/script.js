@@ -92,6 +92,21 @@ $(document).ready(function() { /* Advanced Search Funktion*/
                     $(".adv_search").hide("blind","slow");
                 }
         });
+        
+ 
+    $( "#RangeSlider" ).slider({
+      range: true,
+      min: 0,
+      max: 500,
+      values: [ 75, 300 ],
+      slide: function( event, ui ) {
+        $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
+      }
+    });
+    $( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) +
+      " - $" + $( "#slider-range" ).slider( "values", 1 ) );
+
+        
 });
 
 $(document).ready(function() { /* Genre Funktion*/
@@ -107,3 +122,5 @@ $(document).ready(function() { /* Genre Funktion*/
         }
         $("ul#List_genres div.ListTab").prepend("<li class='SubNavTab_List' id='Tab_"+$("ul#List_genres div.ListTab").attr("id")+"'>"+$("ul#List_genres div.ListTab").attr("id")+"</li>")
 });
+
+

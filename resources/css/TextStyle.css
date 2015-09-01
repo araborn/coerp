@@ -302,22 +302,15 @@
         
         
         #TextAuthorProfile {
-           width: 52%;
-
-            margin-top: 20px;
-            margin-right: 45px;
-        }
-        #TextTitle {
-            margin-left:20px;
-            width: 35%;
-        }
-        #TextTextProfile {
-            margin-left: 27px;
-            margin-right: 45px;
-            margin-top: 10px;
+           padding-top: 30px;
         }
         
-      
+        #TextTextProfile {
+           
+        }
+   
+      #TextTitle {
+        }
         .TextTooltip {
             display:none;
         }
@@ -327,7 +320,9 @@
             
         }
         
-        #ToolTextProfile {}
+        #ToolTextProfile {
+            padding-top:11px;
+        }
         
            .TextLeft {
             display: inline-block;
@@ -347,11 +342,11 @@
         }
         
         #ToolAuthorProfile .TextLeft {
-            width:28%;
+            width:37%;
         } 
         
          #ToolAuthorProfile .TextRight {
-            width:72%;
+            width:63%;
         } 
         
         .TextTooltipButton {
@@ -368,3 +363,29 @@
             margin-left: 20px;
         }
         
+        #TextProfileStyle {
+           
+        }
+        
+        #TextAnnotation {
+            
+        }
+        #TextShortTitle {
+            
+        }
+        
+        #TitleLine {
+            
+        }
+        
+        .Titels {
+            float:left;
+            display:block;
+            width:70%;
+        }
+        
+        .TextHeader {
+            margin-left: 27px;
+    margin-right: 45px;
+    margin-top: 10px;
+        }

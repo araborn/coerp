@@ -6,7 +6,7 @@ $(document).ready(function(){
     })
     
     $("div.TextTooltipButton").click(function() {
-    $(this).next("div").toggle("blind","slow");
+    $(this).parent("div").next("div").toggle("blind","slow");
         
     })
 
@@ -303,8 +303,8 @@ $(document).ready(function(){
         }        
     });
     
-    $("li.toogle h6").click(function() {
-            var raw_id = $(this).attr("id");
+    $("li.toogle .ButtonLine").click(function() {
+            var raw_id = $(this).children("h6").attr("id");
             var id = raw_id.substring(7);
             $("#"+id).toggle("blind","");
             });

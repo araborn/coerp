@@ -113,12 +113,14 @@ declare function page:createAdvSearch() as node() {
                    <div class="adv_fields_div">
                    <div class="adv_fields PageBorders-none-top-left" id="adv_periods">
                        <div class="adv_fields_tab">
+                       <div id="RangeSlider"></div>
+                       <!--
                                 <form oninput="start.value=parseInt(a.value), end.value=parseInt(b.value)"> 
                              <input type="range" id="a" value="1150" min="1150" max="1699" /> 
                             <output name="start" for="a">1150</output> 
                                     <output name="end" for="b">1699</output> 
                                      <input type="range" id="b" value="1699" min="1150" max="1699" /> 
-                                </form>
+                                </form>-->
                        </div>
                    </div>
                    <div class="adv_fields PageBorders-none-top-left" id="adv_genres">
