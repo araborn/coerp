@@ -6,10 +6,11 @@ $(document).ready(function(){
     })
     
     $("div.TextTooltipButton").click(function() {
-    $(this).parent("div").next("div").toggle("blind","slow");
-        
+    $(this).next("div").toggle("blind","slow");
     })
-
+    $("div#TextAnnotation").click(function() {
+        $("#highlightButtons").toggle("slide","slow");
+    })
 });
 
 

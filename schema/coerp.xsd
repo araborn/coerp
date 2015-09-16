@@ -144,7 +144,7 @@
             <xs:element name="headings_paragraphs" type="headings_paragraphsType" minOccurs="0"/>
             <xs:element name="text_body" type="text_bodyType" minOccurs="0"/>
             <xs:element name="bible_languages" type="biblequotationType" minOccurs="0"/>
-            <xs:element name="text_edition" type="xs:boolean" />
+            <xs:element name="text_edition" type="existAttr" />
         </xs:sequence>
     </xs:complexType>
     
@@ -171,7 +171,7 @@
             <xs:element name="format_original" type="nonEmptyString"/>
             <xs:element name="pagination_erratic" type="existAttr" />
             <xs:element name="contains" type="typeAttr" minOccurs="0"/>
-            <xs:element name="satb_scores" type="satbAttr" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="satb_scores" type="existAttr" minOccurs="0" maxOccurs="1"/>
         </xs:sequence>
     </xs:complexType>
     <xs:complexType name="satbAttr">
@@ -189,15 +189,17 @@
             <xs:element name="paragraphs" type="posAttr" maxOccurs="unbounded"/>
             <xs:element name="cong_song" type="xs:string" minOccurs="0"/>
             <xs:element name="columns" type="xs:string" minOccurs="0" />
-            <xs:element name="song_titels_added" type="existAttr" minOccurs="0"/>
+            <xs:element name="song_titles_added" type="existAttr" minOccurs="0"/>
             <xs:element name="metatext" type="existAttr" minOccurs="0" />
         </xs:sequence>
     </xs:complexType>
     <xs:complexType name="text_bodyType">
         <xs:sequence>
+            <xs:element name="illustrations" type="illustrationsAttr"/>
             <xs:element name="elements" type="styleType"/>
             <xs:element name="illegible" type="damagedType" minOccurs="0"/>
             <xs:element name="missing" type="damagedType_m" minOccurs="0"/>
+            <xs:element name="empty_page" type="existAttr"/>
             <xs:element name="footnotes" type="existAttr"/>
             <xs:element name="comments_references" type="existAttr"/>
             <xs:element name="line_breaks" type="adaptedAttr" minOccurs="0"/>
@@ -209,6 +211,15 @@
         </xs:sequence>
     </xs:complexType>
     
+    <xs:complexType name="illustrationsAttr">
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute name="exist" type="xs:boolean"/>
+                <xs:attribute name="type" type="xs:string"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    
     <xs:complexType name="damagedType">
         <xs:sequence minOccurs="1" maxOccurs="unbounded">
             <xs:element name="due_to" type="xs:string" minOccurs="0"/>
@@ -218,7 +229,6 @@
     </xs:complexType>
     <xs:complexType name="damagedType_m">
         <xs:sequence minOccurs="1" maxOccurs="unbounded">
-            <xs:element name="empty_page" type="existAttr"/>
             <xs:element name="due_to" type="xs:string" minOccurs="0"/>
             <xs:element name="replaced_by" type="xs:string" minOccurs="0"/>
             <xs:element name="page" type="pageType"/>

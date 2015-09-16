@@ -113,7 +113,11 @@ declare function page:createAdvSearch() as node() {
                    <div class="adv_fields_div">
                    <div class="adv_fields PageBorders-none-top-left" id="adv_periods">
                        <div class="adv_fields_tab">
-                       <div id="RangeSlider"></div>
+                       
+                        <label for="amount">Period Range:</label>
+            <input type="text" id="amount"  style="border:0; color:#f6931f; font-weight:bold;" />
+            
+            <div id="RangeSlider"></div>
                        <!--
                                 <form oninput="start.value=parseInt(a.value), end.value=parseInt(b.value)"> 
                              <input type="range" id="a" value="1150" min="1150" max="1699" /> 

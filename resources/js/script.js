@@ -96,15 +96,15 @@ $(document).ready(function() { /* Advanced Search Funktion*/
  
     $( "#RangeSlider" ).slider({
       range: true,
-      min: 0,
-      max: 500,
-      values: [ 75, 300 ],
+      min: 1150,
+      max: 1699,
+      values: [ 1150, 1699 ],
       slide: function( event, ui ) {
-        $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
+        $( "#amount" ).val(ui.values[ 0 ]+"a.D. " + " - " + ui.values[ 1 ]+"a.D."  );
       }
     });
-    $( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) +
-      " - $" + $( "#slider-range" ).slider( "values", 1 ) );
+    $( "#amount" ).val($( "#RangeSlider" ).slider( "values", 0 )+"a.D. " +
+      " - " + $( "#RangeSlider" ).slider( "values", 1 ) +"a.D. " );
 
         
 });

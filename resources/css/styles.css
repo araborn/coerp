@@ -375,8 +375,13 @@ display:none;
     list-style:none;
 }
 
+#adv_periods {
+    padding-left:10px;
+    padding-right:10px;
+}
 
-
+.adv_filds_tab h4 {
+}
 /*########## MAIN PAGE DESIGN ###################*/
 
 
