@@ -222,16 +222,16 @@
     
     <xs:complexType name="damagedType">
         <xs:sequence minOccurs="1" maxOccurs="unbounded">
+            <xs:element name="page" type="pageType"/>
             <xs:element name="due_to" type="xs:string" minOccurs="0"/>
             <xs:element name="replaced_by" type="xs:string" minOccurs="0"/>
-            <xs:element name="page" type="pageType"/>
         </xs:sequence>
     </xs:complexType>
     <xs:complexType name="damagedType_m">
         <xs:sequence minOccurs="1" maxOccurs="unbounded">
+            <xs:element name="page" type="pageType"/>
             <xs:element name="due_to" type="xs:string" minOccurs="0"/>
             <xs:element name="replaced_by" type="xs:string" minOccurs="0"/>
-            <xs:element name="page" type="pageType"/>
         </xs:sequence>
     </xs:complexType>
     <xs:complexType name="pageType">

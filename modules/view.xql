@@ -18,6 +18,8 @@ import module namespace helpers="http://localhost:8080/exist/apps/coerp_new/help
 import module namespace corpus="http://localhost:8080/exist/apps/coerp_new/corpus" at "corpus.xqm";
 import module namespace page="http://localhost:8080/exist/apps/coerp_new/page" at "page.xqm";
 import module namespace doc="http://localhost:8080/exist/apps/coerp_new/doc" at "doc.xqm";
+import module namespace search="http://localhost:8080/exist/apps/coerp_new/search" at "search.xqm";
+
 
 
 (: 
