@@ -108,9 +108,13 @@ div.MainNavTab.active {
     
 }
 
-.SubNavTab_div:hover, .ListTab:hover, .ThiNavTab_div:hover {
+.SubNavTab_div:hover, .ListTab:hover, .ThiNavTab_div:hover, .QuadNavTab_div:hover {
 background: linear-gradient(top, #5e81f2 0%, #7787f2 50%, #8091e8 100%); background: -moz-linear-gradient(top, #5e81f2 0%, #7787f2 50%, #8091e8 100%); background: -webkit-linear-gradient(top, #5e81f2 0%, #7787f2 50%, #8091e8 100%); background: -ms-linear-gradient(top, #5e81f2 0%, #7787f2 50%, #8091e8 100%); background: -o-linear-gradient(top, #5e81f2 0%, #7787f2 50%, #8091e8 100%); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#5e81f2, endColorstr=#8091e8,GradientType=1);
     color:white !important;
+}
+
+.QuadNavTab_div {
+    width:100%;
 }
 
 .ListTab .active {
@@ -120,21 +124,31 @@ background: linear-gradient(top, #5e81f2 0%, #7787f2 50%, #8091e8 100%); backgro
 }
 
 
-.SubNavTab_div, .ListTab, .ThiNavTab_div, .SubNavTab_head, .EmptyTab {
+.SubNavTab_div, .ListTab, .ThiNavTab_div, .SubNavTab_head, .EmptyTab, .ThiNavList_div {
     padding-left:10px;
     margin: 4px 0 1px;
 }
-.SubNavTab_div a, .ThiNavTab_div a {
+.SubNavTab_div a, .ThiNavTab_div a, .ThiNavTab_div li, .ThiNavList_div a{
     color:black !important;
 }
 
-.SubNavTab_div a:hover, .ThiNavTab_div a:hover {
+.SubNavTab_div a:hover, .ThiNavTab_div a:hover, .ThiNavTab_div li:hover , .ThiNavList_div a:hover{
     color:white !important;
 }
 
 .ThiNavTab_div {
     width:200px;
 }
+
+.ThiNavTab_div.authors {
+    width:50px;
+}
+
+
+.BFont {
+    
+}
+
     .HeadTab {
     font-size:14px;
     
@@ -155,13 +169,18 @@ background: linear-gradient(top, #5e81f2 0%, #7787f2 50%, #8091e8 100%); backgro
 }
 
 
-.MainNavList, .SubNavList {
+.MainNavList, .SubNavList, .ThiNavList {
         list-style:none;
         margin:0 !important;        
         padding-left:0px !important;
         
         
+        
 }
+
+ .ThiNavList {
+     width:90%;
+ }
 
 .SecNavTab {
     display:none;
@@ -193,7 +212,7 @@ background: linear-gradient(top, #5e81f2 0%, #7787f2 50%, #8091e8 100%); backgro
 
 }
 
-.SubNavList_div {
+.SubNavList_div, .ThiNavList_div {
     margin: -20px 0 0 150px;
     position:absolute;
     display:none;
@@ -218,6 +237,10 @@ background: linear-gradient(top, #5e81f2 0%, #7787f2 50%, #8091e8 100%); backgro
 
 }
 
+.ThiNavList_div {
+     margin-left: 30px;
+     width: 230px;
+}
 .NavLine {
     border-bottom:1px solid #cac3db;
     margin: 5px 5px 10px 0;

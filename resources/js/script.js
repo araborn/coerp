@@ -31,24 +31,41 @@ $(document).ready(function() { /* Navigations Funktion*/
        $("div.ListTab").mouseover(function() {
         if(!$(this).hasClass("active")) { /*if 2 Start*/
             $(this).addClass("active");
-            $(this).children("li.SubNavTab_List").addClass("active");
+            $(this).children("li").addClass("active");
+      /*     
+       *  $(this).children("li.SubNavTab_List").addClass("active");
+       * 
             var raw_id= $(this).children("li.SubNavTab_List").attr("id");
             var id = raw_id.substring(4);
-            $(this).children("div").children("ul#List_"+id).show();
-            $(this).children("div").children(" ul#List_"+id).css("display","inline-block");
+            */
+            $(this).children("div").children("ul").show();
+            $(this).children("div").children(" ul").css("display","inline-block");
              $(this).children("div").show();
             $(this).children("div").css("display","inline-block");
             
+            /*$(this).children("div").children("ul#List_"+id).show();
+            $(this).children("div").children(" ul#List_"+id).css("display","inline-block");
+             $(this).children("div").show();
+            $(this).children("div").css("display","inline-block");*/
+            
               $(this).mouseleave(function(){ 
                $(this).removeClass("active");
-               $(this).children("li.SubNavTab_List").removeClass("active");
-               var raw_id= $(this).children(" li.SubNavTab_List").attr("id");
+     $(this).children("li").removeClass("active");
+           
+          /*
+           *  $(this).children("li.SubNavTab_List").removeClass("active");
+           * 
+                var raw_id= $(this).children(" li.SubNavTab_List").attr("id");
                var id = raw_id.substring(4);
-               $(this).children("div").children("ul#List_"+id).hide();
+          */
+          $(this).children("div").children("ul").hide();
                $(this).children("div").hide();
                 });
+                
           }/*if 2 End*/
           });
+          
+          
        /*
        $("div.NavMainTab li.HeadTab").mouseleave(function() {
             
