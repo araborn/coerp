@@ -148,6 +148,14 @@ else if (ends-with($exist:resource, "index.html")) then
             </forward>
         </view>
     </dispatch> 
+    else if ($exist:resource eq "search") then 
+    <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
+        <forward url="{$exist:controller}/page/{$exist:resource}.html" />
+        <view>
+            <forward url="{$exist:controller}/modules/view.xql">
+            </forward>
+        </view>
+    </dispatch> 
     (:
 else if (ends-with($exist:resource, "login.html")) then
         let $post := request:get-data()

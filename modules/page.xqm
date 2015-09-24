@@ -24,14 +24,19 @@ return <ul class="MainNavList"> {
                     <a href="{$helpers:app-root}/index.html"> <li class="HeadTab"><img src="{$helpers:app-root}/resources/img/CoERP-Logo-2_neu_klein.png" alt="Logo" id="logo"/></li></a>
            else  if($Tab/term/data(.) = "Search") then 
                 <div id="searchTab">
+                <form class="/helpers:app-root" action="search" method="post" id="SearchForm">
                     <div id="searchDiv">
-                        <input id="search" type="search" placeholder="Search ..." />
+                    
+                        <input id="search" type="search" name="term" placeholder="Search ..." />
                         <div id="search_adDiv" class="searchButtons">Advanced Search</div>
-                    </div>
-                    <div id="searchButton" class="searchButtons ">
-                        <a href="#" class="glyphicon glyphicon-search " id="search_icon" ></a>
+                       
                     </div>
                     {page:createAdvSearch()}
+                     </form>
+                    <div id="searchButton" class="searchButtons ">
+                        <i  class="glyphicon glyphicon-search " id="search_icon" ></i>
+                    </div>
+                    
                 </div>
            else if ( $Tab/term/attribute() = "genres") then 
                     (
@@ -131,44 +136,39 @@ declare function page:createAdvSearch() as node() {
                    <div class="adv_fields PageBorders-none-top-left" id="adv_periods">
                        <div class="adv_fields_tab">
                         <label for="amount">Period Range:</label>
-                        <input type="text" id="amount"  style="border:0; color:#f6931f; font-weight:bold;" />
+                        <input type="search" id="amount"  name="date"/>
                             <div id="RangeSlider"></div>
                        </div>
                    </div>
                    <div class="adv_fields PageBorders-none-top-left" id="adv_genres">
                        <div class="adv_fields_tab">
                            <h4>core</h4>
-                           <form>
                                <ul>
-                               <li><input type="checkbox" name="prayer" value="prayer" id="prayer" /> <label for="prayer">Prayer</label>
-                               </li><li><input type="checkbox" name="sermon" value="sermon" id="sermon" /> <label for="sermon">Sermon</label>
-                               </li><li><input type="checkbox" name="treatise" value="treatise" id="treatise" /> <label for="treatise">Treatise</label>
-                               </li><li><input type="checkbox" name="treatise_controversial" value="treatise_controversial" id="treatise_controversial" /> <label for="treatise_controversial">Controversial Treatise</label>
-                               </li><li><input type="checkbox" name="catechism" value="catechism" id="catechism" /> <label for="catechism">Catechism</label>
-                               </li><li><input type="checkbox" name="catechism_mimetic" value="catechism_mimetic" id="catechism_mimetic" /> <label for="catechism_mimetic">Mimetic Catechism</label>
+                               <li><input type="checkbox" name="genre" value="prayers" id="prayer" /> <label for="prayer">Prayer</label>
+                               </li><li><input type="checkbox" name="genre" value="sermon" id="sermon" /> <label for="sermon">Sermon</label>
+                               </li><li><input type="checkbox" name="genre" value="treatise" id="treatise" /> <label for="treatise">Treatise</label>
+                               </li><li><input type="checkbox" name="genre" value="treatise_controversial" id="treatise_controversial" /> <label for="treatise_controversial">Controversial Treatise</label>
+                               </li><li><input type="checkbox" name="genre" value="catechism" id="catechism" /> <label for="catechism">Catechism</label>
+                               </li><li><input type="checkbox" name="genre" value="catechism_mimetic" id="catechism_mimetic" /> <label for="catechism_mimetic">Mimetic Catechism</label>
                                </li> </ul>
-                           </form>
+                           
                        </div>
                        <div class="adv_fields_tab">
                            <h4>minor</h4>
-                           <form>
                                <ul>
-                               <li><input type="checkbox" name="religious_biography" value="religious_biography" id="religious_biography" /> <label for="religious_biography">Religious Biography</label>
+                               <li><input type="checkbox" name="genre" value="biography" id="religious_biography" /> <label for="biography">Religious Biography</label>
                                </li>
                                </ul>
-                           </form>
                        </div>
                    </div>
                    <div class="adv_fields PageBorders-none-top-left" id="adv_denominations">
                        <div class="adv_fields_tab">
-                           <form>
                                <ul>
-                               <li><input type="checkbox" name="anglican" value="anglican" id="anglican"/> <label for="anglican">Anglican</label>
-                               </li><li><input type="checkbox" name="catohlic" value="catohlic" id="catohlic"/> <label for="catohlic">Catholic</label>
-                               </li><li> <input type="checkbox" name="nonconformist" value="nonconformist" id="nonconformist"/> <label for="nonconformist">Nonoconformist</label>
-                               </li><li><input type="checkbox" name="unknown" value="unknown" id="unknown"/> <label for="unknown">Unknown</label>
+                               <li><input type="checkbox" name="denom" value="Anglican" id="anglican"/> <label for="anglican">Anglican</label>
+                               </li><li><input type="checkbox" name="denom" value="Catholic" id="catohlic"/> <label for="catohlic">Catholic</label>
+                               </li><li> <input type="checkbox" name="denom" value="Nonconformist" id="nonconformist"/> <label for="nonconformist">Nonoconformist</label>
+                               </li><li><input type="checkbox" name="denom" value="Unknown" id="unknown"/> <label for="unknown">Unknown</label>
                                </li></ul>
-                           </form>
                        </div>
                    </div>
                </div>

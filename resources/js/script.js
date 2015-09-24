@@ -117,13 +117,33 @@ $(document).ready(function() { /* Advanced Search Funktion*/
       max: 1699,
       values: [ 1150, 1699 ],
       slide: function( event, ui ) {
-        $( "#amount" ).val(ui.values[ 0 ]+"a.D. " + " - " + ui.values[ 1 ]+"a.D."  );
+        $( "#amount" ).val(ui.values[ 0 ] + " - " + ui.values[ 1 ]  );
       }
     });
-    $( "#amount" ).val($( "#RangeSlider" ).slider( "values", 0 )+"a.D. " +
-      " - " + $( "#RangeSlider" ).slider( "values", 1 ) +"a.D. " );
+    $( "#amount" ).val($( "#RangeSlider" ).slider( "values", 0 )+
+      " - " + $( "#RangeSlider" ).slider( "values", 1 ));
 
         
+        
+        
+        $("#searchButton").click(function() {
+        $("form").submit();
+   /*     var params = $("input").val();
+        var params2 = $("input#sermon").attr("value");
+        alert(params+params2);*/
+       /*
+       $.ajax({
+                method: "POST",
+                url: "page/search.html",
+                data: {
+                    name:"Test"
+                    }
+               
+            }).done(function(html) {
+                window.location.href= "search.html?"+data;
+            } ) ;*/
+       /*     window.location.href= "search.html";*/
+        });
 });
 
 $(document).ready(function() { /* Genre Funktion*/
