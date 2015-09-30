@@ -24,7 +24,7 @@ return <ul class="MainNavList"> {
                     <a href="{$helpers:app-root}/index.html"> <li class="HeadTab"><img src="{$helpers:app-root}/resources/img/CoERP-Logo-2_neu_klein.png" alt="Logo" id="logo"/></li></a>
            else  if($Tab/term/data(.) = "Search") then 
                 <div id="searchTab">
-                <form class="/helpers:app-root" action="search" method="post" id="SearchForm">
+                <form  action="{$helpers:app-root}/search" method="post" id="SearchForm">
                     <div id="searchDiv">
                     
                         <input id="search" type="search" name="term" placeholder="Search ..." />
@@ -69,7 +69,11 @@ return <ul class="MainNavList"> {
                                 if(page:checkData("genre",$ThiTab/term/attribute()) = fn:true() ) then 
                                 <div class="ThiNavTab_div emboss"><a href="{$helpers:app-root}/genre/{$ThiTab/term/attribute()}"><li class="ThiNavTab">{$ThiTab/term/data(.)}</li></a></div> 
                                 else <div class="EmptyTab inset"><li class="ThiNavTab">{$ThiTab/term/data(.)}</li></div>
-                          else 
+                         else if ($Tab/term/attribute() eq "periods") then
+                            if(page:checkDateRange($ThiTab/term/data(.)) != fn:false()) then 
+                                <div class="ThiNavTab_div"><a href="{$helpers:app-root}/periods/{$ThiTab/term/data(.)}"><li class="ThiNavTab">{$ThiTab/term/data(.)}</li></a></div> 
+                            else <div class="EmptyTab inset"><li class="ThiNavTab">{$ThiTab/term/data(.)}</li></div>
+                         else 
                                 <div class="ThiNavTab_div"><a href="{$helpers:app-root}/genre/{$ThiTab/term/attribute()}"><li class="ThiNavTab">{$ThiTab/term/data(.)}</li></a></div> 
 
                     }</ul></div>}
@@ -125,6 +129,15 @@ declare function page:checkData($param as xs:string, $type as xs:string) as xs:b
         
 };
 
+declare function page:checkDateRange($date as xs:string) {
+let $begin := xs:integer(substring-before($date,"-"))
+let $end := xs:integer(substring-after($date,"-"))
+let $results := (for $year in ($begin to $end)
+             return   search:get-date-search(collection("/db/apps/coerp_new/data"),$year) )
+return if(count($results) != 0) then fn:true() else fn:false()
+ 
+};
+
 declare function page:createAdvSearch() as node() {
     let $code := <div class="adv_search">
                    <div class="adv_types PageBorders-none-top">
@@ -135,9 +148,21 @@ declare function page:createAdvSearch() as node() {
                    <div class="adv_fields_div">
                    <div class="adv_fields PageBorders-none-top-left" id="adv_periods">
                        <div class="adv_fields_tab">
-                        <label for="amount">Period Range:</label>
-                        <input type="search" id="amount"  name="date"/>
+                            <label for="amount">Period Range:</label>
+                            <input type="search" id="amount"  name="date"/>
                             <div id="RangeSlider"></div>
+                            <div id="adv_button_presets" class="adv_periods_buttons">Presets</div>
+                            <div id="adv_button_custom" class="adv_periods_buttons">Custom</div>
+                            <div id="adv_presets">
+                                <span class="adv_presets" id="1150-1499">Middle English</span>
+                                <span class="adv_presets" id="1500-1699">Early Modern English</span>
+                            </div>
+                            <div id="adv_custom">
+                                <label for="from">From</label>
+                                <input  type="text" name="from" value="1150"  id="from" class="adv_custom_input" />
+                                <label for="to">To</label>
+                                <input  type="text" name="to" value="1699"  id="to" class="adv_custom_input"/>
+                            </div>
                        </div>
                    </div>
                    <div class="adv_fields PageBorders-none-top-left" id="adv_genres">

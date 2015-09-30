@@ -419,6 +419,47 @@ display:none;
     color:#f6931f; 
     font-weight:bold;
 }
+
+#adv_presets {
+    display:none;
+}
+
+#adv_custom {
+    display:none;
+}
+
+.adv_periods_buttons {
+    display: inline-block;
+    margin: 0 8px;
+}
+
+.adv_periods_buttons.adv_selected {
+    text-decoration:underline;
+    color:#5e81f2;
+}
+.adv_periods_buttons:hover {
+    text-decoration:underline;
+    color:#5e81f2;
+}
+
+#adv_custom_button {
+    
+}
+
+#adv_presets_button {
+    
+}
+
+.adv_presets {
+    width:100%;
+    margin:0 10px;
+    display: block;
+}
+
+.adv_custom_input {
+     margin: 0 4px;
+    width: 35%;
+}
 /*########## MAIN PAGE DESIGN ###################*/
 
 

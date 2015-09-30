@@ -9,6 +9,7 @@ declare namespace util="http://exist-db.org/xquery/util";
 declare namespace text="http://exist-db.org/xquery/text";
 declare namespace request="http://exist-db.org/xquery/request";
 declare namespace coerp="http://coerp.uni-koeln.de/schema";
+import module namespace kwic="http://exist-db.org/xquery/kwic";
 
 (: ###### SUCH FUNKTIONEN ######### :)
 
@@ -34,12 +35,12 @@ declare function search:test($node as node()*, $model as map(*)) {
 
 declare function search:CollectData($node as node(), $model as map(*)) {
        (: let $db := collection("/db/apps/coerp_new/data") :)
-     let $dbase := collection("/db/apps/coerp_new/data")
-     let $term :=  if(search:get-parameters("term") != "") then $dbase//coerp:text[ft:query(.,search:get-parameters("term"))]
-                                else $dbase
+         let $dbase := collection("/db/apps/coerp_new/data")
+         let $term :=  if(search:get-parameters("term") != "") then $dbase//coerp:coerp[ft:query(.,request:get-parameter("term",''))]
+                                     else $dbase
         let $dbase := $term
        
-        let $date := search:get-date-results($dbase)
+        let $date := search:get-date-results($dbase) 
         let $dbase := $date
         let $genre := if(search:get-parameters("genre") != "") then search:get-range-search($dbase,"genre")
                                 else $dbase
@@ -49,7 +50,8 @@ declare function search:CollectData($node as node(), $model as map(*)) {
         let $dbase := $denom
         
         return map {
-        "results" :=  $dbase
+        "results" :=  $dbase,
+        "query" := request:get-parameter("term",'')
         }
         
         
@@ -68,9 +70,16 @@ declare function search:get-parameters($key as xs:string) as xs:string* {
 
 declare function search:get-date-results($db as node()*) {
         
-        let $date := request:get-parameter("date","")
-        let $from := xs:integer(substring-before($date," -"))
+        (:
+        
+        let $from := xs:integer(request:get-parameter("from",""))
+         let $to := xs:integer(request:get-parameter("to",""))
+    :)
+      let $date := request:get-parameter("date","")
+      let $from := xs:integer(substring-before($date," -"))
         let $to := xs:integer(substring-after($date,"- "))
+        
+        
         for $year in ($from to $to)
             return search:get-date-search($db,$year)
 };
@@ -91,3 +100,17 @@ declare function search:get-date-search($db as node()*, $year as xs:string) {
         let $search_build := concat("$db",$search_funk)
         return util:eval($search_build)
 };
+
+declare function search:AnalyzeResultsExt($node as node(), $model as map(*)) {
+if($model("query") != "") then
+    let $db := $model("result")
+    let $expanded := kwic:expand($db)
+return map {
+"kwic" := kwic:get-summary($expanded,($expanded//exist:match)[1], <config width ="40"/>)
+}
+else map {
+    "kwic" := ""
+}
+
+};
+

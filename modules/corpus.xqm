@@ -64,3 +64,12 @@ declare function corpus:printData($node as node(), $model as map(*), $target as 
 declare function corpus:printShortTitle($node as node(), $model as map(*)) {
     <a href="{$model("ref")}">{$model("short_title")}</a>
 };
+
+
+declare  function corpus:CheckData($node as node(), $model as map(*), $target as xs:string) {
+      if($model($target) != "") then
+      <div class="">
+      {templates:process($node/node(), $model) }
+      </div>
+      else ""
+};

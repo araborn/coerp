@@ -110,40 +110,60 @@ $(document).ready(function() { /* Advanced Search Funktion*/
                 }
         });
         
- 
-    $( "#RangeSlider" ).slider({
+        /*###Range Slider Functions Start #####*/
+     $( "#RangeSlider" ).slider({
       range: true,
       min: 1150,
       max: 1699,
       values: [ 1150, 1699 ],
       slide: function( event, ui ) {
         $( "#amount" ).val(ui.values[ 0 ] + " - " + ui.values[ 1 ]  );
+        $("#from").val(ui.values[0]);
+        $("#to").val(ui.values[1]);
       }
     });
     $( "#amount" ).val($( "#RangeSlider" ).slider( "values", 0 )+
       " - " + $( "#RangeSlider" ).slider( "values", 1 ));
+            $("#from").val($( "#RangeSlider" ).slider( "values", 0 ));
+            $("#to").val($( "#RangeSlider" ).slider( "values", 1 ));
 
         
+        $(".adv_periods_buttons").click(function () {
+            var id = $(this).attr("id").substring(11);
+            $("#adv_"+id).toggle("blind");
+            $(this).toggleClass("adv_selected");
+            
+        });
+        $(".adv_presets").click(function () { 
+            var from = $(this).attr("id").substring(0,4);
+            var to = $(this).attr("id").substring(5,9);
+            $( "#RangeSlider" ).slider("values",0,from);
+            $( "#RangeSlider" ).slider("values",1,to);
+            $("#from").val(from);
+            $("#to").val(to);
+            $( "#amount" ).val(from+" - " + to);
+        });
         
+        $("#adv_custom input").change( function() {
+         
+           if($(this).attr("id") == "from") {
+               $( "#RangeSlider" ).slider("values",0, $(this).val());
+               $( "#amount" ).val($(this).val()+" - " + $( "#RangeSlider" ).slider( "values", 1 ));
+           }
+           else {
+               $( "#RangeSlider" ).slider("values",1, $(this).val());
+               $( "#amount" ).val($( "#RangeSlider" ).slider( "values", 0 )+" - " +$(this).val());
+           }
+           
+        });
+        
+        /*###Range Slider Functions END####*/
         
         $("#searchButton").click(function() {
         $("form").submit();
-   /*     var params = $("input").val();
-        var params2 = $("input#sermon").attr("value");
-        alert(params+params2);*/
-       /*
-       $.ajax({
-                method: "POST",
-                url: "page/search.html",
-                data: {
-                    name:"Test"
-                    }
-               
-            }).done(function(html) {
-                window.location.href= "search.html?"+data;
-            } ) ;*/
-       /*     window.location.href= "search.html";*/
         });
+        
+        
 });
 
 $(document).ready(function() { /* Genre Funktion*/

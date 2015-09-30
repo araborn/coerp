@@ -55,6 +55,21 @@ import module namespace config="http://localhost:8080/exist/apps/coerp_new/confi
     attribute class {$node/@class/concat(substring-before(., "helpers:app-root"), substring-after(., "helpers:app-root"))}
 };
  
+  
+  
+  declare function helpers:CheckData($node as node(), $model as map(*), $target as xs:string) {
+      if($model($target) != "") then
+      <div>
+      {helpers:copy-class-attr_data($node)}
+      {templates:process($node/node(), $model) }
+      </div>
+      else ""
+};
+  
+  declare function helpers:copy-class-attr_data($node as node()){
+    attribute class {$node/@class/concat(substring-before(., "helpers:CheckData"), substring-after(., "helpers:app-root"))}
+};
+  
 declare function helpers:each($node as node(), $model as map(*), $from as xs:string, $to as xs:string) {
     for $item in $model($from)
     return
