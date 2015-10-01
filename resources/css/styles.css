@@ -255,6 +255,34 @@ background: linear-gradient(top, #5e81f2 0%, #7787f2 50%, #8091e8 100%); backgro
     font-style:italic;
 }
 
+#ul_period {
+
+    
+}
+
+#il_period {
+    
+}
+#div1_period {
+    padding-left:10px;
+    margin: 4px 0 1px;
+}
+#div_period {
+    display:none;
+    padding-left:10px;
+
+    display:none;
+    
+}
+.per_custom_input {
+   width: 75%;
+}
+
+.per_label {
+    padding-right: 5px;
+    text-align: right;
+    width: 23%;
+}
 /*########## SEARCH BUTTON DESIGN ###################*/
 #SearchForm {
     float:left;
@@ -332,6 +360,8 @@ background: linear-gradient(top, #5e81f2 0%, #7787f2 50%, #8091e8 100%); backgro
 
 .searchButtons {
 }
+
+
 
 /*########## ADVANCED SEARCH ###################*/
 
@@ -428,16 +458,20 @@ display:none;
     display:none;
 }
 
+#adv_presets, #adv_custom {
+    margin: 6px 0;
+}
+
 .adv_periods_buttons {
     display: inline-block;
     margin: 0 8px;
 }
 
-.adv_periods_buttons.adv_selected {
+.adv_periods_buttons.adv_selected,  .adv_presets.pre_selected {
     text-decoration:underline;
     color:#5e81f2;
 }
-.adv_periods_buttons:hover {
+.adv_periods_buttons:hover, .adv_presets:hover {
     text-decoration:underline;
     color:#5e81f2;
 }

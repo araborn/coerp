@@ -127,6 +127,37 @@ else if (ends-with($exist:resource, "index.html")) then
         </view>
     </dispatch> 
     )
+    else if(contains($exist:path,"periods")) then 
+    (
+    
+          session:set-attribute("param","periods"),
+        if (contains($exist:resource,"-")) then 
+            let $from := substring-before($exist:resource,"-")
+            let $to := substring-after($exist:resource,"-")
+            return (
+                session:set-attribute("from",$from),
+                session:set-attribute("to",$to),
+            
+            <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
+             <forward url="{$exist:controller}/page/list.html" />
+             <set-attribute name="param" value="periods"/>
+             <set-attribute name="per_from" value="{$from}"/>
+             <set-attribute name="per_to" value="{$to}"/>
+             <view>
+                 <forward url="{$exist:controller}/modules/view.xql">
+                 </forward>
+               </view>
+           </dispatch> )
+           else (
+           <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
+             <forward url="{$exist:controller}/page/list.html" />
+             <set-attribute name="param" value="periods"/>
+             <view>
+                 <forward url="{$exist:controller}/modules/view.xql">
+                 </forward>
+               </view>
+           </dispatch> )
+            )
     else if (contains($exist:path, "text")) then
     (
         session:set-attribute("text",$exist:resource),

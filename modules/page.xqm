@@ -80,6 +80,22 @@ return <ul class="MainNavList"> {
                                 </div>
                     else if(exists($SecTab/term[@type="line"])) then <div class="NavLine"></div>
                     else if(exists($SecTab/term[@type="headline"])) then <div class="SubNavTab_head emboss"><li class="SubNavTab">{$SecTab/term/data(.)}</li>  </div>
+                     else if(exists($SecTab/term[@xml:id="individual_period"])) then 
+                            <div class=" emboss" id="div1_period"><li class="SubNavTab" id="individual_period">{$SecTab/term/data(.)}</li>
+                                <div class="emboss" id="div_period">
+                                    <ul class="SubNavList" id="ul_period">
+                                     <li class="" id="li_period">
+                                        <form action="{$helpers:app-root}/period" method="post" id="PeriodForm">
+                                            <label for="from" class="per_label">From</label>
+                                            <input  type="number" name="per_from"  class="per_custom_input" id="per_from"  value="1150"/>
+                                            <label for="to" class="per_label">To</label>
+                                            <input  type="number" name="per_to" class="per_custom_input" id="per_to" value="1699"/>
+                                            <input type="submit"  value="GO"/>
+                                        </form>
+                                     </li>
+                                    </ul>
+                                </div>
+                            </div>
                      else if(exists($SecTab/term[@xml:id]) and $Tab/term/attribute()/data(.) != "denominations" and $Tab/term/attribute()/data(.) != "authors") then 
                  (:    let $param := if($Tab/term[@xml:id] = "denominations") then "denom" else "genre" :)
                         if(page:checkData( "genre",$SecTab/term/attribute()) = fn:true() ) then  
@@ -159,9 +175,9 @@ declare function page:createAdvSearch() as node() {
                             </div>
                             <div id="adv_custom">
                                 <label for="from">From</label>
-                                <input  type="text" name="from" value="1150"  id="from" class="adv_custom_input" />
+                                <input  type="number" name="dat_from"  class="adv_custom_input" id="from"  />
                                 <label for="to">To</label>
-                                <input  type="text" name="to" value="1699"  id="to" class="adv_custom_input"/>
+                                <input  type="number" name="dat_to" class="adv_custom_input" id="to" />
                             </div>
                        </div>
                    </div>
@@ -169,13 +185,14 @@ declare function page:createAdvSearch() as node() {
                        <div class="adv_fields_tab">
                            <h4>core</h4>
                                <ul>
-                               <li><input type="checkbox" name="genre" value="prayers" id="prayer" /> <label for="prayer">Prayer</label>
-                               </li><li><input type="checkbox" name="genre" value="sermon" id="sermon" /> <label for="sermon">Sermon</label>
-                               </li><li><input type="checkbox" name="genre" value="treatise" id="treatise" /> <label for="treatise">Treatise</label>
-                               </li><li><input type="checkbox" name="genre" value="treatise_controversial" id="treatise_controversial" /> <label for="treatise_controversial">Controversial Treatise</label>
-                               </li><li><input type="checkbox" name="genre" value="catechism" id="catechism" /> <label for="catechism">Catechism</label>
-                               </li><li><input type="checkbox" name="genre" value="catechism_mimetic" id="catechism_mimetic" /> <label for="catechism_mimetic">Mimetic Catechism</label>
-                               </li> </ul>
+                                    <li><input type="checkbox" name="genre" value="prayers" id="prayer" /> <label for="prayer">Prayer</label>
+                                    </li><li><input type="checkbox" name="genre" value="sermon" id="sermon" /> <label for="sermon">Sermon</label>
+                                    </li><li><input type="checkbox" name="genre" value="treatise" id="treatise" /> <label for="treatise">Treatise</label>
+                                    </li><li><input type="checkbox" name="genre" value="treatise_controversial" id="treatise_controversial" /> <label for="treatise_controversial">Controversial Treatise</label>
+                                    </li><li><input type="checkbox" name="genre" value="catechism" id="catechism" /> <label for="catechism">Catechism</label>
+                                    </li><li><input type="checkbox" name="genre" value="catechism_mimetic" id="catechism_mimetic" /> <label for="catechism_mimetic">Mimetic Catechism</label>
+                                    </li> 
+                               </ul>
                            
                        </div>
                        <div class="adv_fields_tab">

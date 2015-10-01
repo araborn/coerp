@@ -1,6 +1,8 @@
 
 
 $(document).ready(function() { /* Navigations Funktion*/
+  
+
     $("div.MainNavContent").click(function() {
        if(!$(this).hasClass("active")) { /*if 1 Start*/
             $("div.active div.SecNavTab").hide();
@@ -23,9 +25,14 @@ $(document).ready(function() { /* Navigations Funktion*/
          */
        }
        else {
-           $(this).removeClass("active");
-           $(this).children("div.MainNavTab").removeClass("active")
-           $(this).children("div.SecNavTab").hide();
+            if($(this).find("li#individual_period").attr("id") == "individual_period") {
+               
+           }  
+           else {
+                $(this).removeClass("active");
+                $(this).children("div.MainNavTab").removeClass("active")
+                $(this).children("div.SecNavTab").hide();
+           }
        }/*if 1 End*/
        
        $("div.ListTab").mouseover(function() {
@@ -49,8 +56,8 @@ $(document).ready(function() { /* Navigations Funktion*/
             $(this).children("div").css("display","inline-block");*/
             
               $(this).mouseleave(function(){ 
-               $(this).removeClass("active");
-     $(this).children("li").removeClass("active");
+              $(this).removeClass("active");
+              $(this).children("li").removeClass("active");
            
           /*
            *  $(this).children("li.SubNavTab_List").removeClass("active");
@@ -72,7 +79,15 @@ $(document).ready(function() { /* Navigations Funktion*/
            
        });*/
         
+       
+            
+        
     });
+    $("#individual_period").click(function() {
+            $(this).next("div").toggle();
+            $(this).next("div").children("ul").toggle();
+            });
+    
 });
 
 $(document).ready(function() { /* Advanced Search Funktion*/
@@ -142,6 +157,12 @@ $(document).ready(function() { /* Advanced Search Funktion*/
             $("#from").val(from);
             $("#to").val(to);
             $( "#amount" ).val(from+" - " + to);
+            
+            if(!$(this).hasClass("pre_selected")) {
+                $("span.adv_presets.pre_selected").removeClass("pre_selected");
+                $(this).addClass("pre_selected");
+            }
+            
         });
         
         $("#adv_custom input").change( function() {
@@ -160,7 +181,7 @@ $(document).ready(function() { /* Advanced Search Funktion*/
         /*###Range Slider Functions END####*/
         
         $("#searchButton").click(function() {
-        $("form").submit();
+        $("form#SearchForm").submit();
         });
         
         

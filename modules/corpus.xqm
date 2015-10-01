@@ -3,6 +3,8 @@ xquery version "3.0";
 module namespace corpus="http://localhost:8080/exist/apps/coerp_new/corpus";
 
 import module namespace helpers="http://localhost:8080/exist/apps/coerp_new/helpers" at "helpers.xqm";
+
+import module namespace search="http://localhost:8080/exist/apps/coerp_new/search" at "search.xqm";
 declare namespace templates="http://exist-db.org/xquery/templates";
 
 declare namespace util="http://exist-db.org/xquery/util";
@@ -26,10 +28,19 @@ declare function corpus:scanDB($db as node()*, $param as xs:string, $term as xs:
 };
 declare function corpus:scanDB_map($node as node(), $model as map(*),  $param as xs:string, $term as xs:string) {
         let $db := collection("/db/apps/coerp_new/data/texts")
-        let $range := concat("//range:field-contains(('",$param,"'),'",$term,"')")
-        let $build := concat("$db",$range)
+    
+  let $result := 
+      (:    if($param eq "periods") then
+            for $year in (xs:integer(request:get-parameter("per_from","")) to xs:integer(request:get-parameter("per_to","")))
+            return search:get-date-search($db,$year)
+            else :) 
+           (    let $range := concat("//range:field-contains(('",$param,"'),'",$term,"')")
+              let $build := concat("$db",$range)
+              return util:eval($build)
+        )
+        
         return map {
-        "results" := util:eval($build)
+        "results" := $result
         }
 };
 
