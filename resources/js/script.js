@@ -87,7 +87,14 @@ $(document).ready(function() { /* Navigations Funktion*/
             $(this).next("div").toggle();
             $(this).next("div").children("ul").toggle();
             });
-    
+    $("#PeriodForm input").change( function() {
+            if($(this).attr("id") == "per_from") {
+            $("#per_to").attr("min",$(this).val());
+            }
+            else { 
+            $("#per_from").attr("max",($(this).val()));
+            }
+    });
 });
 
 $(document).ready(function() { /* Advanced Search Funktion*/
@@ -135,6 +142,8 @@ $(document).ready(function() { /* Advanced Search Funktion*/
         $( "#amount" ).val(ui.values[ 0 ] + " - " + ui.values[ 1 ]  );
         $("#from").val(ui.values[0]);
         $("#to").val(ui.values[1]);
+        $("#from").attr("max",ui.values[1]);
+        $("#to").attr("min",ui.values[0]);
       }
     });
     $( "#amount" ).val($( "#RangeSlider" ).slider( "values", 0 )+
@@ -170,10 +179,13 @@ $(document).ready(function() { /* Advanced Search Funktion*/
            if($(this).attr("id") == "from") {
                $( "#RangeSlider" ).slider("values",0, $(this).val());
                $( "#amount" ).val($(this).val()+" - " + $( "#RangeSlider" ).slider( "values", 1 ));
+               $("#to").attr("min",$(this).val());
+               
            }
            else {
                $( "#RangeSlider" ).slider("values",1, $(this).val());
                $( "#amount" ).val($( "#RangeSlider" ).slider( "values", 0 )+" - " +$(this).val());
+               $("#from").attr("max",($(this).val()));
            }
            
         });
@@ -184,7 +196,7 @@ $(document).ready(function() { /* Advanced Search Funktion*/
         $("form#SearchForm").submit();
         });
         
-        
+      
 });
 
 $(document).ready(function() { /* Genre Funktion*/

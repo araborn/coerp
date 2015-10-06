@@ -12,9 +12,9 @@ declare namespace text="http://exist-db.org/xquery/text";
 declare namespace request="http://exist-db.org/xquery/request";
 declare namespace coerp="http://coerp.uni-koeln.de/schema";
 
-declare function corpus:test($node as node()*, $model as map(*)) as xs:string{
+declare function corpus:test($node as node()*, $model as map(*), $term as xs:string, $param as xs:string) as xs:string{
 
-let $test := "im Alive"
+let $test := concat("im Alive ",$term, " ",$param)
 return $test
 };
 
@@ -28,20 +28,24 @@ declare function corpus:scanDB($db as node()*, $param as xs:string, $term as xs:
 };
 declare function corpus:scanDB_map($node as node(), $model as map(*),  $param as xs:string, $term as xs:string) {
         let $db := collection("/db/apps/coerp_new/data/texts")
-    
-  let $result := 
-      (:    if($param eq "periods") then
-            for $year in (xs:integer(request:get-parameter("per_from","")) to xs:integer(request:get-parameter("per_to","")))
-            return search:get-date-search($db,$year)
-            else :) 
-           (    let $range := concat("//range:field-contains(('",$param,"'),'",$term,"')")
-              let $build := concat("$db",$range)
-              return util:eval($build)
-        )
-        
-        return map {
+        let $result := if($param = "periods") then corpus:getDateResults($term,$db) else corpus:getResults($param,$term,$db)
+        return  map {
         "results" := $result
         }
+};
+
+
+declare function corpus:getDateResults($term as xs:string, $db as node()*) {
+            let $from := xs:integer(substring-before($term,"-"))
+            let $to := xs:integer(substring-after($term,"-"))
+            for $year in ($from to $to)
+                return search:get-date-search($db,$year)
+};
+
+declare function corpus:getResults($param as xs:string, $term as xs:string, $db as node()*) {
+        let $range := concat("//range:field-contains(('",$param,"'),'",$term,"')")
+        let $build := concat("$db",$range)
+        return util:eval($build)
 };
 
 declare function corpus:AnalyzeResults($node as node(), $model as map(*)) {
@@ -64,7 +68,8 @@ let $author :=  $item//coerp:coerp_header/coerp:author_profile/coerp:author/data
         "denom" := $denom,
         "translator" := $translator,
         "author_preface" := $author_preface,
-        "ref" := substring-before(concat($helpers:app-root,"/text/",root($item)/util:document-name(.)),".xml")
+        "ref" := concat($helpers:app-root,"/text/",$short_title)
+        (:substring-before(concat($helpers:app-root,"/text/",root($item)/util:document-name(.)),".xml"):)
     }
 };
 
@@ -84,3 +89,7 @@ declare  function corpus:CheckData($node as node(), $model as map(*), $target as
       </div>
       else ""
 };
+
+
+
+

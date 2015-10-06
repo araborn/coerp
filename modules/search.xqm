@@ -22,8 +22,25 @@ declare function search:Search_Authors-Translator_StWi($type as xs:string, $lett
 };
 
 
+declare function search:FindDocument($text as xs:string) {
+(:for $hit in collection("/db/apps/coerp_new/data/texts")//coerp:short_title/data(.)
+        return if ($hit = $text) then
+      root($hit)/util:document-name(.)
+      else ():)
+   root(search:get-range-search_simple(collection("/db/apps/coerp_new/data/texts"),"short_title",xmldb:decode-uri($text)))/util:document-name(.) 
+
+};
 
 
+
+declare function search:get-range-search_simple($db as node()*,$param as xs:string, $term as xs:string) {
+ 
+        let $search_terms := concat('("',$param,'"),"',$term,'"')
+        let $search_funk := concat("//range:field-contains(",$search_terms,")")
+        let $search_build := concat("$db",$search_funk)
+        return util:eval($search_build)
+
+};
 
 
 (: ########### SEARCH SEITEN AUFBAU ############# :)
@@ -35,7 +52,7 @@ declare function search:test($node as node()*, $model as map(*)) {
 
 declare function search:CollectData($node as node(), $model as map(*)) {
        (: let $db := collection("/db/apps/coerp_new/data") :)
-         let $dbase := collection("/db/apps/coerp_new/data")
+         let $dbase := collection("/db/apps/coerp_new/data/texts")
          let $term :=  if(search:get-parameters("term") != "") then $dbase//coerp:coerp[ft:query(.,request:get-parameter("term",''))]
                                      else $dbase
         let $dbase := $term
@@ -69,17 +86,9 @@ declare function search:get-parameters($key as xs:string) as xs:string* {
 
 
 declare function search:get-date-results($db as node()*) {
-        
-        (:
-        
-        let $from := xs:integer(request:get-parameter("from",""))
-         let $to := xs:integer(request:get-parameter("to",""))
-    :)
       let $date := request:get-parameter("date","")
       let $from := xs:integer(substring-before($date," -"))
         let $to := xs:integer(substring-after($date,"- "))
-        
-        
         for $year in ($from to $to)
             return search:get-date-search($db,$year)
 };

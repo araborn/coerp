@@ -10,14 +10,14 @@ declare namespace coerp="http://coerp.uni-koeln.de/schema";
 declare function doc:test($node as node()*, $model as map(*), $text as xs:string) as xs:string*{
 
 let $test := "im Alive"
-return ($test,$text)
+return ($test,xmldb:decode-uri($text))
 };
 
 
 
 
 declare    %templates:wrap function doc:fetchDatasetByRequestedId($node as node(), $model as map(*), $text as xs:string) {
-    let $dataset := doc( concat("/db/apps/coerp_new/data/texts/",$text,".xml")) (: corpus:getDatasetByShortTitle(request:get-attribute("$exist:resource")) :)
+    let $dataset := doc( concat("/db/apps/coerp_new/data/texts/",$text)) (: corpus:getDatasetByShortTitle(request:get-attribute("$exist:resource")) :)
     return map:entry("dataset", $dataset)
 };
 
@@ -29,7 +29,7 @@ declare %templates:wrap function doc:analyzeTextHeader($node as node(), $model a
     "author" := $res/coerp:author_profile/coerp:author/data(.),
     "translator" := $res/coerp:author_profile/coerp:translator/data(.),
     "denom" := $res/coerp:author_profile/coerp:denom/data(.),
-   (: "date" : FUNKTION NOCH BAUEN :)
+    "date" := doc:createDate($res),
    "title" := $res/coerp:text_profile/coerp:title/data(.),
    "stitle" := $res/coerp:text_profile/coerp:short_title/data(.),
    "source" := $res/coerp:text_profile/coerp:source/data(.),
@@ -39,6 +39,12 @@ declare %templates:wrap function doc:analyzeTextHeader($node as node(), $model a
 };
 
 
+declare function doc:createDate($data as node()) {
+    
+    let $res := $data/coerp:text_profile/coerp:year
+    
+  return if($res/coerp:from/data(.) = $res/coerp:to/data(.)) then $res/coerp:from/data(.) else <span>first edition : {$res/coerp:from/data(.)}<br />this edition :  {$res/coerp:to/data(.)}</span>
+  };
 declare function doc:printMapEntry($node as node(), $model as map(*), $type as xs:string) {
 $model($type)
 };

@@ -21,7 +21,7 @@ return <ul class="MainNavList"> {
   for $Tab in $list/lists/list[@type="navigation"]/tab
            return (<div class="MainNavContent ">
            {if($Tab/term/data(.) = "Logo") then
-                    <a href="{$helpers:app-root}/index.html"> <li class="HeadTab"><img src="{$helpers:app-root}/resources/img/CoERP-Logo-2_neu_klein.png" alt="Logo" id="logo"/></li></a>
+                    <a href="{$helpers:app-root}/index.html"> <li class="HeadTab"><img src="{$helpers:app-root}/resources/img/CoERP-Logo-4_neu.png" alt="Logo" id="logo"/></li></a>
            else  if($Tab/term/data(.) = "Search") then 
                 <div id="searchTab">
                 <form  action="{$helpers:app-root}/search" method="post" id="SearchForm">
@@ -56,6 +56,7 @@ return <ul class="MainNavList"> {
                         )}</ul></div>
                     )
                 ):)
+         
            else
                      <div class="MainNavTab emboss"> <li class="HeadTab" id="Tab_{$Tab/term/data(.)}">{$Tab/term/data(.)}</li></div> 
            }
@@ -85,17 +86,26 @@ return <ul class="MainNavList"> {
                                 <div class="emboss" id="div_period">
                                     <ul class="SubNavList" id="ul_period">
                                      <li class="" id="li_period">
-                                        <form action="{$helpers:app-root}/period" method="post" id="PeriodForm">
+                                        <form action="{$helpers:app-root}/periods" method="post" id="PeriodForm">
                                             <label for="from" class="per_label">From</label>
-                                            <input  type="number" name="per_from"  class="per_custom_input" id="per_from"  value="1150"/>
+                                            <input  type="number" name="per_from"  class="per_custom_input" id="per_from"  value="1150" min="1150" max="1699"/>
                                             <label for="to" class="per_label">To</label>
-                                            <input  type="number" name="per_to" class="per_custom_input" id="per_to" value="1699"/>
-                                            <input type="submit"  value="GO"/>
+                                            <input  type="number" name="per_to" class="per_custom_input" id="per_to" value="1699" min="1150" max="1699"/>
+                                            
                                         </form>
+                                        <div id="periodButton" class="searchButtons ">
+                                            <i  class="glyphicon glyphicon-search " id="search_icon" ></i>
+                                        </div>
+                                        <script>
+                                        $("#periodButton").click(function() {{
+                                            var date = $("#per_from").val()+"-"+$("#per_to").val();
+                                             window.location.href = "{$helpers:app-root}/periods/"+date;
+                                    }});</script>
                                      </li>
                                     </ul>
                                 </div>
                             </div>
+                     else if(exists($SecTab/term[@type="link"])) then <div class="SubNavTab_div emboss"><a href="{$helpers:app-root}/page/{$SecTab/term[@xml:id]/attribute()[1]}.html"><li class="SubNavTab">{$SecTab/term/data(.)}</li></a></div>
                      else if(exists($SecTab/term[@xml:id]) and $Tab/term/attribute()/data(.) != "denominations" and $Tab/term/attribute()/data(.) != "authors") then 
                  (:    let $param := if($Tab/term[@xml:id] = "denominations") then "denom" else "genre" :)
                         if(page:checkData( "genre",$SecTab/term/attribute()) = fn:true() ) then  
@@ -175,9 +185,9 @@ declare function page:createAdvSearch() as node() {
                             </div>
                             <div id="adv_custom">
                                 <label for="from">From</label>
-                                <input  type="number" name="dat_from"  class="adv_custom_input" id="from"  />
+                                <input  type="number" name="dat_from"  class="adv_custom_input" id="from"  min="1150" max="1699"/>
                                 <label for="to">To</label>
-                                <input  type="number" name="dat_to" class="adv_custom_input" id="to" />
+                                <input  type="number" name="dat_to" class="adv_custom_input" id="to" min="1150" max="1699" />
                             </div>
                        </div>
                    </div>

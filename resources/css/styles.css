@@ -7,9 +7,25 @@
     }
  #logo {
       display: block;
-    margin-top: -18px;
-    width: 60px;
+    height: 40px;
+    margin-top: -6px;
  }   
+ .footer {
+     margin: 0 10px;
+ }
+ .footer a {
+     color: #337ab7 !important;
+    text-decoration: none;
+ }
+ #footer {
+
+     bottom: 0;
+    display: block;
+    margin-bottom: 6px;
+    margin-right: 35px;
+    position: relative;
+    text-align: right;
+ }
     /*#########CONTENT CONTAINER ########*/
     .container {
        max-width:728px;
@@ -41,10 +57,7 @@
 
     /*############ NAVIGATION ###############*/
     
-#logo {
-    height: 55px;
-    margin-top: -18px;
-}
+
 #navigation {
     padding: 10px 0px;
     background: linear-gradient(top, #edeef2 0%, #f2f2f2 100%, #cac3db 100%); 
@@ -65,9 +78,10 @@
     padding: 0px 0px;
     float:left;
    /* width:190px;*/
-   margin: 10px 10px;
+   margin: 10px 6px 10px 4px;
     cursor:pointer;
     color:black !important;
+    
 }
 
 
@@ -288,6 +302,9 @@ background: linear-gradient(top, #5e81f2 0%, #7787f2 50%, #8091e8 100%); backgro
     float:left;
 }
 
+#search {
+    width: 130px;
+}
 #searchTab,#searchDiv,#searchButton { 
     float:left;
     display:block;
@@ -621,10 +638,10 @@ display:none;
 }
 
 .list_author {
-    max-width:40%;
-    padding: 10px 20px 5px 10px;
     font-size: 21px;
     font-weight: bold;
+    padding: 10px 10px 5px;
+    width: 40%;
 }
 
 .list_short_title {

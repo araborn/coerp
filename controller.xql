@@ -3,6 +3,8 @@ xquery version "3.0";
 import module namespace templates="http://exist-db.org/xquery/templates" ;
 import module namespace config="http://localhost:8080/exist/apps/coerp_new/config" at "modules/config.xqm";
 import module namespace helpers="http://localhost:8080/exist/apps/coerp_new/helpers" at "modules/helpers.xqm";
+declare namespace request="http://exist-db.org/xquery/request";
+import module namespace search="http://localhost:8080/exist/apps/coerp_new/search" at "modules/search.xqm";
 (:
 import module namespace register="http://localhost:8080/exist/apps/coerp_new/register" at "modules/registration.xqm";
 :)
@@ -129,47 +131,49 @@ else if (ends-with($exist:resource, "index.html")) then
     )
     else if(contains($exist:path,"periods")) then 
     (
-    
           session:set-attribute("param","periods"),
         if (contains($exist:resource,"-")) then 
-            let $from := substring-before($exist:resource,"-")
-            let $to := substring-after($exist:resource,"-")
+            let $term := $exist:resource
             return (
-                session:set-attribute("from",$from),
-                session:set-attribute("to",$to),
-            
+                session:set-attribute("term",$term),
             <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
              <forward url="{$exist:controller}/page/list.html" />
              <set-attribute name="param" value="periods"/>
-             <set-attribute name="per_from" value="{$from}"/>
-             <set-attribute name="per_to" value="{$to}"/>
+             <set-attribute name="term" value="{$term}"/>
              <view>
                  <forward url="{$exist:controller}/modules/view.xql">
                  </forward>
                </view>
            </dispatch> )
-           else (
+           else  (: Alte Form abfrage bei der Individuellen Perioden Suche, durch window.href geändert in page.xqm als jquery :)
+           (
+           session:set-attribute("term",concat(request:get-parameter("per_from",""),"-",request:get-parameter("per_to",""))),
            <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
+      <!--       <forward url="{$exist:controller}/page/list.html" />-->
              <forward url="{$exist:controller}/page/list.html" />
              <set-attribute name="param" value="periods"/>
+             <set-attribute name="term" value="{concat(request:get-parameter("per_from",""),"-",request:get-parameter("per_to",""))}"/>
              <view>
                  <forward url="{$exist:controller}/modules/view.xql">
                  </forward>
                </view>
-           </dispatch> )
+           </dispatch> 
+           )
             )
     else if (contains($exist:path, "text")) then
     (
-        session:set-attribute("text",$exist:resource),
+        let $text := search:FindDocument($exist:resource)
+        return (
+        session:set-attribute("text",$text ),
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
         <forward url="{$exist:controller}/page/texts.html" />
-    <set-attribute name="text" value="{$exist:resource}"/>
+    <set-attribute name="text" value="{$text}"/>
         <view>
             <forward url="{$exist:controller}/modules/view.xql">
             <set-attribute name="textView" value="true" />
             </forward>
         </view>
-    </dispatch> 
+    </dispatch> )
     )
     else if(contains($exist:resource,".html") and not(contains($exist:resource,"index"))) then 
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
