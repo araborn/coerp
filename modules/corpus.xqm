@@ -19,6 +19,8 @@ return $test
 };
 
 
+
+
 declare function corpus:scanDB($db as node()*, $param as xs:string, $term as xs:string) as node()* {
         let $db := collection("/db/apps/coerp_new/data/texts")
         let $range := concat("//range:field-contains(('",$param,"'),'",$term,"')")
@@ -28,12 +30,17 @@ declare function corpus:scanDB($db as node()*, $param as xs:string, $term as xs:
 };
 declare function corpus:scanDB_map($node as node(), $model as map(*),  $param as xs:string, $term as xs:string) {
         let $db := collection("/db/apps/coerp_new/data/texts")
+    (:    let $term := if($param eq "translator" or $param eq "author") then (
+                if( contains($term,"-")) then 
+                concat(substring-before($term,"-"),", ",substring-after($term,"-"))
+                else $term
+                ) else $term:)
         let $result := if($param = "periods") then corpus:getDateResults($term,$db) else corpus:getResults($param,$term,$db)
         return  map {
-        "results" := $result
+        "results" := $result,
+        "sum" := fn:count($result)
         }
 };
-
 
 declare function corpus:getDateResults($term as xs:string, $db as node()*) {
             let $from := xs:integer(substring-before($term,"-"))
@@ -68,8 +75,8 @@ let $author :=  $item//coerp:coerp_header/coerp:author_profile/coerp:author/data
         "denom" := $denom,
         "translator" := $translator,
         "author_preface" := $author_preface,
-        "ref" := concat($helpers:app-root,"/text/",$short_title)
-        (:substring-before(concat($helpers:app-root,"/text/",root($item)/util:document-name(.)),".xml"):)
+        "ref" := concat($helpers:app-root,"/text/",$short_title),
+       "filename" := root($item)/util:document-name(.)
     }
 };
 

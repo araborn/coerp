@@ -160,6 +160,21 @@ else if (ends-with($exist:resource, "index.html")) then
            </dispatch> 
            )
             )
+     else if (contains($exist:path,"author") or contains($exist:path,"translator")) then
+     let $term :=request:get-parameter("name",'')
+     return
+     (session:set-attribute("param", substring-after($exist:path,"/")),
+     session:set-attribute("term",$term),
+            <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
+             <forward url="{$exist:controller}/page/list.html" />
+             <set-attribute name="param" value="{substring-after($exist:path,"/")}"/>
+             <set-attribute name="term" value="{$term}"/>
+             <view>
+                 <forward url="{$exist:controller}/modules/view.xql">
+                 </forward>
+               </view>
+           </dispatch> )
+     
     else if (contains($exist:path, "text")) then
     (
         let $text := search:FindDocument($exist:resource)

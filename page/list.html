@@ -2,8 +2,8 @@
 <div xmlns="http://www.w3.org/1999/xhtml" class="templates:surround?with=templates/page.html&amp;at=content">
     <div class="row-fluid">
         <div class="content" id="list">
-
             <div class="corpus:scanDB_map">
+                <div class="helpers:get?key=sum"/>
                 <div class="templates:each?from=results&amp;to=result">
                     <div class="corpus:AnalyzeResults">
                             <div class="list_main whiteBorder">
@@ -15,6 +15,7 @@
                                 <div class="list_inner"><span class="list_left">Denomination</span><span class="list_right"><i class="helpers:get?key=denom"/></span></div>
                                 <div class="list_inner helpers:CheckData?target=translator"><span class="list_left">Translator</span><span class="list_right"><i class="helpers:get?key=translator"/></span></div>
                                 <div class="list_inner helpers:CheckData?target=author_preface"><span class="list_left">Author Preface</span><span class="list_right"><i class="helpers:get?key=author_preface"/></span></div>
+                                <div class="list_inner"><span class="list_left">File Name</span><span class="list_right"><i class="helpers:get?key=filename"/></span></div>
                             </div>
                     </div>
                 </div>

@@ -95,6 +95,10 @@ $(document).ready(function() { /* Navigations Funktion*/
             $("#per_from").attr("max",($(this).val()));
             }
     });
+    
+    $(".QuadNavTab_div").click(function() {
+        $(this).children("form").submit();
+    });
 });
 
 $(document).ready(function() { /* Advanced Search Funktion*/
@@ -212,5 +216,7 @@ $(document).ready(function() { /* Genre Funktion*/
         }
         $("ul#List_genres div.ListTab").prepend("<li class='SubNavTab_List' id='Tab_"+$("ul#List_genres div.ListTab").attr("id")+"'>"+$("ul#List_genres div.ListTab").attr("id")+"</li>")
 });
+
+
 
 

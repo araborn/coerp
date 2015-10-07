@@ -70,11 +70,8 @@
             <xs:element name="title" type="titleType"/>
             <xs:element name="short_title" type="nonEmptyString"/>
             <xs:element name="source" type="xs:string"/>
-            <xs:choice  maxOccurs="1">
-                <xs:element name="song_type" type="xs:string"/>
-            </xs:choice>
             <xs:element name="sampling" type="samplingType"/>
-            <xs:element name="text_edition" type="layout_profileType"/>
+            <xs:element name="text_layout" type="layout_profileType"/>
         </xs:sequence>
     </xs:complexType>
     
@@ -83,7 +80,7 @@
     -->
     <xs:complexType name="titleType" mixed="true">
         <xs:sequence>
-            <xs:choice  maxOccurs="unbounded">
+            <xs:choice  maxOccurs="unbounded" minOccurs="0">
                 <xs:group ref="textOnlyElements"/>
             </xs:choice>
         </xs:sequence>
@@ -143,8 +140,8 @@
             <xs:element name="format" type="formatType" />
             <xs:element name="headings_paragraphs" type="headings_paragraphsType" />
             <xs:element name="text_body" type="text_bodyType" />
-            <xs:element name="text_edition" type="existAttr" />
         </xs:sequence>
+        <xs:attribute name="exists" type="nonEmptyString" use="required"/>
     </xs:complexType>
     
     <xs:complexType name="posAttr">
@@ -187,16 +184,16 @@
         <xs:sequence>
             <xs:element name="paragraphs" type="posAttr" maxOccurs="unbounded"/>
             <xs:element name="cong_song_subtype" type="typeAttr"/>
-            <xs:element name="columns" type="xs:string"  />
+            <xs:element name="columns" type="typeAttr"  />
             <xs:element name="song_titles_added" type="existAttr" />
         </xs:sequence>
     </xs:complexType>
     <xs:complexType name="text_bodyType">
         <xs:sequence>
             <xs:element name="illustrations" type="illustrationsAttr"/>
-            <xs:element name="elements" type="styleType"/>
-            <xs:element name="illegible" type="damagedType" />
-            <xs:element name="missing" type="damagedType_m" />
+            <xs:element name="elements" type="styleType" minOccurs="0"/>
+            <xs:element name="illegible" type="damagedType"  minOccurs="0"/>
+            <xs:element name="missing" type="damagedType_m" minOccurs="0"/>
             <xs:element name="empty_page" type="existAttr"/>
             <xs:element name="footnotes" type="existAttr"/>
             <xs:element name="comments_references" type="existAttr"/>
@@ -212,8 +209,8 @@
     <xs:complexType name="illustrationsAttr">
         <xs:simpleContent>
             <xs:extension base="xs:string">
+                <xs:attribute name="type" type="xs:string" />
                 <xs:attribute name="exist" type="xs:boolean"/>
-                <xs:attribute name="type" type="xs:string"/>
             </xs:extension>
         </xs:simpleContent>
     </xs:complexType>
@@ -222,7 +219,7 @@
         <xs:sequence minOccurs="1" maxOccurs="unbounded">
             <xs:element name="page" type="pageType"/>
             <xs:element name="due_to" type="xs:string" />
-            <xs:element name="replaced_by" type="xs:string" />
+            <xs:element name="replaced_by" type="replacedType" />
         </xs:sequence>
     </xs:complexType>
     
@@ -237,17 +234,16 @@
     <xs:complexType name="damagedType_m">
         <xs:sequence minOccurs="1" maxOccurs="unbounded">
             <xs:element name="page" type="pageType"/>
-            <xs:element name="due_to" type="xs:string" />
             <xs:element name="replaced_by" type="xs:string" />
         </xs:sequence>
     </xs:complexType>
     <xs:complexType name="pageType">
         <xs:sequence>
-            <xs:sequence  maxOccurs="1">
+            <xs:sequence  maxOccurs="unbounded" minOccurs="0">
                 <xs:element name="from" type="xs:integer"/>
                 <xs:element name="to" type="xs:integer"/>
             </xs:sequence>
-            <xs:element name="pageNR" type="xs:string"  maxOccurs="unbounded"/>
+            <xs:element name="pageNR" type="xs:string"  maxOccurs="unbounded" minOccurs="0"/>
 
         </xs:sequence>
         <xs:attribute name="type" type="xs:string" use="required"/>
@@ -323,7 +319,6 @@
                 <xs:element name="head" type="headType"/>
                 <xs:element name="speaker" type="speakerType"/>
                 <xs:element name="litany_repetition" type="litanyType"/>
-                <xs:element name="metatext" type="metatextType"/>
             </xs:choice>
         </xs:sequence>
         <xs:attribute name="id" type="xs:positiveInteger" use="required"/>
@@ -339,8 +334,8 @@
     <xs:group name="simpleElements">
         <xs:sequence>
             <xs:choice  maxOccurs="unbounded">
-                <xs:group ref="pageNumberingElements"/>
-                <xs:group ref="textOnlyElements"/>
+                <xs:group ref="pageNumberingElements" minOccurs="0"/>
+                <xs:group ref="textOnlyElements" minOccurs="0"/>
             </xs:choice>
         </xs:sequence>
     </xs:group>
@@ -544,7 +539,6 @@
                 <xs:group ref="simpleElements"/>
                 <xs:group ref="commentElements"/>
                 <xs:group ref="bibleElements"/>
-                <xs:element name="quotation" type="quotationType"/>
                 <xs:element name="verse" type="verseType"/>
                 <xs:element name="foreign" type="foreignType"/>
                 <xs:element name="head" type="headType"/>

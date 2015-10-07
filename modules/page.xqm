@@ -48,15 +48,6 @@ return <ul class="MainNavList"> {
                                )}
                                 </ul></div> )
                      )         
-           (: else if($Tab/term/attribute() = "authors") then (
-                    <div class="MainNavTab emboss"> <li class="HeadTab" id="Tab_{$Tab/term/data(.)}">{$Tab/term/data(.)}</li></div>, ( 
-                        <div class="SecNavTab"><ul id="List_authors" class="MainNavList">{(
-                            for $item in $Tab/list/tab/term return
-                            <div class="SubNavTab_div"><li class="SubNavTab">Blaaa{$item/data(.)}</li></div>
-                        )}</ul></div>
-                    )
-                ):)
-         
            else
                      <div class="MainNavTab emboss"> <li class="HeadTab" id="Tab_{$Tab/term/data(.)}">{$Tab/term/data(.)}</li></div> 
            }
@@ -87,9 +78,9 @@ return <ul class="MainNavList"> {
                                     <ul class="SubNavList" id="ul_period">
                                      <li class="" id="li_period">
                                         <form action="{$helpers:app-root}/periods" method="post" id="PeriodForm">
-                                            <label for="from" class="per_label">From</label>
+                                            <label for="per_from" class="per_label">From</label>
                                             <input  type="number" name="per_from"  class="per_custom_input" id="per_from"  value="1150" min="1150" max="1699"/>
-                                            <label for="to" class="per_label">To</label>
+                                            <label for="per_to" class="per_label">To</label>
                                             <input  type="number" name="per_to" class="per_custom_input" id="per_to" value="1699" min="1150" max="1699"/>
                                             
                                         </form>
@@ -125,7 +116,11 @@ return <ul class="MainNavList"> {
                                                 <ul class="ThiNavList">
                                                 {
                                                     for $item in page:PrintAuthors(substring-after($SecTab/term/attribute(),"_"),$abc)
-                                                  return  <div class="QuadNavTab_div"><a href="#"><li>{$item}</li></a></div>
+                                           (:         let $CName := if(contains($item,",")) then concat(substring-before($item,","),"-",substring-after($item,", ")) else $item 
+                                                    let $name := page:DecodeAuthors($item):)
+                                                  return  <div class="QuadNavTab_div"><form action="{$helpers:app-root}/{substring-after($SecTab/term/attribute(),"_")}" method="post">
+                                                    <input type="hidden" value="{$item}" name="name"/><li>{$item}</li>
+                                                  </form></div>
                                                 }
                                                 </ul>
                                              </div>
@@ -163,6 +158,27 @@ let $results := (for $year in ($begin to $end)
 return if(count($results) != 0) then fn:true() else fn:false()
  
 };
+
+declare function page:DecodeAuthors($author as xs:string) {
+   let $name := for $letter in page:chars($author) return page:DecodeAuthors_for($letter)
+        return $name
+};
+
+declare function page:DecodeAuthors_for($letter as xs:string) {
+
+         switch ($letter) 
+           case 'é' return '&#146;'
+             case "," return "-"
+             
+             default return $letter
+             
+
+};
+declare function page:chars( $arg as xs:string? )  as xs:string* {
+
+   for $ch in string-to-codepoints($arg)
+   return codepoints-to-string($ch)
+ } ;
 
 declare function page:createAdvSearch() as node() {
     let $code := <div class="adv_search">
@@ -266,7 +282,10 @@ declare function page:analyzedGenres() as item()* {
 
 
 declare function page:PrintAuthors($type as xs:string, $abc as xs:string) {
+if($type eq "author") then 
     search:Search_Authors-Translator_StWi($type,$abc)//coerp:author/data(.)
+    else     search:Search_Authors-Translator_StWi($type,$abc)//coerp:translator/data(.)
+
     };
 
 (: ################ Next Try ################# :)
