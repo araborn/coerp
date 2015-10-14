@@ -684,3 +684,12 @@ max-width:70%;
     padding-top:5px;
     border-bottom:1px solid #cac3db;
 }
+
+.list_header {
+    margin: 0 auto;
+    width: 90%;
+}
+
+#list_results {
+    border-bottom:1px solid #cac3db;
+}

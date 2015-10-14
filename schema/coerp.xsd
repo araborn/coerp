@@ -234,7 +234,7 @@
     <xs:complexType name="damagedType_m">
         <xs:sequence minOccurs="1" maxOccurs="unbounded">
             <xs:element name="page" type="pageType"/>
-            <xs:element name="replaced_by" type="xs:string" />
+            <xs:element name="replaced_by" type="replacedType" />
         </xs:sequence>
     </xs:complexType>
     <xs:complexType name="pageType">

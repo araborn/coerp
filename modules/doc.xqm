@@ -22,7 +22,7 @@ declare    %templates:wrap function doc:fetchDatasetByRequestedId($node as node(
 };
 
 
-declare %templates:wrap function doc:analyzeTextHeader($node as node(), $model as map(*)) {
+declare function doc:analyzeTextHeader($node as node(), $model as map(*)) {
     let $data := $model("dataset")
     let $res := $data//coerp:coerp_header
     return map {
@@ -34,7 +34,8 @@ declare %templates:wrap function doc:analyzeTextHeader($node as node(), $model a
    "stitle" := $res/coerp:text_profile/coerp:short_title/data(.),
    "source" := $res/coerp:text_profile/coerp:source/data(.),
    "sampling" := $res/coerp:text_profile/coerp:sampling/coerp:info/data(.),
-   "genre" := $res/coerp:text_profile/coerp:genre/data(.)
+   "genre" := $res/coerp:text_profile/coerp:genre/data(.),
+   "text_layout" := $res/coerp:text_profile/coerp:text_layout/@exists
     }
 };
 
@@ -48,6 +49,142 @@ declare function doc:createDate($data as node()) {
 declare function doc:printMapEntry($node as node(), $model as map(*), $type as xs:string) {
 $model($type)
 };
+
+
+(:#### Text Layout Darstellung ####:)
+
+declare function doc:AnaylzeTextLayout($node as node(),$model as map(*)) {
+    if($model("text_layout") eq "true") then
+    let $data := $model("dataset")
+    let $doc := $data//coerp:coerp_header/coerp:text_profile/coerp:text_layout
+    let $tags := ("test1","test2")
+  return
+      map {
+        "la_format" := $doc//coerp:format_original/data(.),
+         "la_structuring_elements1":= ($doc//coerp:columns/@type/data(.),
+                                                     $doc//coerp:columns/@number/data(.)),
+         "la_structuring_elements2":= ($doc//coerp:paragraphs/@pos/data(.),
+                                                     $doc//coerp:paragraphs/data(.)),
+         "la_illustrations1":= ($doc//coerp:illustrations/@exists/data(.),
+                                      $doc//coerp:illustrations/@type/data(.)),
+         "la_illustrations2":= $doc//coerp:elements/coerp:style/data(.),
+         "la_pagination1":=$doc//coerp:pagination_erratic/@exists/data(.),
+         "la_pagination2":= ($doc//coerp:contains/@type/data(.),
+                                     $doc//coerp:contains/data(.)),
+         "la_notes1":=  $doc//coerp:footnotes/@exists/data(.),
+         "la_notes2":= $doc//comments_references/@exists/data(.),
+         "la_damaged1":= ($doc//coerp:illegible/coerp:page/@type/data(.), 
+                                 $doc//coerp:illegible/coerp:page/coerp:from/data(.),
+                                 $doc//coerp:illegible/coerp:page/coerp:to/data(.)),
+         "la_damaged2":=$doc//coerp:illegible/coerp:page/pageNr/data(.),
+         "la_damaged3":=$doc//coerp:illegible/coerp:due_to/data(.),
+         "la_damaged4":=($doc//coerp:illegible/coerp:replaced_by/@edition_number/data(.),
+                                 $doc//coerp:illegible/coerp:replaced_by/data(.)),
+         "la_missing":= ($doc//coerp:missing/coerp:page/@type/data(.),
+                             $doc//empty_page/@exists/data(.))
+
+    }
+    
+    else map {
+        "tags" := ""
+    }
+};
+
+declare function doc:getTags($node as node(), $model as map(*)) {
+ map:entry("tags",map:keys($model))
+};
+
+declare function doc:mapTagValue($node as node(), $model as map(*)) {
+     if(substring-after($model("tag"),"la_") != "" and $model($model("tag"))!= "" ) then
+     let $tag :=$model("tag")
+     let $data := $model($tag)
+     return (
+     
+     (:doc:mapTagValue( $model("tag")) 
+     :) 
+         (: 
+            "tag_name" :=   ,
+             "tag_value":= 
+             :)
+     switch($tag)
+        case "la_format" return map {
+                    "tag_name" := "Format",
+                    "tag_value" := $data
+                    }
+        case "la_structuring_elements1" return map {
+                    "tag_name" := "Structuring Elements",
+                    "tag_value":= concat($data[1], " printed in ",$data[2], " columns")
+                    }
+        case "la_structuring_elements2" return map {
+                    "tag_name" := "Structuring Elements",
+                    "tag_value":= concat($data[1]," ", (if($data[1] = "first") then "paragraph : " else "paragraphs : "),"marked by ",$data[2])
+                    }
+        case "la_illustrations1"  return if($data[1] = "true") then map {
+                    "tag_name" := "Illustrations"  ,
+                    "tag_value":= if($data[2] = "framed") then "text is framed by illustrations" else "text contains illustrations"
+                }
+                else ()
+        case "la_illustrations2"    return map {
+                    "tag_name" := "Illustrations"  ,
+                    "tag_value" := concat("text contains elements which are marked by ",string-join($data,","))
+                    }
+        case "la_pagination1" return if($data[1] = "true") then map {
+                    "tag_name" := "Pagination"  ,
+                    "tag_value":= "erratic"
+                }
+                else ()
+         case "la_pagination2" return map {
+                "tag_name" :=  "Pagination"  ,
+                "tag_value":= concat("original contains ",$data[1],"numbers in the format ",$data[2]
+                }
+        default return "Unformated"
+        )
+     else ()
+};
+
+
+
+
+(:
+declare function doc:mapTagValue($data as xs:string) {
+    switch($data) 
+    case "la_format" return map {
+                    "name" := "Format",
+                    "value" := $model($data)
+                    }
+    default return "Unformated"
+
+};
+:)
+declare function doc:fullTextLayout($node as node(), $model as map(*)) {
+    let $doc := $model("dataset")//coerp:coerp_header/coerp:text_layout
+    return map {
+    "format" := $doc//coerp:format_original/data(.),
+    "structuring_elements1":= ($doc//coerp:columns/@type,
+                                                $doc//coerp:columns/@number),
+    "structuring_elements2":= ($doc//coerp:paragraphs/@pos,
+                                                $doc//coerp:paragraphs/data(.)),
+    "illustrations1":= ($doc//coerp:illustrations/@exists,
+                                 $doc//coerp:illustrations/@type),
+    "illustrations2":= $doc//coerp:elements/coerp:style/data(.),
+    "pagination1":=$doc//coerp:pagination_erratic/@exists,
+    "pagination2":= ($doc//coerp:contains/@type,
+                                $doc//coerp:contains/data(.)),
+    "notes1":=  $doc//coerp:footnotes/@exists,
+    "notes2":= $doc//comments_references/@exists,
+    "damaged1":= ($doc//coerp:illegible/coerp:page/@type, 
+                            $doc//coerp:illegible/coerp:page/coerp:from/data(.),
+                            $doc//coerp:illegible/coerp:page/coerp:to/data(.)),
+    "damaged2":=$doc//coerp:illegible/coerp:page/pageNr/data(.),
+    "damaged3":=$doc//coerp:illegible/coerp:due_to/data(.),
+    "damaged4":=($doc//coerp:illegible/coerp:replaced_by/@edition_number,
+                            $doc//coerp:illegible/coerp:replaced_by/data(.)),
+    "missing":= ($doc//coerp:missing/coerp:page/@type,
+                        $doc//empty_page/@exists)
+    }
+};
+
+(:#### Text Darstellung ####:)
 
 declare function doc:getText($dataset as document-node()) {
     $dataset/*/coerp:text
