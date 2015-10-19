@@ -127,11 +127,54 @@
 
     <xs:complexType name="genreType">
         <xs:simpleContent>
-            <xs:extension base="nonEmptyString">
-                <xs:attribute name="key" type="nonEmptyString" use="required"/>
+            <xs:extension base="genreValue">
+                <xs:attribute name="key" type="genreAttributeValue" use="required"/>
             </xs:extension>
         </xs:simpleContent>
     </xs:complexType>
+    
+    
+    <xs:simpleType name="genreAttributeValue">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="biographie"/>
+            <xs:enumeration value="catechism"/>
+            <xs:enumeration value="congregational_song"/>
+            <xs:enumeration value="pamphlet_letter"/>
+            <xs:enumeration value="pamphlet_petition"/>
+            <xs:enumeration value="pamphlet_sermon"/>
+            <xs:enumeration value="prayer"/>
+            <xs:enumeration value="preface_biography"/>
+            <xs:enumeration value="preface_catechism"/>
+            <xs:enumeration value="preface_sermon"/>
+            <xs:enumeration value="treatise_doctrinal"/>
+            <xs:enumeration value="treatise_controversial"/>
+            <xs:enumeration value="preface_treatise_doctrinal"/>
+            <xs:enumeration value="preface_treatise_controversial"/>
+            <xs:enumeration value="sermon"/>
+        </xs:restriction>
+    </xs:simpleType>
+   
+    <xs:simpleType name="genreValue">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="biographie"/>
+            <xs:enumeration value="catechism"/>
+            <xs:enumeration value="congregational song"/>
+            <xs:enumeration value="letter pamphlet"/>
+            <xs:enumeration value="petition pamphlet"/>
+            <xs:enumeration value="sermon pamphlet"/>
+            <xs:enumeration value="prayer"/>
+            <xs:enumeration value="biography preface"/>
+            <xs:enumeration value="catechism preface"/>
+            <xs:enumeration value="sermon preface"/>
+            <xs:enumeration value="doctrinal treatise"/>
+            <xs:enumeration value="controversial treatise"/>
+            <xs:enumeration value="doctrinal preface treatise"/>
+            <xs:enumeration value="controversial preface treatise"/>
+            <xs:enumeration value="sermon"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    
     <!--
         Layout Profile 
         -->
@@ -147,10 +190,17 @@
     <xs:complexType name="posAttr">
         <xs:simpleContent>
             <xs:extension base="xs:string">
-                <xs:attribute name="pos" type="xs:string" use="required"/>
+                <xs:attribute name="pos" type="posValue" use="required"/>
             </xs:extension>
         </xs:simpleContent>
     </xs:complexType>
+    
+    <xs:simpleType name="posValue">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="first"/>
+            <xs:enumeration value="new"/>
+        </xs:restriction>
+    </xs:simpleType>
     
     <xs:complexType name="adaptedAttr">
         <xs:simpleContent>
