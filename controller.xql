@@ -177,8 +177,14 @@ else if (ends-with($exist:resource, "index.html")) then
      
     else if (contains($exist:path, "text")) then
     (
-        let $text := search:FindDocument($exist:resource)
-        return (
+        let $text := if($exist:resource != "xml") then search:FindDocument($exist:resource) else search:FindDocument(substring-after( substring-before($exist:path,"/xml"),"text/"))
+        return if($exist:resource = "xml") then 
+        
+        <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
+        <forward url="{$exist:controller}/data/texts/{$text}"/>
+        </dispatch>
+        else 
+        (
         session:set-attribute("text",$text ),
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
         <forward url="{$exist:controller}/page/texts.html" />

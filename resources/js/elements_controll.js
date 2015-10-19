@@ -1,18 +1,45 @@
 
 $(document).ready(function(){ 
-    
-    $("span#TextElementBar").click(function() {
-        $("#highlightButtons").toggle("slide","slow");
-    })
-    
-    $("div.TextTooltipButton").click(function() {
+     $("div.TextTooltipButton").click(function() {
     $(this).next("div").toggle("blind","slow");
     })
-    $("div#TextAnnotation").click(function() {
-        $("#highlightButtons").toggle("slide","slow");
+   
+   
+    $(".ElementBar").click(function() {
+        toggleExtBars("highlightButtons");
     })
+    
+     $(".DownloadBar").click(function() {
+        toggleExtBars("DownloadElementsButtons");
+    })
+    
+    
+    function toggleExtBars(elem) {
+        $("#"+elem).toggle("slide","slow");
+        if(elem == "DownloadElementsButtons") {
+            if($("#highlightButtons").css("display") == "block") {
+                $("#highlightButtons").toggle("slide","slow");
+            }
+        }
+        
+        if(elem == "highlightButtons") {
+            if($("#DownloadElementsButtons").css("display") == "block") {
+                $("#DownloadElementsButtons").toggle("slide","slow");
+            }
+        }
+        
+    }
 });
 
+function printContent() {
+            var id = "text";
+            var printContents = document.getElementById(id).innerHTML;
+                 var originalContents = document.body.innerHTML;
+                 var newWindow = window.open("","newWindow");
+                 newWindow.document.write (printContents);
+                 newWindow.print();
+                 newWindow.close();
+            }; 
 
 /*##### Text Elemente ######*/
 

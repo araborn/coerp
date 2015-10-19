@@ -282,11 +282,15 @@ declare function page:analyzedGenres() as item()* {
 
 
 declare function page:PrintAuthors($type as xs:string, $abc as xs:string) {
+    distinct-values( (page:SearchAuthors($type,$abc), page:SearchAuthors($type,$abc)))
+
+    };
+
+declare function page:SearchAuthors($type as xs:string, $abc  as xs:string) {
 if($type eq "author") then 
     search:Search_Authors-Translator_StWi($type,$abc)//coerp:author/data(.)
     else     search:Search_Authors-Translator_StWi($type,$abc)//coerp:translator/data(.)
-
-    };
+};
 
 (: ################ Next Try ################# :)
 

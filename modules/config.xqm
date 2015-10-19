@@ -39,7 +39,7 @@ declare variable $config:user-data := $config:app-root || "/data/users";
 declare variable $config:repo-descriptor := doc(concat($config:app-root, "/repo.xml"))/repo:meta;
 
 declare variable $config:expath-descriptor := doc(concat($config:app-root, "/expath-pkg.xml"))/expath:package;
-
+declare variable $config:request-path := concat($config:webapp-root, "/", substring-after(request:get-uri(), $config:conf-file//request-path/data(.)));
 declare variable $config:signatur-plaintext as xs:string := string(doc($config:data-root || "/mail/mail-signatur-plaintext.xml"));
 declare variable $config:signatur-xhtml := util:eval(util:serialize(doc($config:data-root || "/mail/mail-signatur-xhtml.xml"),()));
 declare variable $config:from := "coerp-info@uni-koeln.de";

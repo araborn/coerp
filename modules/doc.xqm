@@ -51,6 +51,16 @@ $model($type)
 };
 
 
+declare function doc:getDownloadElements($node as node(), $model as map(*), $text as xs:string) {
+    let $doc := $text
+    return <ul>
+    <li class="DownloadButtons"><a  href="{$helpers:request-path}/xml" target="_blank">XML</a></li>
+    <li class="DownloadButtons">Quote</li>
+    <li  class="DownloadButtons"><a onclick="printContent()">Print</a></li>
+    </ul>
+    
+};
+
 (:#### Text Layout Darstellung ####:)
 
 declare function doc:AnaylzeTextLayout($node as node(),$model as map(*)) {
@@ -80,9 +90,8 @@ declare function doc:AnaylzeTextLayout($node as node(),$model as map(*)) {
          "la_damaged3":=$doc//coerp:illegible/coerp:due_to/data(.),
          "la_damaged4":=($doc//coerp:illegible/coerp:replaced_by/@edition_number/data(.),
                                  $doc//coerp:illegible/coerp:replaced_by/data(.)),
-         "la_missing":= ($doc//coerp:missing/coerp:page/@type/data(.),
-                             $doc//empty_page/@exists/data(.))
-
+         "la_missing1":= $doc//coerp:missing/coerp:page/@type/data(.),
+         "la_mssing2" := $doc//empty_page/@exists/data(.)
     }
     
     else map {
@@ -102,9 +111,10 @@ declare function doc:mapTagValue($node as node(), $model as map(*)) {
      
      (:doc:mapTagValue( $model("tag")) 
      :) 
-         (: 
+         (: map {
             "tag_name" :=   ,
              "tag_value":= 
+             }
              :)
      switch($tag)
         case "la_format" return map {
@@ -135,8 +145,49 @@ declare function doc:mapTagValue($node as node(), $model as map(*)) {
                 else ()
          case "la_pagination2" return map {
                 "tag_name" :=  "Pagination"  ,
-                "tag_value":= concat("original contains ",$data[1],"numbers in the format ",$data[2]
+                "tag_value":= concat("original contains ",$data[1],"numbers in the format ",$data[2])
                 }
+         case "la_notes1" return if($data = "true") then map{
+                "tag_name" := "Notes"   ,
+                "tag_value":= "Text contains footnotes"
+                }
+                else ()
+         case "la_notes2" return if($data = "true") then map {
+                "tag_name" := "Notes"   ,
+                "tag_value":="text contains comments and refernes in the margins"
+                }
+                else ()
+         case "la_damaged1" return if( $data[1] != "" and  $data[2] = "") then map  {
+             "tag_name" := "Damage"  ,
+              "tag_value":= "Original is partly illegible"
+             }
+             else if ($data[1] != "" and $data[2] != "") then map {
+             "tag_name" := "Damage"  ,
+                 "tag_value":= concat("Original is illegible on pages ",$data[1]," to ",$data[2])
+             }
+             else ()
+        
+        case "la_damaged2" return map {
+                "tag_name" := "Damage"  ,
+                 "tag_value":= concat("Original is illegible on pages ",string-join($data[1],","))
+             }
+        case "la_damaged3" return map {
+                "tag_name" := "Damage"  ,
+                 "tag_value":= concat("due to ",$data)
+             }
+             case "la_damaged4" return map {
+                "tag_name" := "Damage"  ,
+                 "tag_value":= concat("illegible words in the original replaced by those of the ",$data[1], " edition from ", $data[2])
+             }
+         case "la_missing1" return map {
+                 "tag_name" := "Damage"  ,
+                 "tag_value":= concat("Several ",$data, " are missing in the original.")
+         }
+         case "la_missing2" return if($data = "true") then map {
+                 "tag_name" := "Damage"  ,
+                 "tag_value":= "orignal text contains empty pages"
+         }
+         else ()
         default return "Unformated"
         )
      else ()
@@ -182,6 +233,14 @@ declare function doc:fullTextLayout($node as node(), $model as map(*)) {
     "missing":= ($doc//coerp:missing/coerp:page/@type,
                         $doc//empty_page/@exists)
     }
+};
+
+
+(: ### NEW HEADER FETCHING ###:)
+declare function doc:get-text-layout($node as node(), $model as map(*), $text as xs:string){
+    let $xml := doc( concat("/db/apps/coerp_new/data/texts/",$text))//coerp:text_profile
+    let $stylesheet := doc("/db/apps/coerp_new/xslt/texts.xsl")
+    return transform:transform($xml, $stylesheet, ())
 };
 
 (:#### Text Darstellung ####:)

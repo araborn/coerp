@@ -8,21 +8,31 @@
   
 
 
-    <div id="TextElements" class="">
-            <span id="TextElementBar">
+    <div id="TextElements">
+            <span id="TextElementBar" class="ElementBar">
                 <i class="glyphicon glyphicon-wrench" id="TextButton1"/>
                 <i class="glyphicon glyphicon-menu-right" id="TextButton2"/>
             </span>
+             <span id="DownloadElementBar" class="DownloadBar">
+                 <i class="glyphicon glyphicon-download-alt" id="TextButton4"/>
+                 <i class="glyphicon glyphicon-menu-right" id="TextButton5"/>
+             </span>
             <div id="TextElementList" class="">
                 <noscript>
                     To use our text element highlighting functionality, JavaScript has to be enable in your browser!
                 </noscript>
-            
                 <div id="highlightButtons" class="PageBorders-none-left">
                     <ul id="topLevelHighlightButtons"/>
                 </div>
             </div>
+        <div id="DownloadElementList" >
+            <div id="DownloadElementsButtons" class="PageBorders-none-left">
+                <i class="doc:getDownloadElements"/>
+            </div>
+        </div>
     </div>
+    
+    
     <div class="row-fluid">
         <div class="content PageBorders" id="texts">
             <div class="doc:fetchDatasetByRequestedId">
@@ -48,7 +58,8 @@
                             <div class="TextLine"><span class="TextLeft">Source</span><span class="TextRight"><i class="doc:printMapEntry?type=source"/></span></div>
                             <div class="TextLine"><span class="TextLeft">Sampling</span><span  class="TextRight"><i class="doc:printMapEntry?type=sampling"/></span></div>
                             <div class="TextTooltipButton" id="TextLayoutProfile"> Text Layout<i class="glyphicon glyphicon glyphicon-menu-down IconDown"/></div>
-                            <div class="TextTooltip" id="ToolTextLayout">
+                       <!--     <div class="doc:get-text-layout"/>-->
+                             <div class="TextTooltip" id="ToolTextLayout">
                                 <div class="doc:AnaylzeTextLayout">
                                     <div class="doc:getTags">
                                     <div class="templates:each?from=tags&amp;to=tag">
@@ -61,13 +72,16 @@
                             </div>
                         </div>
                     </div>
-                    <div class="TextTooltipButton" id="TextAnnotation" ><div  class="Titels"> </div> Annotations  <i class="glyphicon glyphicon-wrench" id="TextButton3"/></div>
+                     <div class="TextTooltipButtonSingle ElementBar" id="TextAnnotation" ><div  class="Titels"> </div> Annotations  <i class="glyphicon glyphicon-wrench" id="TextButton3"/></div>
+                     <div class="TextTooltipButtonSingle DownloadBar" id="TextDownload" ><div  class="Titels"> </div> Downloads  <i class="glyphicon glyphicon-download-alt" id="TextButton6"/></div>
                     <br />
                     </div>
                  </div>
                 
                 <div class="clear"/>
-                <div class="doc:printFormattedText"/>
+                <div id="text">
+                    <div class="doc:printFormattedText"/>
+                </div>
             </div>
         </div>
     </div>

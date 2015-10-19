@@ -71,7 +71,7 @@
             <xs:element name="short_title" type="nonEmptyString"/>
             <xs:element name="source" type="xs:string"/>
             <xs:element name="sampling" type="samplingType"/>
-            <xs:element name="text_layout" type="layout_profileType"/>
+            <xs:element name="text_layout" type="layout_profileType" />
         </xs:sequence>
     </xs:complexType>
     
@@ -137,9 +137,9 @@
         -->
     <xs:complexType name="layout_profileType">
         <xs:sequence>
-            <xs:element name="format" type="formatType" />
-            <xs:element name="headings_paragraphs" type="headings_paragraphsType" />
-            <xs:element name="text_body" type="text_bodyType" />
+            <xs:element name="format" type="formatType" minOccurs="0"/>
+            <xs:element name="headings_paragraphs" type="headings_paragraphsType" minOccurs="0" />
+            <xs:element name="text_body" type="text_bodyType" minOccurs="0"/>
         </xs:sequence>
         <xs:attribute name="exists" type="nonEmptyString" use="required"/>
     </xs:complexType>
@@ -219,7 +219,7 @@
         <xs:sequence minOccurs="1" maxOccurs="unbounded">
             <xs:element name="page" type="pageType"/>
             <xs:element name="due_to" type="xs:string" />
-            <xs:element name="replaced_by" type="replacedType" />
+            <xs:element name="replaced_by" type="replacedType" maxOccurs="unbounded" />
         </xs:sequence>
     </xs:complexType>
     
@@ -234,7 +234,7 @@
     <xs:complexType name="damagedType_m">
         <xs:sequence minOccurs="1" maxOccurs="unbounded">
             <xs:element name="page" type="pageType"/>
-            <xs:element name="replaced_by" type="replacedType" />
+            <xs:element name="replaced_by" type="replacedType" maxOccurs="unbounded"/>
         </xs:sequence>
     </xs:complexType>
     <xs:complexType name="pageType">
