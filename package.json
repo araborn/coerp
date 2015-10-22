@@ -1,0 +1,32 @@
+{
+  "name": "coerp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "gulp": "^3.9.0",
+    "npm": "^3.3.8"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-newer": "^0.5.1",
+    "gulp-plumber": "^1.0.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-watch": "^4.3.5",
+    "gulp-zip": "^3.0.2",
+    "npm": "^3.3.8"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/araborn/coerp_new.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/araborn/coerp_new/issues"
+  },
+  "homepage": "https://github.com/araborn/coerp_new#readme"
+}

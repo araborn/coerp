@@ -232,7 +232,7 @@
     -->
     <xs:complexType name="headings_paragraphsType">
         <xs:sequence>
-            <xs:element name="paragraphs" type="posAttr" maxOccurs="unbounded"/>
+            <xs:element name="paragraphs" type="posAttr" maxOccurs="unbounded" minOccurs="0"/>
             <xs:element name="cong_song_subtype" type="typeAttr"/>
             <xs:element name="columns" type="typeAttr"  />
             <xs:element name="song_titles_added" type="existAttr" />
@@ -484,7 +484,7 @@
                 <xs:element name="head" type="headType"/>
             </xs:choice>
         </xs:sequence>
-        <xs:attribute name="n" type="xs:integer" use="required"/>
+        <xs:attribute name="n" type="xs:integer"/>
         <xs:attribute name="type" type="lineGroupAttributeContent" use="required"/>
     </xs:complexType>
     <xs:simpleType name="lineGroupAttributeContent">
