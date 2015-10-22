@@ -28,17 +28,20 @@ declare function corpus:scanDB($db as node()*, $param as xs:string, $term as xs:
         return util:eval($build)
         
 };
-declare function corpus:scanDB_map($node as node(), $model as map(*),  $param as xs:string, $term as xs:string) {
+declare function corpus:scanDB_map($node as node(), $model as map(*),  $param as xs:string, $term as xs:string, $ordertype as xs:string) {
         let $db := collection("/db/apps/coerp_new/data/texts")
     (:    let $term := if($param eq "translator" or $param eq "author") then (
                 if( contains($term,"-")) then 
                 concat(substring-before($term,"-"),", ",substring-after($term,"-"))
                 else $term
                 ) else $term:)
-        let $result := if($param = "periods") then corpus:getDateResults($term,$db) else corpus:getResults($param,$term,$db)
+        let $result := if($param = "periods") then corpus:getDateResults($term,$db) else search:RangeSearch_simple($db,$param,$term)
+        (:corpus:getResults($param,$term,$db):)
         return  map {
         "results" := $result,
-        "sum" := fn:count($result)
+        "ordertype" := $ordertype,
+        "param" := $param,
+        "term" := $term
         }
 };
 
@@ -50,14 +53,14 @@ declare function corpus:getDateResults($term as xs:string, $db as node()*) {
 };
 
 declare function corpus:getResults($param as xs:string, $term as xs:string, $db as node()*) {
-        let $range := concat("//range:field-contains(('",$param,"'),'",$term,"')")
+        let $range := concat("//range:field-eq(('",$param,"'),'",$term,"')")
         let $build := concat("$db",$range)
         return util:eval($build)
 };
 
-declare function corpus:AnalyzeResults($node as node(), $model as map(*)) {
-    let $item := $model("result")
-let $author :=  $item//coerp:coerp_header/coerp:author_profile/coerp:author/data(.) 
+declare function corpus:AnalyzeResults($node as node(), $model as map(*),$get as xs:string) {
+    let $item := $model($get)
+    let $author :=  $item//coerp:coerp_header/coerp:author_profile/coerp:author/data(.) 
     let $short_title := $item//coerp:coerp_header/coerp:text_profile/coerp:short_title/data(.)
     let $year :=  $item//coerp:coerp_header/coerp:text_profile/coerp:year/coerp:from/data(.)
     let $genre :=  $item//coerp:coerp_header/coerp:text_profile/coerp:genre/data(.) 
@@ -98,5 +101,116 @@ declare  function corpus:CheckData($node as node(), $model as map(*), $target as
 };
 
 
+declare function corpus:MapNavBar($node as node()*, $model as map(*), $get as xs:string) {
+    let $results := $model($get)
+    let $auth_name := for $hit in $results//coerp:coerp_header/coerp:author_profile/coerp:author/data(.) 
+                                    order by $hit return substring($hit,1,1)
+    let $auth_name := distinct-values($auth_name)
+    let $date_range :=  for $hit in $results//coerp:coerp_header/coerp:text_profile/coerp:year/coerp:from/data(.)
+                                       order by $hit return $hit             
+    let $date_range := distinct-values($date_range)
+    
+    let $short_title := for $hit in $results//coerp:coerp_header/coerp:text_profile/coerp:short_title/data(.)
+                                    order by $hit return substring($hit,1,1)
+    let $short_title := distinct-values($short_title)
+    
+    
+    let $ordertype := $model("ordertype")
+    let $spec := if($ordertype = "alpha") 
+                            then $auth_name
+                            else if ($ordertype = "crono") then $date_range
+                            else $short_title
+    let $denoms := for $hit in $results//coerp:coerp_header/coerp:author_profile/coerp:denom/data(.) 
+                                order by $hit return $hit
+    let $denoms := distinct-values($denoms)
+    
+    let $genres :=  for $hit in $results//coerp:coerp_header/coerp:text_profile/coerp:genre/data(.) 
+                                order by $hit return $hit
+    let $genres := distinct-values($genres)
+    return map {
+        "spec" := $spec,
+        "denoms" := $denoms,
+        "genres" := $genres,
+        "sum" := fn:count($results)
+    }
+};
 
 
+declare function corpus:getResultsSpecified($node as node(), $model as map(*),$get as xs:string) {
+let $db := $model($get)
+let $ordertype := $model("ordertype")
+let $result := if($ordertype = "alpha") 
+                        then search:RangeSearch_Starts-With("author",$model("value"),$db)
+                        else if ($ordertype = "crono") then search:RangeSearch_simple($db, "year_from",$model("value")) 
+                        else search:RangeSearch_Starts-With("short_title",$model("value"),$db)
+return map {
+   "specified" := $result
+
+}
+};
+(:
+declare function corpus:getResultsContainsLetter($db as node(*)){
+         search:Search_Starts-With("author",$model("letter"),$db)
+     (:   return map {
+            "specified" := $results
+        } :)
+};
+:)
+declare function corpus:printLetterColumm($node as node()*, $model as map(*),$value as xs:string) {
+    <div class="ListLetterColumn" id="{$model($value)}">{$model($value)}</div>
+};
+
+declare function corpus:printLetterNavBar($node as node()*, $model as map(*), $value as xs:string) {
+   <span class="ListNavBarLetter"><a href="#{$model($value)}">{$model($value)}</a><span class="LetterPlace">|</span></span> 
+
+};
+
+(: if ($("#date").is(":checked"))
+        {{
+        $("#list").load("{$helpers:app-root}/"+author+"/"+textType+"?ordertype=date");
+        
+        }}
+        else{{
+        $("#list").load("{$helpers:app-root}/"+author+"/"+textType+"?ordertype=alphab"); 
+        }}:)
+declare  function corpus:printRecorder($node as node(), $model as map(*)) as node() {
+    let $script := <script type="text/javascript">
+        
+       function reorder(value){{
+        var url = window.location.href;
+        var i = url.lastIndexOf("/");
+        var substr = url.substring(0,i);
+        i = substr.lastIndexOf("/");
+        var author = substr.substring(i+1,substr.length);
+        var textType = url.substring(url.lastIndexOf("/")+1,url.length);
+        
+        window.location.href ="{$helpers:app-root}/"+author+"/"+textType+"?ordertype="+value;
+        
+        
+        }}
+    </script> 
+    return $script
+};
+
+declare function corpus:printOrderNavElements($node as node(), $model as map(*), $param as xs:string,$term as xs:string) {
+(:
+let $title := <button type="submit" name="ordertype" value="title" class="ListNavBarButtons">Title</button>
+let $crono := <button type="submit" name="ordertype" value="crono" class="ListNavBarButtons">Cronological</button>
+let $alpha := <button type="submit" name="ordertype" value="alpha" class="ListNavBarButtons">Author Name</button>
+:)
+let $ext :=  if($param = "author") then <input type="hidden" name="name" value="{$term}"/> else ()
+let $title := <span class="ListNavBarButtons"><span class="">Title</span><form><input type="hidden" name="ordertype" value="title"/>{$ext}</form></span>
+let $crono := <span class="ListNavBarButtons"><span class="">Cronological</span><form><input type="hidden" name="ordertype" value="crono"/>{$ext}</form></span>
+let $alpha := <span class="ListNavBarButtons"><span class="">Author Name</span><form><input type="hidden" name="ordertype" value="alpha"/>{$ext}</form></span>
+
+return if($param = "author") then ($title,$crono)
+                            
+                            else ($title,$crono, $alpha)
+
+
+
+};
+
+declare function corpus:printSectionFilter($node as node(), $model as map(*), $value as xs:string,$typus as xs:string) {
+        <span class="ListNavBarLetter" onclick="HideSpecialEntrys('{$typus}','{$model($value)}')"><a>{$model($value)}</a><span class="LetterPlace">|</span></span>
+};

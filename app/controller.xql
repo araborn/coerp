@@ -5,6 +5,8 @@ import module namespace config="http://localhost:8080/exist/apps/coerp_new/confi
 import module namespace helpers="http://localhost:8080/exist/apps/coerp_new/helpers" at "modules/helpers.xqm";
 declare namespace request="http://exist-db.org/xquery/request";
 import module namespace search="http://localhost:8080/exist/apps/coerp_new/search" at "modules/search.xqm";
+import module namespace corpus="http://localhost:8080/exist/apps/coerp_new/corpus" at "modules/corpus.xqm";
+
 (:
 import module namespace register="http://localhost:8080/exist/apps/coerp_new/register" at "modules/registration.xqm";
 :)
@@ -102,13 +104,17 @@ else if (ends-with($exist:resource, "index.html")) then
     </dispatch>  
     
     else if (contains($exist:path , "genre")) then
-    (
+     let $ordertype := if (request:get-parameter("ordertype",'') != "") then request:get-parameter("ordertype",'') else "alpha"
+     return
+      (
     session:set-attribute("param","genre"),
     session:set-attribute("term",$exist:resource),
+    session:set-attribute("ordertype",$ordertype),
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
         <forward url="{$exist:controller}/page/list.html" />
         <set-attribute name="param" value="genre"/>
         <set-attribute name="term" value="{$exist:resource}"/>
+        <set-attribute name="ordertype" value="{$ordertype}"/>
         <view>
             <forward url="{$exist:controller}/modules/view.xql">
             </forward>
@@ -116,13 +122,17 @@ else if (ends-with($exist:resource, "index.html")) then
     </dispatch> 
     )
     else if (contains($exist:path , "denom")) then
-    (
+    let $ordertype := if (request:get-parameter("ordertype",'') != "") then request:get-parameter("ordertype",'') else "alpha"
+     return
+      (
     session:set-attribute("param","denom"),
     session:set-attribute("term",$exist:resource),
+    session:set-attribute("ordertype",$ordertype),
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
         <forward url="{$exist:controller}/page/list.html" />
-        <set-attribute name="param" value="genre"/>
+        <set-attribute name="param" value="denom"/>
         <set-attribute name="term" value="{$exist:resource}"/>
+        <set-attribute name="ordertype" value="{$ordertype}"/>
         <view>
             <forward url="{$exist:controller}/modules/view.xql">
             </forward>
@@ -130,51 +140,42 @@ else if (ends-with($exist:resource, "index.html")) then
     </dispatch> 
     )
     else if(contains($exist:path,"periods")) then 
-    (
-          session:set-attribute("param","periods"),
-        if (contains($exist:resource,"-")) then 
-            let $term := $exist:resource
-            return (
-                session:set-attribute("term",$term),
-            <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-             <forward url="{$exist:controller}/page/list.html" />
-             <set-attribute name="param" value="periods"/>
-             <set-attribute name="term" value="{$term}"/>
-             <view>
-                 <forward url="{$exist:controller}/modules/view.xql">
-                 </forward>
-               </view>
-           </dispatch> )
-           else  (: Alte Form abfrage bei der Individuellen Perioden Suche, durch window.href geändert in page.xqm als jquery :)
-           (
-           session:set-attribute("term",concat(request:get-parameter("per_from",""),"-",request:get-parameter("per_to",""))),
-           <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-      <!--       <forward url="{$exist:controller}/page/list.html" />-->
-             <forward url="{$exist:controller}/page/list.html" />
-             <set-attribute name="param" value="periods"/>
-             <set-attribute name="term" value="{concat(request:get-parameter("per_from",""),"-",request:get-parameter("per_to",""))}"/>
-             <view>
-                 <forward url="{$exist:controller}/modules/view.xql">
-                 </forward>
-               </view>
-           </dispatch> 
-           )
-            )
+    let $ordertype := if (request:get-parameter("ordertype",'') != "") then request:get-parameter("ordertype",'') else "crono"
+     return
+      (
+    session:set-attribute("param","periods"),
+    session:set-attribute("term",$exist:resource),
+    session:set-attribute("ordertype",$ordertype),
+    <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
+        <forward url="{$exist:controller}/page/list.html" />
+        <set-attribute name="param" value="periods"/>
+        <set-attribute name="term" value="{$exist:resource}"/>
+        <set-attribute name="ordertype" value="{$ordertype}"/>
+        <view>
+            <forward url="{$exist:controller}/modules/view.xql">
+            </forward>
+        </view>
+    </dispatch> 
+    )
      else if (contains($exist:path,"author") or contains($exist:path,"translator")) then
+     let $ordertype := if (request:get-parameter("ordertype",'') != "") then request:get-parameter("ordertype",'') else "alpha"
      let $term :=request:get-parameter("name",'')
      return
-     (session:set-attribute("param", substring-after($exist:path,"/")),
+      (
+    session:set-attribute("param", substring-after($exist:path,"/")),
      session:set-attribute("term",$term),
-            <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-             <forward url="{$exist:controller}/page/list.html" />
-             <set-attribute name="param" value="{substring-after($exist:path,"/")}"/>
+    session:set-attribute("ordertype",$ordertype),
+    <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
+        <forward url="{$exist:controller}/page/list.html" />
+        <set-attribute name="param" value="{substring-after($exist:path,"/")}"/>
              <set-attribute name="term" value="{$term}"/>
-             <view>
-                 <forward url="{$exist:controller}/modules/view.xql">
-                 </forward>
-               </view>
-           </dispatch> )
-     
+        <set-attribute name="ordertype" value="{$ordertype}"/>
+        <view>
+            <forward url="{$exist:controller}/modules/view.xql">
+            </forward>
+        </view>
+    </dispatch> 
+    )
     else if (contains($exist:path, "text")) then
     (
         let $text := if($exist:resource != "xml") then search:FindDocument($exist:resource) else search:FindDocument(substring-after( substring-before($exist:path,"/xml"),"text/"))

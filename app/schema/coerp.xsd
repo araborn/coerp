@@ -136,7 +136,7 @@
     
     <xs:simpleType name="genreAttributeValue">
         <xs:restriction base="xs:string">
-            <xs:enumeration value="biographie"/>
+            <xs:enumeration value="biography"/>
             <xs:enumeration value="catechism"/>
             <xs:enumeration value="congregational_song"/>
             <xs:enumeration value="pamphlet_letter"/>
@@ -156,20 +156,20 @@
    
     <xs:simpleType name="genreValue">
         <xs:restriction base="xs:string">
-            <xs:enumeration value="biographie"/>
+            <xs:enumeration value="biography"/>
             <xs:enumeration value="catechism"/>
             <xs:enumeration value="congregational song"/>
             <xs:enumeration value="letter pamphlet"/>
             <xs:enumeration value="petition pamphlet"/>
             <xs:enumeration value="sermon pamphlet"/>
             <xs:enumeration value="prayer"/>
-            <xs:enumeration value="biography preface"/>
-            <xs:enumeration value="catechism preface"/>
-            <xs:enumeration value="sermon preface"/>
+            <xs:enumeration value="preface biography"/>
+            <xs:enumeration value="preface catechism"/>
+            <xs:enumeration value="preface sermon"/>
             <xs:enumeration value="doctrinal treatise"/>
             <xs:enumeration value="controversial treatise"/>
-            <xs:enumeration value="doctrinal preface treatise"/>
-            <xs:enumeration value="controversial preface treatise"/>
+            <xs:enumeration value="preface doctrinal treatise"/>
+            <xs:enumeration value="preface controversial treatise"/>
             <xs:enumeration value="sermon"/>
         </xs:restriction>
     </xs:simpleType>

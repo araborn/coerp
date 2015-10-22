@@ -2,24 +2,75 @@
 <div xmlns="http://www.w3.org/1999/xhtml" class="templates:surround?with=templates/page.html&amp;at=content">
     <div class="row-fluid">
         <div class="content" id="list">
-            <div class="corpus:scanDB_map">
-                <div id="list_results" class="list_header">Objects found : <i class="helpers:get?key=sum"/></div>
-                <div class="templates:each?from=results&amp;to=result">
-                    <div class="corpus:AnalyzeResults">
-                            <div class="list_main whiteBorder">
-                                <div class="list_author"><i class="helpers:get?key=author"/></div>
-                                <div class="list_short_title"><i class="corpus:printShortTitle"/></div>
-                                <div class="list_inner"><span class="list_left">Year</span><span class="list_right"><i class="helpers:get?key=year"/></span></div>
-                                <div class="list_inner"><span class="list_left">Genre</span><span class="list_right"><i class="helpers:get?key=genre"/></span></div>
-                                <div class="list_inner"><span class="list_left">Title</span><span class="list_right"><i class="helpers:get?key=title"/></span></div>
-                                <div class="list_inner"><span class="list_left">Denomination</span><span class="list_right"><i class="helpers:get?key=denom"/></span></div>
-                                <div class="list_inner helpers:CheckData?target=translator"><span class="list_left">Translator</span><span class="list_right"><i class="helpers:get?key=translator"/></span></div>
-                                <div class="list_inner helpers:CheckData?target=author_preface"><span class="list_left">Author Preface</span><span class="list_right"><i class="helpers:get?key=author_preface"/></span></div>
-                                <div class="list_inner"><span class="list_left" style="color:red">File Name <i style="font-size:8px">(Nur eine Kontrollvariable)</i></span><span class="list_right"><i class="helpers:get?key=filename"/></span></div>
+                <i class="corpus:printRecorder"/>
+                <div class="corpus:scanDB_map">
+                    <div class="corpus:MapNavBar?get=results">
+                        <div id="list_results" class="list_header"> 
+                            <div>Objects found : <i class="helpers:get?key=sum"/></div>
+                            <div class="LetterNavBar PageThinBorder-bottom">
+                                <span class="templates:each?from=spec&amp;to=value">
+                                    <i class="corpus:printLetterNavBar?value=value"/>
+                                </span>
+                           </div>
+                            <div class="LetterNavBar PageThinBorder-bottom">
+                                <span class="templates:each?from=denoms&amp;to=value">
+                                    <i class="corpus:printSectionFilter?value=value&amp;typus=denom"/>
+                                </span>
                             </div>
+                            <div class="LetterNavBar PageThinBorder-bottom">
+                                <span class="templates:each?from=genres&amp;to=value">
+                                    <i class="corpus:printSectionFilter?value=value&amp;typus=genre"/>
+                                </span>
+                            </div>
+                            <div class="clear"/>
+                            <div class="ListNavBarButtonLine">
+                            <script>
+                                $(document).ready(function() { 
+                                $(".ListNavBarButtons").children("span").click(function() {
+                                    $(this).next("form").submit();
+                                    });
+                                    
+                                    $(".LetterNavBar").children().children(" span:last-child").children("span").children("span").css("display","none");
+                                    
+                                });
+                            </script>
+                            <i class="corpus:printOrderNavElements"/>
+                            </div>
+                            <!--
+                            <form method="get" class="OrderForm">
+                                <input id="date"  name="order" type="radio" value="no" onchange="reorder('crono');"/>
+                                <label for="date" class="">Cronical</label>
+                                <input id="alphab" checked="checked" name="order" type="radio" value="yes" onchange="reorder('alpha');"/>
+                                <label for="alphab" class="">Alphabetical</label>
+                                <input id="alphat"  name="order" type="radio" value="yes" onchange="reorder('title');"/>
+                                <label for="alphat" class="">Title</label>
+                            </form>-->
+                            
+                            <div class="clear"/>
+                        </div>
+                        <div class="templates:each?from=spec&amp;to=value">
+                            <i class="corpus:printLetterColumm?value=value"/>
+                            <div class="corpus:getResultsSpecified?get=results">
+                                <div class="templates:each?from=specified&amp;to=result">
+                                    <div class="corpus:AnalyzeResults?get=result">
+                                            <div class="list_main whiteBorder">
+                                                <div class="list_author"><i class="helpers:get?key=author"/></div>
+                                                <div class="list_short_title"><i class="corpus:printShortTitle"/></div>
+                                                <div class="list_inner"><span class="list_left">Year</span><span class="list_right"><i class="helpers:get?key=year"/></span></div>
+                                                <div class="list_inner genre"><span class="list_left">Genre</span><span class="list_right"><i class="helpers:get?key=genre"/></span></div>
+                                                <div class="list_inner"><span class="list_left">Title</span><span class="list_right"><i class="helpers:get?key=title"/></span></div>
+                                                <div class="list_inner denom"><span class="list_left">Denomination</span><span class="list_right"><i class="helpers:get?key=denom"/></span></div>
+                                                <div class="list_inner helpers:CheckData?target=translator"><span class="list_left">Translator</span><span class="list_right"><i class="helpers:get?key=translator"/></span></div>
+                                                <div class="list_inner helpers:CheckData?target=author_preface"><span class="list_left">Author Preface</span><span class="list_right"><i class="helpers:get?key=author_preface"/></span></div>
+                                                <div class="list_inner"><span class="list_left" style="color:red">File Name <i style="font-size:8px">(Nur eine Kontrollvariable)</i></span><span class="list_right"><i class="helpers:get?key=filename"/></span></div>
+                                            </div>
+                                    </div>
+                                </div>
+                                <div class="clear"/>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
         </div>
     </div>
 </div>

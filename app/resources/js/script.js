@@ -220,3 +220,28 @@ $(document).ready(function() { /* Genre Funktion*/
 
 
 
+
+function HideSpecialEntrys(classname, attribute) {
+ /*   var object = $("."+classname);*/
+ /*   object.css("background-color","red");*/
+  /* var content = object.children("span.list_right").html();
+   if( content.indexOf(attribute) != -1) {
+    $(this).css("background-color","red");
+   alert(content);
+    }*/
+    $("."+classname).each(function() {
+        var content = $(this).children("span.list_right").html();
+         if( content.indexOf(attribute) != -1) {
+             if( !$(this).hasClass("inactive")) {
+                    $(this).addClass("inactive");
+                    $(this).parent("div").hide("blind","slow");
+                }
+                else {
+                    $(this).removeClass("inactive");
+                    $(this).parent("div").show("blind","slow");
+                }
+                }
+        });
+    
+}
+

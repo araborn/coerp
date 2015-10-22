@@ -17,6 +17,11 @@
      color: #337ab7 !important;
     text-decoration: none;
  }
+ 
+ .footer a:hover{
+     text-decoration:underline;
+     color:#003399;
+ }
  #footer {
 
      bottom: 0;
@@ -48,6 +53,10 @@
     padding: 10px;
 }
 
+.content#search_page {
+    background-color:#e2e2e2 !important ;
+    
+}
 #index div {
     padding: 5px 7px 10px;
 }
@@ -129,6 +138,7 @@ background: linear-gradient(top, #5e81f2 0%, #7787f2 50%, #8091e8 100%); backgro
 
 .QuadNavTab_div {
     width:100%;
+    border-bottom: 1px solid #cac3db;
 }
 
 .ListTab .active {
@@ -622,6 +632,13 @@ display:none;
      box-shadow: 15px 13px 20px 2px #cac3db; -moz-box-shadow: 15px 13px 20px 2px #cac3db; -webkit-box-shadow: 15px 13px 20px 2px #cac3db;
 
 }
+
+.PageThinBorder-bottom {
+    border-bottom:1px solid #cac3db;
+}
+.PageThinBorder-top {
+    border-top:1px solid #cac3db;
+}
 /*########## LIST DESIGN #############*/
 
 
@@ -686,10 +703,67 @@ max-width:70%;
 }
 
 .list_header {
-    margin: 0 auto;
+    margin: 0 auto 15px;
     width: 90%;
+    font-size: 15px;
+    text-align:center;
 }
 
 #list_results {
     border-bottom:1px solid #cac3db;
+}
+
+.ListLetterColumn {
+    border-bottom:1px solid #cac3db;
+    border-top:1px solid #cac3db;
+    background-color:#fafafa;
+    font-size: 20px;
+    font-weight: bold;
+    height: 30px;
+    text-align: center;
+    vertical-align: middle;
+    margin: 5px auto;
+}
+
+.ListNavBarLetter a{
+    cursor:pointer;
+     color: #337ab7 !important;
+    text-decoration: none;
+}
+
+.ListNavBarLetter a:hover {
+    color:#003366;
+    text-decoration:underline;
+}
+
+.LetterNavBar {
+    text-align: center;
+}
+
+.ListNavBarButtons {
+    float:left;
+}
+
+.ListNavBarButtons span {
+    border: 1px solid;
+    display: block;
+    height: 25px;
+    margin: 0 5px;
+    text-align: center;
+    vertical-align: middle;
+    width: 150px;
+     background-color:#fafafa;
+     cursor:pointer;
+}
+.ListNavBarButtons span:hover {
+        background: linear-gradient(top, #5e81f2 0%, #7787f2 50%, #8091e8 100%); background: -moz-linear-gradient(top, #5e81f2 0%, #7787f2 50%, #8091e8 100%); background: -webkit-linear-gradient(top, #5e81f2 0%, #7787f2 50%, #8091e8 100%); background: -ms-linear-gradient(top, #5e81f2 0%, #7787f2 50%, #8091e8 100%); background: -o-linear-gradient(top, #5e81f2 0%, #7787f2 50%, #8091e8 100%); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#5e81f2, endColorstr=#8091e8,GradientType=1);
+        color:white !important;
+}
+
+.ListNavBarButtonLine {
+    display: inline-block;
+}
+
+.LetterPlace {
+    margin: 0 4px;
 }

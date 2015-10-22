@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <div xmlns="http://www.w3.org/1999/xhtml" class="templates:surround?with=templates/page.html&amp;at=content">
     <div class="row-fluid">
-        <div class="content" id="search">
+        <div class="content" id="search_page">
             <style>
                 span.hi {
                 background-color: grey;
@@ -11,6 +11,7 @@
                 }
             </style>
             <div class="search:CollectData">
+                <div id="list_results" class="list_header">Objects found : <i class="helpers:get?key=sum"/></div>
                 <div class="templates:each?from=results&amp;to=result">
                     <div class="corpus:AnalyzeResults">
                         <div class="search:AnalyzeResultsExt">

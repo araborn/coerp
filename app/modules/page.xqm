@@ -118,7 +118,8 @@ return <ul class="MainNavList"> {
                                                     for $item in page:PrintAuthors(substring-after($SecTab/term/attribute(),"_"),$abc)
                                            (:         let $CName := if(contains($item,",")) then concat(substring-before($item,","),"-",substring-after($item,", ")) else $item 
                                                     let $name := page:DecodeAuthors($item):)
-                                                  return  <div class="QuadNavTab_div"><form action="{$helpers:app-root}/{substring-after($SecTab/term/attribute(),"_")}" method="post">
+                                                  return  <div class="QuadNavTab_div">
+                                                  <form action="{$helpers:app-root}/{substring-after($SecTab/term/attribute(),"_")}" method="post">
                                                     <input type="hidden" value="{$item}" name="name"/><li>{$item}</li>
                                                   </form></div>
                                                 }

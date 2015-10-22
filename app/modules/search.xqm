@@ -20,27 +20,31 @@ declare function search:Search_Authors-Translator_StWi($type as xs:string, $lett
          let $build := concat("$db",$range)
         return util:eval($build)
 };
-
+declare function search:RangeSearch_Starts-With($type as xs:string, $letter as xs:string, $db as node()*) {
+        let $range := concat("//range:field-starts-with(('",$type,"'),'",$letter,"')")
+         let $build := concat("$db",$range)
+        return util:eval($build)
+};
 
 declare function search:FindDocument($text as xs:string) {
 (:for $hit in collection("/db/apps/coerp_new/data/texts")//coerp:short_title/data(.)
         return if ($hit = $text) then
       root($hit)/util:document-name(.)
       else ():)
-   root(search:get-range-search_simple(collection("/db/apps/coerp_new/data/texts"),"short_title",xmldb:decode-uri($text)))/util:document-name(.) 
+   root(search:RangeSearch_simple(collection("/db/apps/coerp_new/data/texts"),"short_title",xmldb:decode-uri($text)))/util:document-name(.) 
 
 };
 
 
 
-declare function search:get-range-search_simple($db as node()*,$param as xs:string, $term as xs:string) {
- 
+declare function search:RangeSearch_simple($db as node()*,$param as xs:string, $term as xs:string) {
         let $search_terms := concat('("',$param,'"),"',$term,'"')
         let $search_funk := concat("//range:field-contains(",$search_terms,")")
         let $search_build := concat("$db",$search_funk)
         return util:eval($search_build)
 
 };
+
 
 
 (: ########### SEARCH SEITEN AUFBAU ############# :)
@@ -68,7 +72,8 @@ declare function search:CollectData($node as node(), $model as map(*)) {
         
         return map {
         "results" :=  $dbase,
-        "query" := request:get-parameter("term",'')
+        "query" := request:get-parameter("term",''),
+        "sum" := fn:count($dbase)
         }
         
         
