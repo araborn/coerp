@@ -5,7 +5,7 @@ module namespace doc="http://localhost:8080/exist/apps/coerp_new/doc";
 import module namespace helpers="http://localhost:8080/exist/apps/coerp_new/helpers" at "helpers.xqm";
 declare namespace templates="http://exist-db.org/xquery/templates";
 
-declare namespace coerp="http://coerp.uni-koeln.de/schema";
+declare namespace coerp="http://coerp.uni-koeln.de/schema/coerp";
 
 declare function doc:test($node as node()*, $model as map(*), $text as xs:string) as xs:string*{
 

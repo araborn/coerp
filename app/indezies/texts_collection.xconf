@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <collection xmlns="http://exist-db.org/collection-config/1.0">
-    <index xmlns:coerp="http://coerp.uni-koeln.de/schema" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <index xmlns:coerp="http://coerp.uni-koeln.de/schema/coerp" xmlns:xs="http://www.w3.org/2001/XMLSchema">
         <!-- Disable the old full text index -->
         <fulltext default="none" attributes="false"/>
         <!-- Lucene index is configured below -->

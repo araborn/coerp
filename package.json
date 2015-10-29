@@ -13,6 +13,7 @@
     "gulp-newer": "^0.5.1",
     "gulp-plumber": "^1.0.1",
     "gulp-rename": "^1.2.2",
+    "gulp-replace": "^0.5.4",
     "gulp-watch": "^4.3.5",
     "gulp-zip": "^3.0.2",
     "npm": "^3.3.8"

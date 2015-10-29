@@ -215,11 +215,11 @@ background: linear-gradient(top, #5e81f2 0%, #7787f2 50%, #8091e8 100%); backgro
     z-index:3;
     
     background:#fafafa;
-    
+    /*
     
     border-top-right-radius: 5px; border-bottom-right-radius: 5px; border-bottom-left-radius: 5px; -moz-border-radius-topright: 5px; -moz-border-radius-bottomright: 5px; -moz-border-radius-bottomleft: 5px; -webkit-border-top-right-radius: 5px; -webkit-border-bottom-right-radius: 5px; -webkit-border-bottom-left-radius: 5px;
     
-    box-shadow: 0px 12px 20px 2px #cac3db; -moz-box-shadow: 0px 12px 20px 2px #cac3db; -webkit-box-shadow: 0px 12px 20px 2px #cac3db;
+    box-shadow: 0px 12px 20px 2px #cac3db; -moz-box-shadow: 0px 12px 20px 2px #cac3db; -webkit-box-shadow: 0px 12px 20px 2px #cac3db;*/
 }
 
 .SubNavTab {
@@ -245,24 +245,8 @@ background: linear-gradient(top, #5e81f2 0%, #7787f2 50%, #8091e8 100%); backgro
     position:absolute;
     display:none;
     background-color:#fafafa;
+ 
     
-    
-    background-color:#fafafa;
-    border-top-left-radius: 0px; 
-    border-top-right-radius: 10px; 
-    border-bottom-right-radius: 10px; 
-    border-bottom-left-radius: 0px; 
-    moz-border-radius-topleft: 0px; 
-    -moz-border-radius-topright: 10px; 
-    -moz-border-radius-bottomright: 10px; 
-    -moz-border-radius-bottomleft: 10px; 
-    -webkit-border-top-left-radius: 0px; 
-    -webkit-border-top-right-radius: 10px; 
-    -webkit-border-bottom-right-radius: 10px; 
-    -webkit-border-bottom-left-radius: 00px;
-    
-     box-shadow: 0px 1px 20px 2px #cac3db; -moz-box-shadow: 0px 1px 20px 2px #cac3db; -webkit-box-shadow: 0px 1px 20px 2px #cac3db;
-
 }
 
 .ThiNavList_div {
@@ -536,6 +520,27 @@ display:none;
     clear:both;
 }
 
+.ScrollToTop {
+    color: #444;
+    display: none;
+    font-weight: bold;
+    height: 50px !important;
+    padding: 10px;
+    position: fixed;
+    right: 170px;
+    text-align: center;
+    text-decoration: none;
+    top: 870px;
+    width: 40px !important;
+    cursor:pointer;
+    
+}
+
+.ScrollToTop:hover {
+    background: linear-gradient(top, #5e81f2 0%, #7787f2 50%, #8091e8 100%); background: -moz-linear-gradient(top, #5e81f2 0%, #7787f2 50%, #8091e8 100%); background: -webkit-linear-gradient(top, #5e81f2 0%, #7787f2 50%, #8091e8 100%); background: -ms-linear-gradient(top, #5e81f2 0%, #7787f2 50%, #8091e8 100%); background: -o-linear-gradient(top, #5e81f2 0%, #7787f2 50%, #8091e8 100%); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#5e81f2, endColorstr=#8091e8,GradientType=1);
+        color:white !important;
+}
+
 /* BORDER STYLES*/
 .whiteBorder {
     background-color:#fafafa;
@@ -633,12 +638,56 @@ display:none;
 
 }
 
+.PageBorders-All {
+    border-top-left-radius: 0px; 
+    border-top-right-radius: 10px; 
+    border-bottom-right-radius: 10px; 
+    border-bottom-left-radius: 0px; 
+    moz-border-radius-topleft: 0px; 
+    -moz-border-radius-topright: 10px; 
+    -moz-border-radius-bottomright: 10px; 
+    -moz-border-radius-bottomleft: 10px; 
+    -webkit-border-top-left-radius: 0px; 
+    -webkit-border-top-right-radius: 10px; 
+    -webkit-border-bottom-right-radius: 10px; 
+    -webkit-border-bottom-left-radius: 00px;
+     box-shadow: 0px 1px 20px 2px #cac3db; -moz-box-shadow: 0px 1px 20px 2px #cac3db; -webkit-box-shadow: 0px 1px 20px 2px #cac3db;
+
+}
+
 .PageThinBorder-bottom {
     border-bottom:1px solid #cac3db;
 }
 .PageThinBorder-top {
     border-top:1px solid #cac3db;
 }
+
+
+
+/*########## BUTTON DESIGNS ##########*/
+.ButtonEye {
+    margin-right:5px;
+}
+
+
+.Button-Type2 {
+    border: 1px solid;
+    display: block;
+    height: 25px;
+    margin: 0 5px;
+    text-align: center;
+    vertical-align: middle;
+    width: 150px;
+     background-color:#fafafa;
+     cursor:pointer;
+}
+
+.Button-Type2:hover {
+    background: linear-gradient(top, #5e81f2 0%, #7787f2 50%, #8091e8 100%); background: -moz-linear-gradient(top, #5e81f2 0%, #7787f2 50%, #8091e8 100%); background: -webkit-linear-gradient(top, #5e81f2 0%, #7787f2 50%, #8091e8 100%); background: -ms-linear-gradient(top, #5e81f2 0%, #7787f2 50%, #8091e8 100%); background: -o-linear-gradient(top, #5e81f2 0%, #7787f2 50%, #8091e8 100%); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#5e81f2, endColorstr=#8091e8,GradientType=1);
+        color:white !important;
+}
+
+
 /*########## LIST DESIGN #############*/
 
 
@@ -707,6 +756,7 @@ max-width:70%;
     width: 90%;
     font-size: 15px;
     text-align:center;
+    padding: 5px;
 }
 
 #list_results {
@@ -732,32 +782,47 @@ max-width:70%;
 }
 
 .ListNavBarLetter a:hover {
-    color:#003366;
+    color:#003366 !important;
     text-decoration:underline;
 }
 
 .LetterNavBar {
     text-align: center;
+    display:inline-block;
 }
 
+.LetterNavBar span {
+    
+}
+
+.LetterNavBar span span {
+ 
+}
+
+.ListNavBarLetter {
+    float: left;
+}
 .ListNavBarButtons {
     float:left;
 }
 
 .ListNavBarButtons span {
-    border: 1px solid;
-    display: block;
-    height: 25px;
-    margin: 0 5px;
-    text-align: center;
-    vertical-align: middle;
-    width: 150px;
-     background-color:#fafafa;
-     cursor:pointer;
+    
 }
 .ListNavBarButtons span:hover {
-        background: linear-gradient(top, #5e81f2 0%, #7787f2 50%, #8091e8 100%); background: -moz-linear-gradient(top, #5e81f2 0%, #7787f2 50%, #8091e8 100%); background: -webkit-linear-gradient(top, #5e81f2 0%, #7787f2 50%, #8091e8 100%); background: -ms-linear-gradient(top, #5e81f2 0%, #7787f2 50%, #8091e8 100%); background: -o-linear-gradient(top, #5e81f2 0%, #7787f2 50%, #8091e8 100%); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#5e81f2, endColorstr=#8091e8,GradientType=1);
-        color:white !important;
+        
+}
+.LetterNavBarList {
+    display:none;
+}
+.LetterNavBarListButton {
+    cursor:pointer;
+    color: #337ab7 !important;
+    text-decoration:dotted;
+}
+.LetterNavBarListButton:hover {
+    color:#003366 !important;
+    text-decoration:underline;
 }
 
 .ListNavBarButtonLine {
@@ -767,3 +832,51 @@ max-width:70%;
 .LetterPlace {
     margin: 0 4px;
 }
+
+.ButtonEye-LetterBar {
+    
+}
+
+
+.ListHiddenCategory {
+    margin: 0 3px;
+    float: right;
+    display:none;
+    cursor:pointer;
+}
+
+.ListHiddenCategory i {
+    color: #337ab7 !important;
+}
+
+.ListHiddenCategory i:hover {
+    color:#003366 !important;
+}
+
+.HiddenCategoryBar {
+    margin-right: 10px;
+    margin-top: -28px;
+}
+
+  .CustomTooltip {
+        max-width:200px;
+        text-align:center;
+        padding-top:2px;
+        padding-bottom:2px;
+        
+         background-color:#fafafa;
+    border-top-left-radius: 10px; 
+    border-top-right-radius: 10px; 
+    border-bottom-right-radius: 10px; 
+    border-bottom-left-radius: 10px; 
+    moz-border-radius-topleft: 10px; 
+    -moz-border-radius-topright: 10px; 
+    -moz-border-radius-bottomright: 10px; 
+    -moz-border-radius-bottomleft: 10px; 
+    -webkit-border-top-left-radius: 10px; 
+    -webkit-border-top-right-radius: 10px; 
+    -webkit-border-bottom-right-radius: 10px; 
+    -webkit-border-bottom-left-radius: 10px;
+     box-shadow: 0px 1px 20px 2px #cac3db; -moz-box-shadow: 0px 1px 20px 2px #cac3db; -webkit-box-shadow: 0px 1px 20px 2px #cac3db;
+
+        }

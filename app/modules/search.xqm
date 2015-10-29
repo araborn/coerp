@@ -8,7 +8,7 @@ import module namespace config="http://localhost:8080/exist/apps/coerp_new/confi
 declare namespace util="http://exist-db.org/xquery/util";
 declare namespace text="http://exist-db.org/xquery/text";
 declare namespace request="http://exist-db.org/xquery/request";
-declare namespace coerp="http://coerp.uni-koeln.de/schema";
+declare namespace coerp="http://coerp.uni-koeln.de/schema/coerp";
 import module namespace kwic="http://exist-db.org/xquery/kwic";
 
 (: ###### SUCH FUNKTIONEN ######### :)

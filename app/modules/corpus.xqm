@@ -10,7 +10,7 @@ declare namespace templates="http://exist-db.org/xquery/templates";
 declare namespace util="http://exist-db.org/xquery/util";
 declare namespace text="http://exist-db.org/xquery/text";
 declare namespace request="http://exist-db.org/xquery/request";
-declare namespace coerp="http://coerp.uni-koeln.de/schema";
+declare namespace coerp="http://coerp.uni-koeln.de/schema/coerp";
 
 declare function corpus:test($node as node()*, $model as map(*), $term as xs:string, $param as xs:string) as xs:string{
 
@@ -129,10 +129,10 @@ declare function corpus:MapNavBar($node as node()*, $model as map(*), $get as xs
     let $genres := distinct-values($genres)
     return map {
         "spec" := $spec,
-        "denoms" := $denoms,
-        "genres" := $genres,
+        "denoms" := if(count($denoms) != 1) then $denoms else (),
+        "genres" := if(count($genres) != 1) then $genres else (),
         "sum" := fn:count($results)
-    }
+    } 
 };
 
 
@@ -157,7 +157,12 @@ declare function corpus:getResultsContainsLetter($db as node(*)){
 };
 :)
 declare function corpus:printLetterColumm($node as node()*, $model as map(*),$value as xs:string) {
-    <div class="ListLetterColumn" id="{$model($value)}">{$model($value)}</div>
+    <div class="ListLetterColumn" id="{$model($value)}"><span class="ListLetterLetter">{$model($value)}</span>
+    <div class="HiddenCategoryBar">{
+    for $hit in ($model("denoms"),$model("genres"))
+  return   <span class="{$hit}-Hidden ListHiddenCategory" ><i class='glyphicon glyphicon-eye-close ButtonEye-LetterBar' title="{$hit}" /></span>
+    
+    }  </div></div>
 };
 
 declare function corpus:printLetterNavBar($node as node()*, $model as map(*), $value as xs:string) {
@@ -197,20 +202,27 @@ declare function corpus:printOrderNavElements($node as node(), $model as map(*),
 let $title := <button type="submit" name="ordertype" value="title" class="ListNavBarButtons">Title</button>
 let $crono := <button type="submit" name="ordertype" value="crono" class="ListNavBarButtons">Cronological</button>
 let $alpha := <button type="submit" name="ordertype" value="alpha" class="ListNavBarButtons">Author Name</button>
+class="Button-Type2"
 :)
 let $ext :=  if($param = "author") then <input type="hidden" name="name" value="{$term}"/> else ()
-let $title := <span class="ListNavBarButtons"><span class="">Title</span><form><input type="hidden" name="ordertype" value="title"/>{$ext}</form></span>
-let $crono := <span class="ListNavBarButtons"><span class="">Cronological</span><form><input type="hidden" name="ordertype" value="crono"/>{$ext}</form></span>
-let $alpha := <span class="ListNavBarButtons"><span class="">Author Name</span><form><input type="hidden" name="ordertype" value="alpha"/>{$ext}</form></span>
+let $title := <span class="ListNavBarButtons"><span class="ListNavBarLetter"><a>Title</a><span class="LetterPlace">|</span></span><form><input type="hidden" name="ordertype" value="title"/>{$ext}</form></span>
+let $crono := <span class="ListNavBarButtons"><span class="ListNavBarLetter"><a>Cronological</a><span class="LetterPlace">|</span></span><form><input type="hidden" name="ordertype" value="crono"/>{$ext}</form></span>
+let $alpha := <span class="ListNavBarButtons"><span class="ListNavBarLetter"><a>Author Name</a><span class="LetterPlace">|</span></span><form><input type="hidden" name="ordertype" value="alpha"/>{$ext}</form></span>
 
-return if($param = "author") then ($title,$crono)
+return if($param = "author") then <span>{($title,$crono)}</span>
                             
-                            else ($title,$crono, $alpha)
+                            else <span>{($title,$crono, $alpha)}</span>
 
 
 
 };
 
-declare function corpus:printSectionFilter($node as node(), $model as map(*), $value as xs:string,$typus as xs:string) {
+declare function corpus:printSectionFilter($node as node(), $model as map(*), $value as xs:string,$typus as xs:string, $eye as xs:string?) {
+if($eye = "yes") then <span class="ListNavBarLetter ButtonEyeToggle" onclick="HideSpecialEntrys('{$typus}','{$model($value)}')"><a><i class="glyphicon glyphicon-eye-open ButtonEye"/>{$model($value)}</a><span class="LetterPlace">|</span></span>
+else 
         <span class="ListNavBarLetter" onclick="HideSpecialEntrys('{$typus}','{$model($value)}')"><a>{$model($value)}</a><span class="LetterPlace">|</span></span>
+};
+
+declare function corpus:printSectionFilterButton($node as node(), $model as map(*), $value as xs:string,$typus as xs:string) {
+        <span class="ListNavBarButtons" onclick="HideSpecialEntrys('{$typus}','{$model($value)}')"><span class="Button-Type2"><i class="glyphicon glyphicon-eye-open ButtonEye"/>{$model($value)}</span></span>
 };

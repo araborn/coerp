@@ -220,28 +220,69 @@ $(document).ready(function() { /* Genre Funktion*/
 
 
 
-
-function HideSpecialEntrys(classname, attribute) {
- /*   var object = $("."+classname);*/
- /*   object.css("background-color","red");*/
-  /* var content = object.children("span.list_right").html();
-   if( content.indexOf(attribute) != -1) {
-    $(this).css("background-color","red");
-   alert(content);
-    }*/
+ function HideSpecialEntrys(classname, attribute) {
     $("."+classname).each(function() {
         var content = $(this).children("span.list_right").html();
-         if( content.indexOf(attribute) != -1) {
-             if( !$(this).hasClass("inactive")) {
-                    $(this).addClass("inactive");
-                    $(this).parent("div").hide("blind","slow");
-                }
-                else {
-                    $(this).removeClass("inactive");
-                    $(this).parent("div").show("blind","slow");
-                }
-                }
-        });
+        if( content.indexOf(attribute) != -1) {
+            if( !$(this).parent("div").hasClass("inactive")) {
+             $(this).parent("div").parent("div").parent("div").prev("div").children(".HiddenCategoryBar").children("."+attribute+"-Hidden").show();
+                $(this).parent("div").addClass("inactive");
+                $(this).parent("div").hide("blind","slow");
+                 
+            }
+            else {
+                $(this).parent("div").parent("div").parent("div").prev("div").children(".HiddenCategoryBar").children("."+attribute+"-Hidden").hide();
+                $(this).parent("div").removeClass("inactive");
+                $(this).parent("div").show("blind","slow");
+                
+            }
+        }
+       
+    });
+    
     
 }
+$(document).ready(function(){
+    $(".ListHiddenCategory").click(function() {
+         var classname = $(this).attr("class");
+         var hidden = classname.indexOf("-");
+         var attribute = classname.substring(0,hidden);
+         
+         if( $(this).children("i").hasClass("glyphicon-eye-close") ) {
+         
+         $(this).parent().parent().next("div").children().children("div.inactive").children("div").children("span.list_right").each(function() {
+            if( $(this).html().indexOf(attribute) != -1) {
+                $(this).parent().parent().show("blind","slow");
+            }
+         })
+         /*alert(classname+hidden+attribute);*/
+         $(this).children("i").removeClass("glyphicon-eye-close");
+         $(this).children("i").addClass("glyphicon-eye-open");
+         }
+         else {
+             $(this).parent().parent().next("div").children().children("div.inactive").children("div").children("span.list_right").each(function() {
+            if( $(this).html().indexOf(attribute) != -1) {
+                $(this).parent().parent().hide("blind","slow");
+            }
+         })
+         $(this).children("i").removeClass("glyphicon-eye-open");
+         $(this).children("i").addClass("glyphicon-eye-close");
+         }
+    });
+});
 
+$(document).ready(function(){
+	//Check to see if the window is top if not then display button
+	$(window).scroll(function(){
+		if ($(this).scrollTop() > 100) {
+			$('.ScrollToTop').fadeIn();
+		} else {
+			$('.ScrollToTop').fadeOut();
+		}
+	});
+	//Click event to scroll to top
+	$('.ScrollToTop').click(function(){
+		$('html, body').animate({scrollTop : 0},800);
+		return false;
+	});
+});

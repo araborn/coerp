@@ -1,20 +1,18 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--<xs:schema xmlns="cceh.uni-koeln.de/coerp" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="cceh.uni-koeln.de/coerp"> -->
-<xs:schema xmlns="http://www.coerp.uni-koeln.de/schema" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.coerp.uni-koeln.de/schema">
-    <xs:import namespace="http://www.w3.org/1999/xlink" schemaLocation="http://www.loc.gov/standards/xlink/xlink.xsd"/>
+<xs:schema xmlns:coerp="http://coerp.uni-koeln.de/schema/coerp" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" elementFormDefault="qualified" targetNamespace="http://coerp.uni-koeln.de/schema/coerp">
+
     <!-- 
         Die verschiedenen möglichen root-Elemente der Texte.
         Zugleich Angabe des Genres
     -->
-    <xs:element name="coerp" type="coerpDataset"/>
+    <xs:element name="coerp" type="coerp:coerpDataset"/>
     <!-- 
         Allgemeiner Dokumenttyp
         Jedes Dokument hat genau ein coerp_header-Element und genau ein text-Element    
     -->
     <xs:complexType name="coerpDataset">
         <xs:sequence>
-            <xs:element name="coerp_header" type="coerp_headerType"/>
-            <xs:element name="text" type="textType"/>
+            <xs:element name="coerp_header" type="coerp:coerp_headerType"/>
+            <xs:element name="text" type="coerp:textType"/>
         </xs:sequence>
     </xs:complexType>
     
@@ -37,41 +35,47 @@
     -->
     <xs:complexType name="coerp_headerType">
         <xs:sequence>
-           <xs:element name="author_profile" type="author_profileType"/>
-           <xs:element name="text_profile" type="text_profileType"/>
+            <xs:element name="author_profile" type="coerp:author_profileType"/>
+            <xs:element name="text_profile" type="coerp:text_profileType"/>
         </xs:sequence>
     </xs:complexType>
     
     <!-- 
         Es kann mehrere Autoren geben
     -->
- 
-    
     <xs:complexType name="author_profileType">
         <xs:sequence>
-        <xs:sequence minOccurs="1" maxOccurs="unbounded">
-            <xs:element name="author" type="nonEmptyString"/>
-        </xs:sequence>
-               <xs:element name="author_preface" type="xs:string" />
-        <xs:element name="translator" type="xs:string"/>
-        <xs:element name="denom" type="nonEmptyString"/>
-            <xs:element name="bio_info" type="xs:string" />
+            <xs:sequence minOccurs="1" maxOccurs="unbounded">
+                <xs:element name="author" type="coerp:nonEmptyString"/>
+            </xs:sequence>
+            <xs:element name="author_preface" type="xs:string"/>
+            <xs:element name="translator" type="xs:string"/>
+            <xs:element name="denom" type="coerp:denomValue"/>
+            <xs:element name="bio_info" type="xs:string"/>
         </xs:sequence>
     </xs:complexType>
+    <xs:simpleType name="denomValue">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Anglican"/>
+            <xs:enumeration value="Catholic"/>
+            <xs:enumeration value="Nonconformist"/>
+            <xs:enumeration value="unknown"/>
+        </xs:restriction>
+    </xs:simpleType>
 
 
 <!-- TEXT PROFLE TYPE
         -->
     <xs:complexType name="text_profileType">
         <xs:sequence>
-            <xs:element name="genre" type="genreType"/>
-            <xs:element name="year" type="from_to"/>
-            <xs:element name="this_edition" type="from_to"/>
-            <xs:element name="title" type="titleType"/>
-            <xs:element name="short_title" type="nonEmptyString"/>
+            <xs:element name="genre" type="coerp:genreType"/>
+            <xs:element name="year" type="coerp:from_to"/>
+            <xs:element name="this_edition" type="coerp:from_to"/>
+            <xs:element name="title" type="coerp:titleType"/>
+            <xs:element name="short_title" type="coerp:nonEmptyString"/>
             <xs:element name="source" type="xs:string"/>
-            <xs:element name="sampling" type="samplingType"/>
-            <xs:element name="text_layout" type="layout_profileType" />
+            <xs:element name="sampling" type="coerp:samplingType"/>
+            <xs:element name="text_layout" type="coerp:layout_profileType"/>
         </xs:sequence>
     </xs:complexType>
     
@@ -80,8 +84,8 @@
     -->
     <xs:complexType name="titleType" mixed="true">
         <xs:sequence>
-            <xs:choice  maxOccurs="unbounded" minOccurs="0">
-                <xs:group ref="textOnlyElements"/>
+            <xs:choice maxOccurs="unbounded" minOccurs="0">
+                <xs:group ref="coerp:textOnlyElements"/>
             </xs:choice>
         </xs:sequence>
     </xs:complexType>
@@ -109,7 +113,7 @@
     -->
     <xs:complexType name="samplingType">
         <xs:sequence minOccurs="1" maxOccurs="unbounded">
-            <xs:element name="info" type="idRefType"/>
+            <xs:element name="info" type="coerp:idRefType"/>
         </xs:sequence>
         <xs:attribute name="id"/>
     </xs:complexType>
@@ -124,16 +128,13 @@
             </xs:extension>
         </xs:simpleContent>
     </xs:complexType>
-
     <xs:complexType name="genreType">
         <xs:simpleContent>
-            <xs:extension base="genreValue">
-                <xs:attribute name="key" type="genreAttributeValue" use="required"/>
+            <xs:extension base="coerp:genreValue">
+                <xs:attribute name="key" type="coerp:genreAttributeValue" use="required"/>
             </xs:extension>
         </xs:simpleContent>
     </xs:complexType>
-    
-    
     <xs:simpleType name="genreAttributeValue">
         <xs:restriction base="xs:string">
             <xs:enumeration value="biography"/>
@@ -153,7 +154,6 @@
             <xs:enumeration value="sermon"/>
         </xs:restriction>
     </xs:simpleType>
-   
     <xs:simpleType name="genreValue">
         <xs:restriction base="xs:string">
             <xs:enumeration value="biography"/>
@@ -180,28 +180,26 @@
         -->
     <xs:complexType name="layout_profileType">
         <xs:sequence>
-            <xs:element name="format" type="formatType" minOccurs="0"/>
-            <xs:element name="headings_paragraphs" type="headings_paragraphsType" minOccurs="0" />
-            <xs:element name="text_body" type="text_bodyType" minOccurs="0"/>
+            <xs:element name="format" type="coerp:formatType" minOccurs="0"/>
+            <xs:element name="headings_paragraphs" type="coerp:headings_paragraphsType" minOccurs="0"/>
+            <xs:element name="text_body" type="coerp:text_bodyType" minOccurs="0"/>
         </xs:sequence>
-        <xs:attribute name="exists" type="nonEmptyString" use="required"/>
+        <xs:attribute name="exists" type="coerp:nonEmptyString" use="required"/>
     </xs:complexType>
-    
     <xs:complexType name="posAttr">
         <xs:simpleContent>
             <xs:extension base="xs:string">
-                <xs:attribute name="pos" type="posValue" use="required"/>
+                <xs:attribute name="pos" type="coerp:posValue" use="required"/>
             </xs:extension>
         </xs:simpleContent>
     </xs:complexType>
-    
     <xs:simpleType name="posValue">
         <xs:restriction base="xs:string">
             <xs:enumeration value="first"/>
             <xs:enumeration value="new"/>
+            <xs:enumeration value=""/>
         </xs:restriction>
     </xs:simpleType>
-    
     <xs:complexType name="adaptedAttr">
         <xs:simpleContent>
             <xs:extension base="xs:string">
@@ -214,10 +212,10 @@
         -->
     <xs:complexType name="formatType">
         <xs:sequence>
-            <xs:element name="format_original" type="nonEmptyString"/>
-            <xs:element name="pagination_erratic" type="existAttr" />
-            <xs:element name="contains" type="typeAttr" />
-            <xs:element name="satb_scores" type="existAttr"  maxOccurs="1"/>
+            <xs:element name="format_original" type="coerp:nonEmptyString"/>
+            <xs:element name="pagination_erratic" type="coerp:existAttr"/>
+            <xs:element name="contains" type="coerp:typeAttr"/>
+            <xs:element name="satb_scores" type="coerp:existAttr" maxOccurs="1"/>
         </xs:sequence>
     </xs:complexType>
     <xs:complexType name="satbAttr">
@@ -232,73 +230,67 @@
     -->
     <xs:complexType name="headings_paragraphsType">
         <xs:sequence>
-            <xs:element name="paragraphs" type="posAttr" maxOccurs="unbounded" minOccurs="0"/>
-            <xs:element name="cong_song_subtype" type="typeAttr"/>
-            <xs:element name="columns" type="typeAttr"  />
-            <xs:element name="song_titles_added" type="existAttr" />
+            <xs:element name="paragraphs" type="coerp:posAttr" maxOccurs="unbounded" minOccurs="0"/>
+            <xs:element name="cong_song_subtype" type="coerp:typeAttr"/>
+            <xs:element name="columns" type="coerp:typeAttr"/>
+            <xs:element name="song_titles_added" type="coerp:existAttr"/>
         </xs:sequence>
     </xs:complexType>
     <xs:complexType name="text_bodyType">
         <xs:sequence>
-            <xs:element name="illustrations" type="illustrationsAttr"/>
-            <xs:element name="elements" type="styleType" minOccurs="0"/>
-            <xs:element name="illegible" type="damagedType"  minOccurs="0"/>
-            <xs:element name="missing" type="damagedType_m" minOccurs="0"/>
-            <xs:element name="empty_page" type="existAttr"/>
-            <xs:element name="footnotes" type="existAttr"/>
-            <xs:element name="comments_references" type="existAttr"/>
-            <xs:element name="line_breaks" type="adaptedAttr" />
+            <xs:element name="illustrations" type="coerp:illustrationsAttr"/>
+            <xs:element name="elements" type="coerp:styleType" minOccurs="0"/>
+            <xs:element name="illegible" type="coerp:damagedType" minOccurs="0"/>
+            <xs:element name="missing" type="coerp:damagedType_m" minOccurs="0"/>
+            <xs:element name="empty_page" type="coerp:existAttr"/>
+            <xs:element name="footnotes" type="coerp:existAttr"/>
+            <xs:element name="comments_references" type="coerp:existAttr"/>
+            <xs:element name="line_breaks" type="coerp:adaptedAttr"/>
         </xs:sequence>
     </xs:complexType>
     <xs:complexType name="styleType">
-        <xs:sequence  maxOccurs="unbounded">
+        <xs:sequence maxOccurs="unbounded">
             <xs:element name="style" type="xs:string"/>
         </xs:sequence>
     </xs:complexType>
-    
     <xs:complexType name="illustrationsAttr">
         <xs:simpleContent>
             <xs:extension base="xs:string">
-                <xs:attribute name="type" type="xs:string" />
+                <xs:attribute name="type" type="xs:string"/>
                 <xs:attribute name="exist" type="xs:boolean"/>
             </xs:extension>
         </xs:simpleContent>
     </xs:complexType>
-    
     <xs:complexType name="damagedType">
         <xs:sequence minOccurs="1" maxOccurs="unbounded">
-            <xs:element name="page" type="pageType"/>
-            <xs:element name="due_to" type="xs:string" />
-            <xs:element name="replaced_by" type="replacedType" maxOccurs="unbounded" />
+            <xs:element name="page" type="coerp:pageType"/>
+            <xs:element name="due_to" type="xs:string"/>
+            <xs:element name="replaced_by" type="coerp:replacedType" maxOccurs="unbounded"/>
         </xs:sequence>
     </xs:complexType>
-    
     <xs:complexType name="replacedType">
         <xs:simpleContent>
             <xs:extension base="xs:string">
-                <xs:attribute name="edition_number" type="xs:integer" />
+                <xs:attribute name="edition_number" type="xs:integer"/>
             </xs:extension>
         </xs:simpleContent>
     </xs:complexType>
-    
     <xs:complexType name="damagedType_m">
         <xs:sequence minOccurs="1" maxOccurs="unbounded">
-            <xs:element name="page" type="pageType"/>
-            <xs:element name="replaced_by" type="replacedType" maxOccurs="unbounded"/>
+            <xs:element name="page" type="coerp:pageType"/>
+            <xs:element name="replaced_by" type="coerp:replacedType" maxOccurs="unbounded"/>
         </xs:sequence>
     </xs:complexType>
     <xs:complexType name="pageType">
         <xs:sequence>
-            <xs:sequence  maxOccurs="unbounded" minOccurs="0">
+            <xs:sequence maxOccurs="unbounded" minOccurs="0">
                 <xs:element name="from" type="xs:integer"/>
                 <xs:element name="to" type="xs:integer"/>
             </xs:sequence>
-            <xs:element name="pageNR" type="xs:string"  maxOccurs="unbounded" minOccurs="0"/>
-
+            <xs:element name="pageNR" type="xs:string" maxOccurs="unbounded" minOccurs="0"/>
         </xs:sequence>
         <xs:attribute name="type" type="xs:string" use="required"/>
     </xs:complexType>
-    
     <xs:complexType name="typeAttr">
         <xs:simpleContent>
             <xs:extension base="xs:string">
@@ -318,9 +310,9 @@
         -->
     <xs:complexType name="biblequotationType">
         <xs:sequence>
-            <xs:element name="quotation" type="typeAttr"  maxOccurs="2"/>
-            <xs:element name="foreign" type="foreignbibleType"/>
-            <xs:element name="additonal_references" type="existAttr"/>
+            <xs:element name="quotation" type="coerp:typeAttr" maxOccurs="2"/>
+            <xs:element name="foreign" type="coerp:foreignbibleType"/>
+            <xs:element name="additonal_references" type="coerp:existAttr"/>
         </xs:sequence>
     </xs:complexType>
     <xs:complexType name="quotesType">
@@ -344,7 +336,7 @@
     -->
     <xs:complexType name="textType">
         <xs:sequence minOccurs="1" maxOccurs="unbounded">
-            <xs:element name="sample" type="sampleType"/>
+            <xs:element name="sample" type="coerp:sampleType"/>
         </xs:sequence>
     </xs:complexType>
     
@@ -355,20 +347,20 @@
     -->
     <xs:complexType name="sampleType" mixed="true">
         <xs:sequence>
-            <xs:element name="sampleN" type="nonEmptyString"/>
+            <xs:element name="sampleN" type="coerp:nonEmptyString"/>
             <xs:choice minOccurs="1" maxOccurs="unbounded">
-                <xs:group ref="simpleElements"/>
-                <xs:group ref="bibleElements"/>
-                <xs:group ref="letterOrderingElements"/>
-                <xs:group ref="commentElements"/>
-                <xs:element name="lg" type="lineGroupElements"/>
-                <xs:element name="foreign" type="foreignType"/>
-                <xs:element name="foreign_omitted" type="foreign_omittedTextType"/>
-                <xs:element name="verse" type="verseType"/>
-                <xs:element name="quotation" type="quotationType"/>
-                <xs:element name="head" type="headType"/>
-                <xs:element name="speaker" type="speakerType"/>
-                <xs:element name="litany_repetition" type="litanyType"/>
+                <xs:group ref="coerp:simpleElements"/>
+                <xs:group ref="coerp:bibleElements"/>
+                <xs:group ref="coerp:letterOrderingElements"/>
+                <xs:group ref="coerp:commentElements"/>
+                <xs:element name="lg" type="coerp:lineGroupElements"/>
+                <xs:element name="foreign" type="coerp:foreignType"/>
+                <xs:element name="foreign_omitted" type="coerp:foreign_omittedTextType"/>
+                <xs:element name="verse" type="coerp:verseType"/>
+                <xs:element name="quotation" type="coerp:quotationType"/>
+                <xs:element name="head" type="coerp:headType"/>
+                <xs:element name="speaker" type="coerp:speakerType"/>
+                <xs:element name="litany_repetition" type="coerp:litanyType"/>
             </xs:choice>
         </xs:sequence>
         <xs:attribute name="id" type="xs:positiveInteger" use="required"/>
@@ -383,9 +375,9 @@
     -->
     <xs:group name="simpleElements">
         <xs:sequence>
-            <xs:choice  maxOccurs="unbounded">
-                <xs:group ref="pageNumberingElements" minOccurs="0"/>
-                <xs:group ref="textOnlyElements" minOccurs="0"/>
+            <xs:choice maxOccurs="unbounded">
+                <xs:group ref="coerp:pageNumberingElements" minOccurs="0"/>
+                <xs:group ref="coerp:textOnlyElements" minOccurs="0"/>
             </xs:choice>
         </xs:sequence>
     </xs:group>
@@ -396,9 +388,9 @@
     -->
     <xs:group name="pageNumberingElements">
         <xs:sequence>
-            <xs:choice  maxOccurs="unbounded">
-                <xs:element name="pb" type="pageNumberingElement"/>
-                <xs:element name="fol" type="pageNumberingElement"/>
+            <xs:choice maxOccurs="unbounded">
+                <xs:element name="pb" type="coerp:pageNumberingElement"/>
+                <xs:element name="fol" type="coerp:pageNumberingElement"/>
             </xs:choice>
         </xs:sequence>
     </xs:group>
@@ -409,8 +401,8 @@
     -->
     <xs:complexType name="pageNumberingElement">
         <xs:attribute name="n" use="optional"/>
-        <xs:attribute name="type" use="optional" type="commentTypeAttributeContent"/>
-        <xs:attribute name="reading" use="optional" type="nonEmptyString"/>
+        <xs:attribute name="type" use="optional" type="coerp:commentTypeAttributeContent"/>
+        <xs:attribute name="reading" use="optional" type="coerp:nonEmptyString"/>
     </xs:complexType>
     
     
@@ -420,8 +412,8 @@
     -->
     <xs:group name="textOnlyElements">
         <xs:sequence>
-            <xs:choice  maxOccurs="unbounded">
-                <xs:element name="sup" type="nonEmptyString"/>
+            <xs:choice maxOccurs="unbounded">
+                <xs:element name="sup" type="coerp:nonEmptyString"/>
             </xs:choice>
         </xs:sequence>
     </xs:group>
@@ -451,19 +443,19 @@
     -->
     <xs:group name="commentElements">
         <xs:sequence>
-            <xs:choice  maxOccurs="unbounded">
-                <xs:element name="comment" type="commentType"/>
+            <xs:choice maxOccurs="unbounded">
+                <xs:element name="comment" type="coerp:commentType"/>
             </xs:choice>
         </xs:sequence>
     </xs:group>
     <xs:complexType name="commentType" mixed="true">
         <xs:sequence>
-            <xs:choice  maxOccurs="unbounded">
-                <xs:group ref="simpleElements"/>
+            <xs:choice maxOccurs="unbounded">
+                <xs:group ref="coerp:simpleElements"/>
             </xs:choice>
         </xs:sequence>
-        <xs:attribute name="type" use="required" type="commentTypeAttributeContent"/>
-        <xs:attribute name="reading" use="optional" type="nonEmptyString"/>
+        <xs:attribute name="type" use="required" type="coerp:commentTypeAttributeContent"/>
+        <xs:attribute name="reading" use="optional" type="coerp:nonEmptyString"/>
     </xs:complexType>
     
     <!-- 
@@ -474,18 +466,18 @@
     -->
     <xs:complexType name="lineGroupElements" mixed="true">
         <xs:sequence>
-            <xs:choice  maxOccurs="unbounded">
-                <xs:group ref="simpleElements"/>
-                <xs:group ref="commentElements"/>
-                <xs:group ref="bibleElements"/>
-                <xs:element name="quotation" type="quotationType"/>
-                <xs:element name="verse" type="verseType"/>
-                <xs:element name="foreign" type="foreignType"/>
-                <xs:element name="head" type="headType"/>
+            <xs:choice maxOccurs="unbounded">
+                <xs:group ref="coerp:simpleElements"/>
+                <xs:group ref="coerp:commentElements"/>
+                <xs:group ref="coerp:bibleElements"/>
+                <xs:element name="quotation" type="coerp:quotationType"/>
+                <xs:element name="verse" type="coerp:verseType"/>
+                <xs:element name="foreign" type="coerp:foreignType"/>
+                <xs:element name="head" type="coerp:headType"/>
             </xs:choice>
         </xs:sequence>
         <xs:attribute name="n" type="xs:integer"/>
-        <xs:attribute name="type" type="lineGroupAttributeContent" use="required"/>
+        <xs:attribute name="type" type="coerp:lineGroupAttributeContent" use="required"/>
     </xs:complexType>
     <xs:simpleType name="lineGroupAttributeContent">
         <xs:restriction base="xs:string">
@@ -501,12 +493,12 @@
     -->
     <xs:complexType name="foreignType" mixed="true">
         <xs:sequence>
-            <xs:choice  maxOccurs="unbounded">
-                <xs:group ref="simpleElements"/>
-                <xs:group ref="commentElements"/>
+            <xs:choice maxOccurs="unbounded">
+                <xs:group ref="coerp:simpleElements"/>
+                <xs:group ref="coerp:commentElements"/>
             </xs:choice>
         </xs:sequence>
-        <xs:attribute name="language" use="required" type="nonEmptyString"/>
+        <xs:attribute name="language" use="required" type="coerp:nonEmptyString"/>
         <!-- <xs:attribute name="omitted" use="optional" type="xs:boolean"/>-->
     </xs:complexType>
     
@@ -515,12 +507,12 @@
             erfordert ein nicht-leeres Attribut "language" -->
     <xs:complexType name="foreign_omittedTextType" mixed="true">
         <xs:sequence>
-            <xs:choice  maxOccurs="unbounded">
-                <xs:group ref="simpleElements"/>
-                <xs:group ref="commentElements"/>
+            <xs:choice maxOccurs="unbounded">
+                <xs:group ref="coerp:simpleElements"/>
+                <xs:group ref="coerp:commentElements"/>
             </xs:choice>
         </xs:sequence>
-        <xs:attribute name="language" use="required" type="nonEmptyString"/>
+        <xs:attribute name="language" use="required" type="coerp:nonEmptyString"/>
         <xs:attribute name="omitted" use="optional" type="xs:boolean"/>
     </xs:complexType>
     
@@ -530,10 +522,10 @@
     -->
     <xs:complexType name="verseType" mixed="true">
         <xs:sequence>
-            <xs:choice  maxOccurs="unbounded">
-                <xs:group ref="simpleElements"/>
-                <xs:group ref="commentElements"/>
-                <xs:element name="foreign" type="foreignType"/>
+            <xs:choice maxOccurs="unbounded">
+                <xs:group ref="coerp:simpleElements"/>
+                <xs:group ref="coerp:commentElements"/>
+                <xs:element name="foreign" type="coerp:foreignType"/>
             </xs:choice>
         </xs:sequence>
     </xs:complexType>
@@ -546,21 +538,22 @@
     -->
     <xs:group name="bibleElements">
         <xs:sequence>
-            <xs:choice  maxOccurs="unbounded">
-                <xs:element name="bible" type="bibleType"/>
-                <xs:element name="psalm" type="bibleType"/>
+            <xs:choice maxOccurs="unbounded">
+                <xs:element name="bible" type="coerp:bibleType"/>
+                <xs:element name="psalm" type="coerp:bibleType"/>
             </xs:choice>
         </xs:sequence>
     </xs:group>
     <xs:complexType name="bibleType" mixed="true">
         <xs:sequence>
-            <xs:choice  maxOccurs="unbounded">
-                <xs:group ref="simpleElements"/>
-                <xs:group ref="commentElements"/>
-                <xs:element name="foreign" type="foreignType"/>
+            <xs:choice maxOccurs="unbounded">
+                <xs:group ref="coerp:simpleElements"/>
+                <xs:group ref="coerp:commentElements"/>
+                <xs:element name="foreign" type="coerp:foreignType"/>
+                <xs:element name="foreign_omitted" type="coerp:foreign_omittedTextType"/>
             </xs:choice>
         </xs:sequence>
-        <xs:attribute name="ref" use="required" type="bibleAbbreviation"/>
+        <xs:attribute name="ref" use="required" type="coerp:bibleAbbreviation"/>
     </xs:complexType>
     
     <!-- 
@@ -569,14 +562,14 @@
     -->
     <xs:complexType name="quotationType" mixed="true">
         <xs:sequence>
-            <xs:choice  maxOccurs="unbounded">
-                <xs:group ref="simpleElements"/>
-                <xs:group ref="commentElements"/>
-                <xs:group ref="bibleElements"/>
-                <xs:element name="foreign" type="foreignType"/>
+            <xs:choice maxOccurs="unbounded">
+                <xs:group ref="coerp:simpleElements"/>
+                <xs:group ref="coerp:commentElements"/>
+                <xs:group ref="coerp:bibleElements"/>
+                <xs:element name="foreign" type="coerp:foreignType"/>
             </xs:choice>
         </xs:sequence>
-        <xs:attribute name="ref" use="required" type="nonEmptyString"/>
+        <xs:attribute name="ref" use="required" type="coerp:nonEmptyString"/>
     </xs:complexType>
     
     <!--
@@ -585,13 +578,13 @@
     -->
     <xs:complexType name="metatextType" mixed="true">
         <xs:sequence>
-            <xs:choice  maxOccurs="unbounded">
-                <xs:group ref="simpleElements"/>
-                <xs:group ref="commentElements"/>
-                <xs:group ref="bibleElements"/>
-                <xs:element name="verse" type="verseType"/>
-                <xs:element name="foreign" type="foreignType"/>
-                <xs:element name="head" type="headType"/>
+            <xs:choice maxOccurs="unbounded">
+                <xs:group ref="coerp:simpleElements"/>
+                <xs:group ref="coerp:commentElements"/>
+                <xs:group ref="coerp:bibleElements"/>
+                <xs:element name="verse" type="coerp:verseType"/>
+                <xs:element name="foreign" type="coerp:foreignType"/>
+                <xs:element name="head" type="coerp:headType"/>
             </xs:choice>
         </xs:sequence>
     </xs:complexType>
@@ -602,19 +595,19 @@
     -->
     <xs:group name="letterOrderingElements">
         <xs:sequence>
-            <xs:choice  maxOccurs="unbounded">
-                <xs:element name="superscr" type="letterOrderingType"/>
-                <xs:element name="subscr" type="letterOrderingType"/>
+            <xs:choice maxOccurs="unbounded">
+                <xs:element name="superscr" type="coerp:letterOrderingType"/>
+                <xs:element name="subscr" type="coerp:letterOrderingType"/>
             </xs:choice>
         </xs:sequence>
     </xs:group>
     <xs:complexType name="letterOrderingType" mixed="true">
         <xs:sequence>
-            <xs:choice  maxOccurs="unbounded">
-                <xs:group ref="simpleElements"/>
-                <xs:group ref="commentElements"/>
-                <xs:group ref="bibleElements"/>
-                <xs:element name="foreign" type="foreignType"/>
+            <xs:choice maxOccurs="unbounded">
+                <xs:group ref="coerp:simpleElements"/>
+                <xs:group ref="coerp:commentElements"/>
+                <xs:group ref="coerp:bibleElements"/>
+                <xs:element name="foreign" type="coerp:foreignType"/>
             </xs:choice>
         </xs:sequence>
     </xs:complexType>
@@ -625,13 +618,13 @@
     -->
     <xs:complexType name="headType" mixed="true">
         <xs:sequence>
-            <xs:choice  maxOccurs="unbounded">
-                <xs:group ref="simpleElements"/>
-                <xs:group ref="commentElements"/>
-                <xs:group ref="bibleElements"/>
-                <xs:element name="quotation" type="quotationType"/>
-                <xs:element name="verse" type="verseType"/>
-                <xs:element name="foreign" type="foreignType"/>
+            <xs:choice maxOccurs="unbounded">
+                <xs:group ref="coerp:simpleElements"/>
+                <xs:group ref="coerp:commentElements"/>
+                <xs:group ref="coerp:bibleElements"/>
+                <xs:element name="quotation" type="coerp:quotationType"/>
+                <xs:element name="verse" type="coerp:verseType"/>
+                <xs:element name="foreign" type="coerp:foreignType"/>
             </xs:choice>
         </xs:sequence>
     </xs:complexType>
@@ -643,17 +636,17 @@
     -->
     <xs:complexType name="speakerType" mixed="true">
         <xs:sequence>
-            <xs:choice  maxOccurs="unbounded">
-                <xs:group ref="simpleElements"/>
-                <xs:group ref="commentElements"/>
-                <xs:group ref="bibleElements"/>
-                <xs:element name="quotation" type="quotationType"/>
-                <xs:element name="verse" type="verseType"/>
-                <xs:element name="foreign" type="foreignType"/>
-                <xs:element name="head" type="headType"/>
+            <xs:choice maxOccurs="unbounded">
+                <xs:group ref="coerp:simpleElements"/>
+                <xs:group ref="coerp:commentElements"/>
+                <xs:group ref="coerp:bibleElements"/>
+                <xs:element name="quotation" type="coerp:quotationType"/>
+                <xs:element name="verse" type="coerp:verseType"/>
+                <xs:element name="foreign" type="coerp:foreignType"/>
+                <xs:element name="head" type="coerp:headType"/>
             </xs:choice>
         </xs:sequence>
-        <xs:attribute name="id" use="required" type="alphabeticalIdentifier"/>
+        <xs:attribute name="id" use="required" type="coerp:alphabeticalIdentifier"/>
     </xs:complexType>
     
     <!-- 
@@ -662,14 +655,14 @@
     -->
     <xs:complexType name="litanyType" mixed="true">
         <xs:sequence>
-            <xs:choice  maxOccurs="unbounded">
-                <xs:group ref="simpleElements"/>
-                <xs:group ref="commentElements"/>
-                <xs:group ref="bibleElements"/>
-                <xs:element name="quotation" type="quotationType"/>
-                <xs:element name="verse" type="verseType"/>
-                <xs:element name="foreign" type="foreignType"/>
-                <xs:element name="head" type="headType"/>
+            <xs:choice maxOccurs="unbounded">
+                <xs:group ref="coerp:simpleElements"/>
+                <xs:group ref="coerp:commentElements"/>
+                <xs:group ref="coerp:bibleElements"/>
+                <xs:element name="quotation" type="coerp:quotationType"/>
+                <xs:element name="verse" type="coerp:verseType"/>
+                <xs:element name="foreign" type="coerp:foreignType"/>
+                <xs:element name="head" type="coerp:headType"/>
             </xs:choice>
         </xs:sequence>
     </xs:complexType>

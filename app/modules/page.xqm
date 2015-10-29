@@ -10,7 +10,7 @@ import module namespace search="http://localhost:8080/exist/apps/coerp_new/searc
 declare namespace util="http://exist-db.org/xquery/util";
 declare namespace text="http://exist-db.org/xquery/text";
 declare namespace request="http://exist-db.org/xquery/request";
-declare namespace coerp="http://coerp.uni-koeln.de/schema";
+declare namespace coerp="http://coerp.uni-koeln.de/schema/coerp";
 declare namespace functx = "http://www.functx.com";
 
 
@@ -52,10 +52,10 @@ return <ul class="MainNavList"> {
                      <div class="MainNavTab emboss"> <li class="HeadTab" id="Tab_{$Tab/term/data(.)}">{$Tab/term/data(.)}</li></div> 
            }
            {( 
-                if(exists($Tab/list/tab)) then <div class="SecNavTab"> <ul class="{$Tab/list/attribute()}" id="List_{$Tab/term/attribute()}">{
+                if(exists($Tab/list/tab)) then <div class="SecNavTab PageBorders-All"> <ul class="{$Tab/list/attribute()}" id="List_{$Tab/term/attribute()}">{
                 for $SecTab in $Tab/list/tab return ( 
                     if(exists($SecTab/list/tab)) then <div class="ListTab emboss"><li class="SubNavTab_List" id="Tab_{$SecTab/term/attribute()}">{$SecTab/term/data(.)}</li> {
-                        <div class="SubNavList_div emboss"><ul class="{$SecTab/list/attribute()}" id="List_{$SecTab/term/attribute()}"> {
+                        <div class="SubNavList_div PageBorders-All emboss"><ul class="{$SecTab/list/attribute()}" id="List_{$SecTab/term/attribute()}"> {
                             for $ThiTab in $SecTab/list/tab  return
                             if($SecTab/term/attribute() != "periods" and exists($ThiTab/term[@xml:id]) ) then
                                 if(page:checkData("genre",$ThiTab/term/attribute()) = fn:true() ) then 
