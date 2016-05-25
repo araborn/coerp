@@ -1,0 +1,1294 @@
+<coerp xmlns="http://coerp.uni-koeln.de/schema/coerp" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://coerp.uni-koeln.de/schema/coerp http://coerp.uni-koeln.de/schema/coerp.xsd">
+<coerp_header >
+<author_profile>
+<author>Allen, Edmund</author>
+<author_preface></author_preface>
+<translator></translator>
+<denom>Anglican</denom>
+<bio_info>Edmund Allen (1510s-1559) was educated at Corpus Christi College (Cambridge) where he took his BA (1535). Before he graduated MA in 1537, he was both ordained deacon and elected Fellow at his college in 1536. His later studies also took him abroad (mainly Germany), where he received his BTh. When he returned to England in the 1540s, he did not only work as a translator, served as chaplain and preacher but he was also employed in the household of Princess Elizabeth. Allen was also active in writing catechisms, an emerging text type of religious instruction at that time.</bio_info>
+</author_profile>
+
+<text_profile>
+<genre key="preface_catechism">catechism preface</genre>
+<year>
+<from>1548</from>
+<to>1548</to>
+</year>
+<this_edition>
+<from>1548</from>
+<to>1548</to>
+</this_edition>
+
+<title>A catechisme, that is to saie, a familiar introduccion and trainyng of the simple in the commaundementes of God, and the principles of oure religion, muche necessarie to be taught and knowen to all good christian people, sette foorth in questions with direct answers to the same: &amp; translated into Englishe for the behoufe and commoditee not onely of childre~, but also of al suche de[uout] lerners as are [not seen] in the Lati[ne] toungue &amp;c.</title>
+<short_title>Familiar introduccion and trainyng of the simple</short_title>
+<source>STC 359</source>
+<sampling>
+<info id="1"></info>
+</sampling>
+<text_layout exists="true">
+
+<format>
+<format_original>octavo</format_original>
+<pagination_erratic exists="true"></pagination_erratic>
+<contains type="latin">test</contains>
+<satb_scores exists="true"></satb_scores>
+</format>
+
+<text_body>
+<illustrations type="" exist="true"></illustrations>
+<elements>
+<style>change of font</style>
+<style>change of font</style>
+<style>change of font</style>
+</elements>
+<illegible>
+<page type="">
+<pageNR></pageNR>
+</page>
+<due_to></due_to>
+<replaced_by ></replaced_by>
+</illegible>
+<missing>
+<page type="">
+<pageNR></pageNR>
+</page>
+<replaced_by></replaced_by>
+</missing>
+<empty_page exists="false"></empty_page>
+<footnotes exists="false"></footnotes>
+<comments_references exists="true"></comments_references>
+<line_breaks pos=""></line_breaks>
+</text_body>
+
+</text_layout>
+</text_profile>
+</coerp_header>
+<text >
+<sample id="1">
+<sampleN>Sample 1</sampleN>
+
+            <speaker id="a">What is the thirde chiefe pointe or
+article of the christen doctryne and
+<comment type="print-error" reading="religon">religion</comment> ?</speaker>
+            <speaker id="b">S. The lordes prayer.</speaker>
+            <speaker id="a">M. Declare me thesame, and
+fyrst what is praier?</speaker>
+            <speaker id="b">S. Praier
+is an heartie inuocacion and
+callyng vpon God our heauenly
+father, desiryng of him in the
+name of Christe, all our necessities,
+with a sure trust and confidence
+that he wyll heare vs.</speaker>
+            <speaker id="a">M. Forasmuche as thou sayest
+that prayer is an inuocacio~ and
+callyng vpon God, is than the
+inuocacion of sainctes whiche
+are in heauen no ryght prayer?</speaker>
+            <fol n="H.iiii."/>
+            <pb/>
+            <speaker id="b">S. Our sauior Christ speaking
+of that prayer whiche he promiseth
+to heare, sayeth that we
+should inuocate and praye vnto
+the father onely.
+Wherfore he that prayeth otherwyse:
+Fyrst he maketh such a praier, wherof he hath no promise
+of God to be heard.
+Secondarily, he committeth
+also idolatry, forasmuche as he
+ascribeth that thyng vnto dead
+sainctes and creatures, whiche
+is due vnto God onely. As to
+be our God and father, to bee
+almyghtie, to serche &amp; to knowe
+the inward secretes of y<sup>e</sup> hearte,
+to be the fountayne of whom al
+that is good procedeth, and of
+whom all succour, help, &amp; comforte
+in any maner of necessitie
+is onely to be hoped and loked
+<pb/>
+for. &amp;c. All these are due vnto
+God onely. He is onely to be adored
+or inuocate. He is onely to
+be worshipped &amp; serued: wherfore
+to ascribe or attribute any
+of these thynges vnto any
+other, than to hym only, is manifest
+Idolatry.</speaker>
+            <speaker id="a">M. But nowe
+tell me, what is it to praye in
+the name of Christe?</speaker>
+            <speaker id="b">
+                <comment type="print" reading="M">S.</comment> It is
+as muche as to praye for suche
+thynges as becummeth vs to
+axe, and hym to geue: namely
+for suche thynges as are holesome
+and necessarye for vs. Or
+els it is as muche as to praye
+after the commaundemente of
+Christe, and for his sake. For
+the father geueth vs all thynges
+whatsoeuer he geueth vs
+for Christes sake. For the whiche
+cause they onely can praye
+<fol n="H.v."/>
+                <pb/>
+in the name of Christe, that beleue
+in Christe, &amp; are very ryght
+christians, which will neuer <comment type="illegible" reading="des*e">desire</comment>
+or praye for any thyng that
+is or maye be, agaynste the glory
+and honor of Christe.</speaker>
+            <speaker id="a">M. Doeth not God knowe
+wherof we haue nede, before we
+pray?</speaker>
+            <speaker id="b">S. Yes, he doeth. Math. vi</speaker>
+            <speaker id="a">M. And what nede we than to
+open our necessities vnto hym
+thorow praier?</speaker>
+            <speaker id="b">S. For gods behalfe
+we nede not at all. But for
+our owne behalfe it is necessary
+and good, that we maye knowledge
+and confesse that we haue
+nothyng of our selues but all of
+God: whiche thyng maketh vs
+meke &amp; humble.</speaker>
+            <speaker id="a">M. well, howe
+and after what maner ought
+we to pray?</speaker>
+            <speaker id="b">S. Euen as our sauiour
+Christe taught his disciples
+<pb/>
+and no nother wyse in effecte.</speaker>
+            <speaker id="a">M. Why no nother wyse?</speaker>
+            <speaker id="b">S. Because all maner of prayers
+that are not consonante and
+agreable vnto that (whiche contayneth
+all necessarye peticions
+both for bodye and soule) they
+are not good nor auaylable.</speaker>
+            <speaker id="a">M. what are the wordes of the
+prayer.</speaker>
+            <speaker id="b">S. <bible ref="Mt 6.9">Our father whiche arte in
+heauen. &amp;c.</bible>
+            </speaker>
+            <speaker id="a">M. Why sayest thou
+father?</speaker>
+            <speaker id="b">S. Because I learne
+thereby that I am a chylde of
+god, and therfore ought to take
+my leaue of the deuyll for euer
+and to lyue onely after the wyll
+and pleasure of God, and not
+after the desire and lust of myne
+owne fleshe.</speaker>
+            <speaker id="a">M. Why saiest thou
+our father?</speaker>
+            <speaker id="b">S. To put me in reme~braunce
+of y<sup>e</sup> brotherly loue
+y<sup>t</sup> I owe towarde my neibour:
+<pb/>
+For seeyng god hath receyued
+vs all together and all a lyke,
+(thorowe his <comment type="print-error" reading="soonne">sonne</comment> oure <comment type="illegible" reading="s*uiour">sauiour</comment>
+Christe) vnto his <comment type="illegible" reading="chy*n">chyldren</comment>,
+and chosen vs to be the heyres
+of all his goodes and treasure,
+therfore we oughte to take and
+to loue one another, euen as
+brethren, and as the chyldren
+of one father, and truly to praye
+vnto the father eche one for other.</speaker>
+            <speaker id="a">M. Why sayest thou? In
+heauen.</speaker>
+            <speaker id="b">S. To remembre thereby,
+his highe power, and heauenlye
+glory.</speaker>
+            <speaker id="a">M. what comfort
+hast thou by that?</speaker>
+            <speaker id="b">S. Euen this,
+that I maye (by reason of that)
+the more suerly set all my truste
+and affiaunce in gods ayde and
+helpe, hauyng all my ioye and
+delight in heauen.</speaker>
+            <speaker id="a">M. what is
+the effecte of all the peticions
+<pb/>
+that folowe?</speaker>
+            <speaker id="b">S. The effecte of all
+is this, that the lorde will make
+vs partakers of al thinges that
+maye be good vnto vs, and delyuer
+or preserue vs from all
+that maye be euill and noysome
+vnto vs.</speaker>
+            <speaker id="a">M. And what order is
+kept in those peticions?</speaker>
+            <speaker id="b">S. Fyrste we desyre and praye
+therein for spirituall and heauenlye
+thynges, and after, for
+worldely &amp; transitory thynges.</speaker>
+            <speaker id="a">M. For what spirituall thynges?</speaker>
+            <speaker id="b">S. For faythe, vertue and
+godlynes, and for remission of
+oure sinnes.</speaker>
+            <speaker id="a">M. And for what
+worldly or transitory thynges?</speaker>
+            <speaker id="b">S. For all bodely nourishment
+and sustentacion, whereby we
+maye be the more able to serue
+god with, in this life.</speaker>
+            <speaker id="a">M. what
+<pb/>
+is the fyrste peticion?</speaker>
+            <speaker id="b">S. <bible ref="Mt 6.9">Halowed
+be thy name.</bible>
+            </speaker>
+            <speaker id="a">M. What prayest
+        thou in this <comment type="illegible" reading="pe*icion">peticion</comment> ?</speaker>
+            <speaker id="b">S. That
+God our heauenly father maye
+be perfectly knowen and glorifyed
+throwe the whole worlde.</speaker>
+            <speaker id="a">M. How maye that be done?</speaker>
+            <speaker id="b">S. Thorowe the pure doctrine
+of the holy ghospell whan it is
+syncerelye preached and receyued
+with a trewe and constante
+faith in all obedience, humblenes,
+holynes, and godlynes,
+to the confusion of all <comment type="illegible" reading="s*nne">sinne</comment>, of
+ydolatrye, of blasphemie, and of
+all vngodlynesse.</speaker>
+            <speaker id="a">M. what is
+the seconde peticion?</speaker>
+            <speaker id="b">S. <bible ref="Mt 6.10">Thy
+kyngdome come.</bible>
+            </speaker>
+            <speaker id="a">M. What
+prayest thou for, in this peticion?</speaker>
+            <speaker id="b">S. That God will ouerthrowe
+and destroye in vs the
+kyngdome of Sathan, of sin,
+and of the worlde. And that he
+<pb/>
+wyll gather vs to gether, thorowe
+his worde and spirite, into
+the kyngdome of his sonne
+(namely the christen churche, &amp;
+congregacion,) and gouerne
+and rule vs in the same, that we
+may serue him and liue after his
+will in one consente, and whan
+the numbre of the faithfull, thorowe
+dayly encrease, is once full
+and perfecte, than that we may
+together inherite and enioy that
+euerlastyng <comment type="print-error" reading="Kyndome">Kyngdome</comment>.</speaker>
+            <speaker id="a">M. what
+is the thirde peticion?</speaker>
+            <speaker id="b">S. <bible ref="Mt 6.10">Thy
+will be doen vpon erth.</bible> &amp;c.</speaker>
+            <speaker id="a">M. what praiest thou for in this
+peticion?</speaker>
+            <speaker id="b">S. That we may conceiue
+such a lust and a desire vnto
+his will in all thynges, as the
+holy Angels and saintes in heauen
+haue.</speaker>
+            <speaker id="a">M. Why sayest thou
+in earth as it is in heauen?</speaker>
+            <pb/>
+            <speaker id="b">S. Because that in heauen nothing
+resisteth the wyll of God,
+but in yearth the wyll of God
+is muche and often resisted.
+Therfore doe we praye in this
+peticion that God wyll hyndre
+and let whatsoeuer is agaynste
+his moste holye wyll, geue vs
+grace to forsake our owne fleshly
+wyll and desyre, and withall
+humblenesse to obey his moste
+godly wyll, submittyng and geuyng
+ouer our selues willyngly vnto thesame, whatsoeuer
+he shall laye vpon vs.</speaker>
+            <speaker id="a">M. what is the fowerth peticion?</speaker>
+            <speaker id="b">S. <bible ref="Mt 6.11">Geue vs this day our daily bread.</bible>
+            </speaker>
+            <speaker id="a">M. What prayest thou for, in
+this peticion?</speaker>
+            <speaker id="b">S. That God
+wyll geue vs all maner of <comment type="illegible" reading="necessa*y">necessary</comment>
+sustinaunce for this lyfe,
+as meate, drynke, clothyng,
+<pb/>
+godly and vertuous magistrates
+and rulers, helth, peace, and
+quietnes, and all thynges whatsoeuer
+is necessary for vs to liue
+in thys worlde, to the glorye of
+hys name and the profite of our
+neighbor.</speaker>
+            <speaker id="a">M. Why sayest thou,
+this day and dayly?</speaker>
+            <speaker id="b">S. By those wordes I am put
+in remembrau~ce that I should
+take no thought nor be carefull
+for the time to come, but should
+dayly labor (in my condicion of
+lyfe) and praye therwith, &amp; than
+nothyng doubte but that God
+wil geue me both that day, and
+all dayes as long as I lyue,
+whatsoeuer I shall nede, &amp; may
+be profitable and expedient for
+me.</speaker>
+            <speaker id="a">M. What is the fifte peticion?</speaker>
+            <speaker id="b">S. <bible ref="Mt 6.12">Forgeue vs our trespaces.</bible> &amp;c.</speaker>
+            <speaker id="a">M. What prayest thou for in
+<fol n="I.i."/>
+                <pb/>
+this peticion?</speaker>
+            <speaker id="b">S. For remission
+and forgeuenes of suche synnes
+wherwith I dayly <comment type="print-error" reading="diplease">displease</comment> my
+heauenly father, and that God
+wyll not entre into iudgemente
+with me, but be mercyfull vnto
+me.</speaker>
+            <speaker id="a">M. And why than kepest
+thou not thy selfe from sinning?</speaker>
+            <speaker id="b">S. I ought so to doe withall
+diligence and indeuor, but our
+naturall ignoraunce, with the
+weakenes &amp; infirmitie, wherein
+we were borne, is so great, that
+we ouersee oure selues euermore,
+and therfore are we constrayned
+to desyre God of forgeuenes.</speaker>
+            <speaker id="a">M. why addest thou
+further, <bible ref="Mt 6.12">as we forgeue our trespacers</bible> ?</speaker>
+            <speaker id="b">S. For the lorde wyll not remit
+or forgeue vs at all, yf we forgeue
+not the~ that haue greued,
+offended, or displeased vs.</speaker>
+            <pb/>
+            <speaker id="a">M. Why so?</speaker>
+            <speaker id="b"> S. Because our
+heauenly father wylleth that
+we shoulde well consider and
+acknowelege our owne synnes,
+and take all maner of displeasure
+of iniury that our neighbor
+doeth vnto vs, pacientlye and
+with thankefulnes, euen as a
+moste worthy deserued punishment
+of God our heauenly father:
+and therfore (for our owne
+part) to be well content with al
+such, through whom God doth
+chastice or punishe vs, whatsoeuer
+they be.</speaker>
+            <speaker id="a">M. what is the
+sixt peticion?</speaker>
+            <speaker id="b">S. <bible ref="Mt 6.13">Leade vs not into
+temptacion.</bible>
+            </speaker>
+            <speaker id="a">M. What praiest thou
+for in this peticion?</speaker>
+            <speaker id="b">S. That
+God our heauenly father wyll
+mercyfully assist me in all maner
+of temptacions, and bryng
+me through, whether it bee in
+<fol n="I.ii."/>
+                <pb/>
+prosperitie or aduersitie, &amp; wyll
+kepe and preserue me by the verye
+ryght fayth, euen vnto the
+ende.</speaker>
+            <speaker id="a">M. Howe doeth god leade
+men into temptacion?</speaker>
+            <speaker id="b">S. whensoeuer he permitteth
+the wicked ghostely enemy, to
+withdrawe vs through transitory
+fortune or misfortune, prosperitie
+or aduersitie, and also
+through other gostly assaultes
+from fayth, vertue &amp; godlines.</speaker>
+            <speaker id="a">M. what is the seuenth peticion?</speaker>
+            <speaker id="b">S. <bible ref="Mt 6.13">But deliuer vs from euill.</bible>
+            </speaker>
+            <speaker id="a">M. what prayest thou in this
+peticion?</speaker>
+            <speaker id="b">S. That our heauenly
+father will redeme &amp; deliuer
+vs from the snares, subtiltie,
+tyranny, and power of our olde
+wicked enemy.</speaker>
+            <speaker id="a">M. Hath he than
+any power agaynst thee?</speaker>
+            <speaker id="b">S. Yea forsouth, by reason of
+<pb/>
+my synnes wherin I am borne,
+god geueth him power against
+me, from the which he himselfe
+alone through our Lord Iesus
+Christe, must nedes deliuer me.</speaker>
+            <speaker id="a">M. And what meaneth that
+clause and sente~ce wheras thou
+sayest? <bible ref="Mt 6.13">For thine is the kyngdome, power
+and glory for euer.</bible>
+            </speaker>
+            <speaker id="b">S. That sentence
+putteth vs in remembraunce,
+that we ought to conclude
+and ende all our prayers
+in lauding and praysyng of god,
+and to thynke thus in our heartes:
+O heauenly father I haue
+desyred of the to the glorye of
+thy name, and to the wealth of
+all men (both in body &amp; soule,)
+high and excedyng great thynges
+whiche are by menne impossible
+to obteyne or atteyne.
+<fol n="I.iii."/>
+                <pb/>
+But thou arte a gloryous and
+an almyghtie puissaunte kyng
+euerlastyng, whiche canste easily
+procure &amp; prouyde all that
+is good for thy chyldren, and
+canste also breake and auoyde
+all contrarye power of our aduersaries,
+wherfore helpe and
+deliuer vs from all the power
+of hel, and restore vs vnto euerlastyng
+lyfe.</speaker>
+            <speaker id="a">M. But nowe howe concludest
+thou thy prayer?</speaker>
+            <speaker id="b">S. with this woorde. Amen.</speaker>
+            <speaker id="a">M. what is that to saye?</speaker>
+            <speaker id="b">S. Forsouth, thus muche: O
+heauenly father, graunte of thy
+mercye, that all these thynges
+maye come to passe whiche we
+haue desired of y<sup>e</sup> in this prayer.
+And forasmuche as thou haste
+<pb/>
+promised to heare all those that
+call vpon the in true faith, in the
+name of thy beloued sonne, we
+hope and trust stedfastly that it
+shall so happen vnto vs.
+Notwithstanding if there be any
+lacke of defaute in our fayth
+by reason or our naturall infirmitie,
+than strengthen thou
+good lord, our fayth, &amp; graunte
+vs thy holy spirite, that we may
+praye this thyne owne prayer
+with a true and a perfite fayth,
+and that we maye speake from
+the botome of our heartes vnto
+the in all our prayers, Amen,
+Amen, Sobeit.</speaker>
+            <speaker id="a">M. Almyghtie
+God graunte that thou and all
+other maye alwayes praye in
+suche a fayth.</speaker>
+            <speaker id="b">S. Amen.</speaker>
+            <fol n="I.iiii."/>
+            <pb/>
+            <head>A declaracion of the holy sacrament of Baptisme.</head>
+            <speaker id="a">M. Nowe what is the fowerth
+principall article of the christen
+doctrine and religion?</speaker>
+            <speaker id="b">S. <comment type="illegible" reading="*orsouth">Forsouth</comment> that is the institucion
+of the holy sacramente of
+baptisme.</speaker>
+            <speaker id="a">M. Fyrst tel me, what
+are sacramentes?</speaker>
+            <speaker id="b">S. They are holy visible accions
+and exterior exercises instituted,
+ordeyned, and appoynted
+of almighty God to bee vsed in
+hys churche and congregacyon
+of hys faythful to represent vnto
+theim after a mooste lyuely
+sorte, his heauenly gracious benefites,
+that they may therby be
+confirmed in theyr fayth, and of
+purpose to excite y<sup>e</sup> mutual loue
+of one towarde an other.</speaker>
+            <speaker id="a">M. Why did Christe ordayne
+<pb/>
+suche sacramentes?</speaker>
+            <speaker id="b">S. For .iii.
+speciall causes.</speaker>
+            <speaker id="a">M. what is the
+firste?</speaker>
+            <speaker id="b">S. The fyrste is, that
+they shoulde be tokens and witnesses
+of the grace, mercy and
+promises of God towarde vs,
+and as the moste sure seales,
+wherby our participacio~, felowshyp
+and incorporacion with
+Christ, is confyrmed, consigned
+and sealed vp.
+And also that our faythe, which
+is otherwyse veraye feble and
+weake, myght thorowe the vse
+of them be exercised and lifte vp
+from all earthly thinges, vnto
+the consideracion, estimacyon,
+and expectacion, of celestiall and
+heauenly thinges.</speaker>
+            <speaker id="a">M. Is not
+that the peculiar operacion and
+office of the holy gooste?</speaker>
+            <speaker id="b">S. Yes
+it is the very proper operacion
+<fol n="I.v."/>
+                <pb/>
+of the holy gost. For he gloryfieth
+Christe, &amp; he is the eternall
+and effectuous worker and executour
+of all the doctryne and
+ordinaunces of Christe. But
+yet he perfourmeth and executeth
+y<sup>t</sup> worke thorowe y<sup>e</sup> worde
+and vse of the sacramentes, yf
+they be truely ministred and receyued:
+And it is therfore ascribed
+vnto them, because we
+should vnderstande and knowe
+that the sacramentes are not
+bare, vayne, and vnprofitable
+tokens.</speaker>
+            <speaker id="a">M. What is the seconde
+cause?</speaker>
+            <speaker id="b">S. The seconde is this:
+that they shoulde admonishe vs
+continuallye of our office and
+duetie as long as we lyue. For
+seyng we professe by receyuyng
+and vsyng of the sacramentes,
+that we are incorporate and
+<pb/>
+made one bodye with Christe
+thorowe participacion of hym,
+we ought to knowe also that it
+is our bounde dutye to expresse
+and represent the very image of
+Christe in our whole lyfe and in
+all the exercises of thesame.
+And yf we doe not so, than we
+contemne the sacramentes and
+vse them vnworthely.</speaker>
+            <speaker id="a">M. What
+is the thyrd cause?</speaker>
+            <speaker id="b">S. That they
+shoulde be tokens of the people
+of god, wherby the whole company
+and congregacion of god
+myght bee gathered together
+as it were into one bodye, and
+separated or diuided &amp; knowen
+by suche seuerall tokens and peculiar
+exercises (whiche no nother
+congregacion doeth vse,)
+fro all other false sectes. And
+they serue also for this purpose
+<pb/>
+that the congregacion of Christ
+may shewe and declare by them
+theyr seruice, reuerence and obedience
+towarde God, and so
+maye prouoke others also thorowe
+their exa~ple vnto the trew
+religion and seruice of God.</speaker>
+            <speaker id="a">M. What thinkest thou of them
+whiche vse the sacramentes
+vnwoorthely and vnreuerently?</speaker>
+            <speaker id="b">S. For as muche as they
+breke &amp; violate the couenaunte
+of the Lord therby, they are accursed
+and abominable in the
+syght of God. And therfore they
+shall bee reiected and refused of
+the Lorde for euer, as periured
+rebellions, yf they do not turne
+and amend.</speaker>
+            <speaker id="a">M. Who vseth the
+sacramentes vnreuerently, and
+vnworthily?</speaker>
+            <speaker id="b">S. Forsoth he that
+doth not vse them in true fayth,
+<pb/>
+loue, and <comment type="print-error" reading="obededience">obedience</comment> towardes
+God: &amp; specially he that vseth
+them not to prouoke, styre vp,
+and to nourish, the forsaied vertues.
+For therunto ought the
+vse of all externall or outwarde
+sacramentes to serue.</speaker>
+            <speaker id="a">M. But
+are the sacramentes necessarye
+vnto saluacion?</speaker>
+            <speaker id="b">S. Forasmuch
+as they are the ordinaunces of
+God, and commaunded vnto
+vs to be vsed in perfecte obedience
+towarde God: therfore can
+we not forbeare or neglecte the
+vse of them, without manifest
+perill and hinderaunce of saluacion.</speaker>
+            <speaker id="a">M. What persons are to
+bee taken and reputed for contemners
+and dispisers of the
+sacramentes?</speaker>
+            <speaker id="b">S. Suche as vse
+them not whan they maye haue
+them ministred after the institucion
+<pb/>
+and ordinau~ce of Christ.
+For whosoeuer beleueth our
+sauiour Christe, and is a true
+disciple of his, he can not chose
+but to vse all thinges with high
+reuerence and deuocion, what
+soeuer our sauior Christe hathe
+ordayned to bee vsed.</speaker>
+            <speaker id="a">M. Well,
+nowe lette vs come vnto baptisme?
+what is Baptisme?</speaker>
+            <speaker id="b">S. It is an ordinaunce &amp; commaundemente
+of oure sauiour
+Iesus Christe, ioyning all suche
+as shall enter into the cumpany
+and congregacion of Christe,
+to be baptised, y<sup>t</sup> is, to bee sprincled
+or dipped with water in y<sup>e</sup>
+name of the father, of the sonne,
+and of the holy gost.</speaker>
+            <speaker id="a">M. But in
+what texte of scripture is suche
+commaundemente grounded?</speaker>
+            <speaker id="b">S. In the last of Matthew, and
+<pb/>
+Marke, in these wordes: <bible ref="Mt 28.18-19">Unto
+me is geuen all power in heauen
+and earth, therfore go your
+waye, and teache all nacions,
+baptisyng them in the name of
+the father, and of the sonne, and
+of the holy ghoste.</bible> &amp;c.</speaker>
+            <speaker id="a">M. what is to be noted &amp; learned
+out of these wordes?</speaker>
+            <speaker id="b">S. Forsoth
+.iii. thinges.</speaker>
+            <speaker id="a">M. what is the
+fyrste?</speaker>
+            <speaker id="b">S. The fyrste is this, that
+our sauior Christe vnto whome
+the father hath geuen all power
+in heauen &amp; earth, wylleth that
+his holy gospell should be preached
+vnto all men in the whole
+worlde, &amp; that all people should
+be made his disciples.</speaker>
+            <speaker id="a">M. what is the .ii. note?</speaker>
+            <speaker id="b">S. The .ii
+is this, y<sup>t</sup> the holy sacramente of
+baptisme is co~maunded of god
+the father, the sonne, and the
+<pb/>
+holy ghost, to be <comment type="print" reading="asure">a sure</comment> testimonie
+of the inestimable loue &amp; fauour
+of God toward vs, wherby
+the promises of the ghospell,
+concernyng the free remyssion
+of synnes, the newe byrth, and
+euerlastyng lyfe purchased by
+Christe, are sealed, confyrmed
+and made sure vnto vs.</speaker>
+            <speaker id="a">M. And
+what is the thyrde note?</speaker>
+            <speaker id="b">S. The
+thirde is this, that those that
+are baptised ought to remayne
+in the couenaunte of God, and
+to applye themselues to learne
+and to kepe all that the Lorde
+hath commaunded, to dye vnto
+synne, and to caste of the olde
+Adam, with all his lustes and
+affeccions, &amp; to put on the Lord
+Iesus euery daye more than other
+in a newe lyfe, whiche will
+be presente with vs vntill the
+<pb/>
+worldes ende, and graciouslye
+ayde and helpe vs therunto.</speaker>
+            <speaker id="a">M. Unto what persons doeth
+baptisme appertayne?</speaker>
+            <speaker id="b"> S. Unto
+all suche as the couenaunte of
+God &amp; the doctryne of the ghospell
+preached by the Apostles
+pertayneth vnto.</speaker>
+            <speaker id="a">M. Muste infantes and young
+children also be baptised?</speaker>
+            <speaker id="b">S. Yea forsouth yf it maye be
+done, forasmuche as the couenaunt
+of y<sup>e</sup> lorde perteyneth also
+vnto them, &amp; they are also of the
+flocke of God, and partakers
+of grace. And therfore the signe
+and seale of the promise and couenaunte
+(whiche is baptisme)
+muste nedes also perteyne vnto
+them. And agayne seeyng they
+are in the fauor of God, as his
+dearely beloued, and partakers
+<fol n="K.i."/>
+                <pb/>
+of Christe &amp; of his merites (as
+they must nedes be yf the kyngdom
+of god be the~ce as Christe
+sayth) than baptisme whiche is
+the seale of all this, muste also
+nedes perteyne vnto them.</speaker>
+            <speaker id="a">M. But howe can they be baptised
+seyng thei haue no faythe?</speaker>
+            <speaker id="b">S. Forasmuche as they haue y<sup>e</sup>
+fauor of God through Christe,
+whatsoeuer is required in them,
+that haue thei also sufficientlye
+in and through Christe, whiche
+hath taken theyr weakenes vpon
+himselfe, &amp; is become their
+satisfaccion as he is to all others.
+And his fayth and obedience is (of grace) imputed
+vnto them, and throughe his
+spirite they are sanctified to bee
+the te~ples of God, whose heade
+and sauior is Christe, and they
+<pb/>
+membres of his body.</speaker>
+            <speaker id="a">M. Than may they be baptised
+with a good conscience?</speaker>
+            <speaker id="b">S. Yea
+no doubt. For seyng they are
+reputed as faythfull in y<sup>e</sup> syghte
+and iudgement of god thorowe
+Christe, they ought as faythfull
+to bee baptised, that thorowe y<sup>e</sup>
+ministracion of the churche they
+may haue a sure token &amp; witnes
+that they are the heyres of the
+blessyng promised vnto the sede
+of the faythfull, the membres of
+our sauior Christe, &amp; cleane purged
+and washed from all theyr
+synne in his bloude.</speaker>
+            <speaker id="a">M. From
+what synne nedeth a chylde that
+is newe borne (whiche hath
+wrought neither good nor euil)
+to be purged or washed?</speaker>
+            <speaker id="b">S. From original sinne, whiche
+is the verye roote of all other
+<fol n="K.ii."/>
+                <pb/>
+synne.</speaker>
+            <speaker id="a">M. What is originall
+sinne?</speaker>
+            <speaker id="b">S. It is the poison, infeccion
+or corrupcion, of nature
+wherein we are conceyued:
+Whiche alwayes resisteth, rebelleth
+and lusteth againste the
+wyll of God, and is euer inclined
+and redye vnto all euill &amp;
+wickednes, and hath a luste and
+delite therin. From the whiche
+we can none otherwyse be deliuered
+or pourged, but alonlye
+throughe the power of God in
+our sauior Christ.</speaker>
+            <speaker id="a">M. But how
+are we pourged from this sinne
+through baptisme?</speaker>
+            <speaker id="b"> S. In as
+muche as in baptisme we haue
+a promise that it is forgeue~ vs
+and not imputed to damnacion
+vnto vs. And againe that the
+holy ghost is also geue~ vs whiche
+shall dayly mortifie, kyll and
+<pb/>
+subdue this synne and wicked
+inclinacion in vs, begynnyng
+and daylye increasyng in the
+stede therof, a newe affeccion
+and nature in vs, obediente vnto
+the wyll of God and deliting
+therin, whiche in the blessed resurreccion
+shall bee altogether
+perfite.</speaker>
+            <speaker id="a">M. Nowe tell me what
+ought our baptisme to worke
+in vs and to put vs in remembraunce
+of?</speaker>
+            <speaker id="b">S. Firste we ought
+to bee thankefull vnto God for
+it, and vnto our parentes also
+for furtheryng and healpyng
+vs vnto it, and to receyue all
+doctrine and correccion of them
+obediently and redily.</speaker>
+            <speaker id="a">M. what
+more?</speaker>
+            <speaker id="b">S. It ought also to put
+vs in reme~braunce of the remission
+of our synnes, of the grace
+and mercye of God, and of the
+<fol n="K.iii."/>
+                <pb/>
+blessed resurreccion wherin we
+shall aryse agayne vnto euerlastyng
+lyfe. By the remembrau~ce
+wherof we maye haue a singular
+comforte agaynst all synne,
+agaynst the deuyll, death, hell, &amp;
+damnacion.</speaker>
+            <speaker id="a">M. And what els?</speaker>
+            <speaker id="b">S. Finally, it ought to worke
+in vs a perfite obedience vnto
+the wyll of God, to leade our
+liues in continuall repentaunce
+and amendemente, praying ernestly
+that he wyll strengthen
+and make more perfite in vs,
+through his holy woorde and
+spirite, the newe byrth whiche
+is already begonne in vs: and
+dayly to mortifie our fleshe and
+to practise with all faythfulnes
+and diligence to serue God and
+to kepe his commaundeme~tes.</speaker>
+            <pb/>
+            <speaker id="a">M. Nowe, what is the .v. speciall article
+of the christen doctrine or religion?</speaker>
+            <speaker id="b">S. The holy supper of y<sup>e</sup> lorde.</speaker>
+            <speaker id="a">M. What is the supper of
+the Lorde?</speaker>
+            <speaker id="b"> S. It is an holy ordinance
+and institucion of our
+sauior Christe, wherby christen
+people are commau~ded to eate
+and drynke the bread and cuppe
+of the Lorde together, &amp; therby
+to remembre his passion, and
+to be assured of theyr communion
+with hym in his body and
+bloud. For it is a pledge and
+an assuraunce that the Lorde
+geueth them his bodye &amp; bloud
+to be the foode and nourisheme~t
+of theyr soules vnto euerlastyng
+lyfe.</speaker>
+            <speaker id="a">M. Than is it not a
+bare signe and an <comment type="illegible" reading="vnfrui*full">vnfruitfull</comment>
+token?</speaker>
+            <speaker id="b">S. No. For we receyue
+in the supper a spirituall meate
+<fol n="K.iiii."/>
+                <pb/>
+and drinke, wherin by y<sup>e</sup> lordes
+owne institucion, the true communion
+and participacio~ of the
+bodye and bloud of Christe is
+most liuely represented and confirmed
+vnto vs. And at the ministracion
+therof, beeyng ministred
+after Christes institucion,
+it is certayne that he is alwaies
+presente, and worketh effectuously
+therwith.</speaker>
+            <speaker id="a">M. How ought
+this supper to be ministred?</speaker>
+            <speaker id="b">S. In euery poynte &amp; condicion
+as the Lorde himselfe dyd ministre
+and ordeyne it.</speaker>
+            <speaker id="a">M. where is
+it written how the lorde did ministre
+and ordeyne it?</speaker>
+            <speaker id="b">S. In the
+holy Euangelistes, Matthew,
+Marke, Luke. And in the .xi.
+<comment type="illegible" reading="Ch*piter">Chapiter</comment> of the fyrst Epistle to
+the Corinthians in these woordes.
+<bible ref="1 Cor 11.23-24">In the same night that the Lorde
+<pb/>
+Iesus was betrayed, he tooke bread, and
+whan he had geuen thankes, he brake it.</bible>
+            </speaker>
+            <speaker id="a">M. What learnest thou out of
+these wordes?</speaker>
+            <speaker id="b">S. Fyrst I lerne
+that this supper sealeth vp, confirmeth,
+&amp; assureth vnto vs, the
+verye true communion of the
+true body and bloud of Christ,
+with all the frutes and benefites,
+whiche he dyd euer pourchase
+and merite thorowe his
+body &amp; bloud.</speaker>
+            <speaker id="a">M. Howe canste
+thou proue that?</speaker>
+            <speaker id="b">S. By the verye
+woordes of the institucion.
+For whereas he commaundeth
+vs to eate his body and drynke
+his bloud, that is to saye, to receyue
+our nouryshement vnto euerlastyng
+lyfe, thorowe fayth,
+of his bodye and bloud, he addeth
+immediatlye: Whiche is geuen
+vp for you, and shed for you. By the
+<fol n="K.v."/>
+                <pb/>
+whiche woordes he signyfieth,
+seeyng we are partakers of his
+bodye and bloud, and in faythe
+fleshe of his fleshe, and bones of
+his bones, he our head and we
+his members, that we are also
+partakers of all that he did euer
+purchasse or merite thorow his
+passion and bloud shedyng, that
+is, reconciliacion with God
+the father, remission of our synnes,
+righteousnes and euerlasting
+lyfe.</speaker>
+            <speaker id="a">M. what lernest thou
+more out of the forsayed woordes?</speaker>
+            <speaker id="b">S. I learne also that the Lorde
+geueth me thorowe this supper,
+a sure hope and comforte
+that I am partaker of the new
+testament, and of the couenau~t
+of grace whiche he confirmed
+<pb/>
+and sealed with his precious
+bloud.</speaker>
+            <speaker id="a">M. What is that newe
+Testamente or couenaunte of
+grace?</speaker>
+            <speaker id="b"> S. It is this, that almyghtye
+God, for the bitter
+passion and deathes sake of
+his deare beloued sonne, wyll
+freely pardon and forgeue me
+all my synnes, and take me for
+his childe and heyre, and at the
+latter daye will rayse me vp agayne
+vnto euerlastyng ioye,
+requiryng that I should beleue
+all this stedfastly, and loue and
+serue him obediently.</speaker>
+            <speaker id="a">M. And is nothyng els to bee
+noted in the woordes of the institucion?</speaker>
+            <speaker id="b">S. Yes, this also is to be learned,
+that al they which minister
+or receyue this holy sacramente
+<pb/>
+muste celebrate &amp; kepe the memoriall
+or remembrau~ce of our
+sauiour Christe Iesus.</speaker>
+            <speaker id="a">M. Wherin consisteth this memoriall
+or remembraunce?</speaker>
+            <speaker id="b">S. It co~sisteth specially herein,
+that we beeyng assembled and
+gathered together in his name,
+considre and <comment type="print" reading="setfoorth">set foorth</comment> with all
+diligence and reuerence all the
+benefites of our Lorde Iesus,
+whiche he hathe doen and suffered
+for vs, or will yet hereafter
+do for vs: And agayne that
+we render moste highe laudes
+and thankes vnto him for suche
+excellente benefites, geuyng vp
+and yeldyng our selues wholly
+vnto hym.</speaker>
+            <speaker id="a">M. What maner
+of people are to bee admytted
+vnto this supper?</speaker>
+            <speaker id="b">S. All that
+are truly repentaunte and sorye
+<pb/>
+for their sinnes, and yet beleue
+stedfastlie that god for Christes
+sake wyll be mercyfull vnto
+them, and that they are the true
+membres of Christe, liuing in
+the feare and true obedience
+of the Lord, and in perfect loue
+of theyr neighbour, as brethren
+of one kyngdome, membres of
+one bodye, and redemed with
+one bloud of Iesus Christ, redye
+to confesse the doctrine of
+the holy gospell, in the middes
+of all persecucion and affliccion,
+and to defende it euen vnto
+death.</speaker>
+            <speaker id="a">M. what thinkest thou
+of the~ whiche will neuer receiue
+this holy supper with the faithfull
+congregacion of Christe?</speaker>
+            <speaker id="b">S. If they abstaine from it wilfullye
+of <comment type="print" reading="concempte">contempte</comment> and stubernes,
+that is to saye, yf they
+<pb/>
+maye haue it ministred vnto
+them after the institucion of
+the Lorde, and yet regarde it
+not and will not receyue it, it
+is an euidente token that they
+pertayne nothing at all vnto the
+body of Christe. For whosoeuer
+beleueth in the Lorde truly
+can not neglecte or contemne any
+of his hollye ordinaunces,
+but with all reuerence vse them,
+as ofte he maye.</speaker>
+            <speaker id="a">M. Where as
+s. Paul sayeth: <bible ref="1 Cor 11.28">Lette euery manne
+proue hymselfe, and so eate of that bread:</bible>
+what is mente therby, or whan
+eate we this supper wurthyly.</speaker>
+            <speaker id="b">S. Of ourselues we can neuer
+be woorthy vnto it: But God
+of his grace and mercye, reputeth
+vs woorthy of his heauenlye
+misteries and benefites,
+whansoeuer we referre the remission
+<pb/>
+of oure sinnes, and oure
+saluacion vnto the death and resurreccion
+of Christe, and seke
+it therat onely.
+Wherfore whansoeuer I receyue y<sup>e</sup> holy supper, with this
+faythe and belefe that Christe
+Iesus gaue his tender bodye
+vnto death for me, and shedde
+his precious bloud for me,
+and so redemed me from euerlastyng
+deathe: And that his
+fleshe and bloude are the foode
+and sustenaunce of my soule
+whereby I am refresshed and
+nourisshed vnto euerlastynge
+lyfe, submitting my selfe, in
+this faythe, hartilye and fullye
+both bodye &amp; soule vnto y<sup>e</sup> will
+of god, and vtterly detesting in
+word, dede, and example <comment type="print" reading="almaner">al maner</comment>
+of sinne, and wickednes,
+<pb/>
+and whatsoeuer maye geue any
+<comment type="illegible" reading="occasi*n">occasion</comment> therunto. &amp;c. then
+receyue I this hollye supper
+wurthyly. For this is the true
+communion and participacion
+of Christes bodye and bloud,
+wherby we are sure y<sup>t</sup> he dwelleth
+in vs, and we in hym. For
+els we coulde doe none of this
+at all.</speaker>
+            <speaker id="a">M. Me thynketh by thy
+answers, that the holy supper
+of the Lorde sendeth and referreth
+vs all together vnto the
+deathe and passion of Christe,
+that we maye so &amp; by that meanes
+enioye and haue fruicion
+of thesame.</speaker>
+            <speaker id="b">S. <comment type="illegible" reading="*ea">Yea</comment> forsouth, for
+whan he suffred vpon the crosse
+<comment type="illegible" reading="th*n">then</comment> he <comment type="illegible" reading="w*s">was</comment> made the onely &amp;
+<comment type="illegible" reading="euerlast*">euerlastyng</comment> sacrifice, sufficiente
+for our saluacion: wherefore
+there is nothyng remaynyng
+<pb/>
+for vs more, but that we
+maye enioy and haue the fruicion
+of hym.</speaker>
+            <speaker id="a">M. And was not the
+supper ordeyned of God to bee
+a propiciatory sacrifice, wherin
+the body of Christe should be
+offered vnto God of freshe or
+of newe?</speaker>
+            <speaker id="b">S. No forsouth. For
+that were iniurious vnto his
+death. And the woordes doe
+sounde thus, <bible ref="Mt 26.26">take and eate.</bible> &amp;c.
+Where he commaundeth vs not
+to sacrifice or to offer his body,
+but onely to eate. &amp;c.</speaker>
+            <speaker id="a">M. And
+why was it ordeyned to bee receiued
+in two diuerse kyndes?</speaker>
+            <speaker id="b">S. That was done for our infirmities
+sake, to teache vs the
+more plainly that he is not only
+the meate wherwith our soules
+are norished, but also the verye
+drynke wherwith they are refreshed,
+<fol n="L.i."/>
+                <pb/>
+that we shoulde seke no
+parte of our spirituall lyfe any
+where els, sauyng at hym and
+in hym alone.</speaker>
+            <speaker id="a">M. And ought all
+men generally without excepcion
+to receyue both kyndes?</speaker>
+            <speaker id="b">S. Yea forsouth, so do the woordes
+of Christe commaund, saying,
+drinke ye all of this: from
+<comment type="illegible" reading="*he">the</comment> whiche to derogate or mynishe
+any thyng it were an heynous
+synne.</speaker>
+            <speaker id="a">M. But now, how
+oughteste thou to behaue thyselfe
+after thou haste thus receiued
+this holy supper?</speaker>
+            <speaker id="b">S. I oughte fyrste to reioyce in
+the remission of my synnes, in
+the lyfe of Christe in me, and in
+the blissed resurreccion, whan
+as he shall lyue fully in me and
+in vs, &amp; be all in all. And thus
+to auaunce my selfe agaynste
+<pb/>
+synne, agaynst the deuyll, death,
+and hel: And to geue God eternall
+thankes for all these his excedyng
+benefites.</speaker>
+            <speaker id="a">M. What
+oughtest thou els to doe?</speaker>
+            <speaker id="b">S. I ought also to subdue, to
+tame, and to crucify, mine owne
+fleshe and bloud, with al maner
+of wicked lustes and affeccio~s,
+&amp; to liue, hereafter as a me~bre
+of that body onely, whose head
+is Christe, and not as a membre
+of any other body. But vtterly
+to yelde and geue ouer myselfe
+vnto my lorde God, to bee one
+breade and one bodye with all
+faythfull christians whyche doe
+truely inuocate and call vpon
+the name of the Lorde, to lyue
+with them in perfite loue and
+charitie and wyth this bande
+of loue to haue my heart fixed
+<fol n="L.ii."/>
+                <pb/>
+and knitte vnto theirs, and thus
+euermore to remayne &amp; co~tinue.
+And I ought also to confesse
+and magnifie my Lorde Iesus
+in his churche and congregacion
+with all my woordes and
+dedes, awaytyng dayly to haue
+this lyfe changed with a <comment type="illegible" reading="bet*er">better</comment>
+and into a better lyfe.</speaker>
+            <speaker id="a">M. What
+yf we receyue the supper with
+suche as be vnwoorthy, doe we
+make our selues also vnworthy
+by reason of that?</speaker>
+            <speaker id="b">S. No we doe
+not, if so be that we consente not
+vnto theyr synnes, but haue in
+mynde and will yf we can know
+them and may come vnto them,
+to exhorte and admonishe them
+faythfully our selues, or els
+cause some other to doe it. For
+it pertayneth vnto no priuate
+person to exclude any man out
+<pb/>
+of the churche or congregacion,
+but onely vnto the whole
+churche, or vnto them that are
+chosen &amp; appointed of thesame
+vnto that office. And theyr
+duetie it is to considre bothe in
+this matter and all other, what
+may be most profitable and expediente
+vnto edificacion.</speaker>
+            <speaker id="a">M. But nowe, why should men
+receyue this sacramente ofte, seing
+they receyue the sacramente
+of baptisme but once?</speaker>
+            <speaker id="b">S. Baptisme
+is a sacramente of enteraunce
+into the religio~ of Christ,
+and betokeneth that menne are
+nowe dead vnto the olde lyfe, &amp;
+wyll from thencefoorth walke
+in a newe lyfe. Wherfore lyke
+as Christe died but once, &amp; that
+for our synnes, and shall from
+hencefoorth dye no more, euen
+<fol n="L.iii."/>
+                <pb/>
+so ought the sacrament of baptisme,
+whiche representeth the
+same, to bee receyued but once.
+But the holye supper is a sacramente
+of procedyng and goyng
+forward in y<sup>e</sup> religion of Christ,
+and signifieth that the manne
+whiche is once incorporate vnto
+Christe, and fed or susteyned
+continually through hym, wyll
+euermore continue, procede and
+goe forwarde in a perfite christian
+life. And forasmuche as
+many impedimentes, lets and
+temptacions, doe chaunce vnto
+suche menne by the waye, which
+notwithstandyng doe styll hungre
+and thurst after ryghteousnesse.
+And this supper is a comfortable
+pledge or <comment type="illegible" reading="s*ale">scale</comment> of the
+true lyuely foode of the soule,
+it is the heauenly bread, without
+<pb/>
+whiche this hounger canne
+not bee satisfyed not assuaged.
+Therfore shoulde they receyue
+this sacrament oft, because they
+haue oft nede of suche comforte.</speaker>
+        </sample>
+    </text>
+</coerp>
