@@ -1,12 +1,11 @@
 var	gulp = require('gulp'),
 	exist = require('gulp-exist'),
 	watch = require('gulp-watch'),
-	filter = require('gulp-filter')
 	newer = require('gulp-newer'),
-	plumber = require('gulp-plumber'),
 	zip = require('gulp-zip'),
-	sourcemaps = require('gulp-sourcemaps'),
-	rename = require('gulp-rename');
+	plumber = require('gulp-plumber'),
+	rename = require('gulp-rename'),
+	replace = require('gulp-replace');
 	
 var secrets = require('./exist-secrets.json')
 
