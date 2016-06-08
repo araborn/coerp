@@ -7,19 +7,16 @@ var	gulp = require('gulp'),
 	zip = require('gulp-zip'),
 	sourcemaps = require('gulp-sourcemaps'),
 	rename = require('gulp-rename');
-	
+
 var secrets = require('./exist-secrets.json')
 
 var sourceDir = 'app/'
-var dataDir = 'transformation/new/'
-var buildDest = 'build/';
-var dataDest = buildDest + 'data';
 
-gulp.task('data', function() {
-	return gulp.src(dataDir + '**/*')
-		.pipe(newer(dataDest))
-		.pipe(gulp.dest(dataDest));
-});
+var buildDest = 'build/';
+
+
+// ------ Copy (and compile) sources and assets to build dir ----------
+
 
 gulp.task('copy', function() {
 	return gulp.src(sourceDir + '**/*')
@@ -27,8 +24,10 @@ gulp.task('copy', function() {
 		   	.pipe(gulp.dest(buildDest))
 })
 
-gulp.task('build', ['data','copy']);
+gulp.task('build', ['copy']);
 
+
+// ------ Deploy build dir to eXist ----------
 
 var localExist = exist.createClient({
 		host: "localhost",
@@ -44,7 +43,7 @@ var localExist = exist.createClient({
 	});
 
 var remoteExist = exist.createClient({
-		host: "projects.cceh.uni-koeln.de",
+		host: "papyri.uni-koeln.de",
 		port: 8080,
 		path: "/xmlrpc",
 		basic_auth: secrets.remote
@@ -55,9 +54,6 @@ var remoteExist = exist.createClient({
 		// 	'.rng': "text/xml"
 		// }
 });
-
-// ------ Copy (and compile) sources and assets to build dir ----------
-
 
 exist.defineMimeTypes({ 'text/xml': ['rng'] });
 
@@ -127,7 +123,7 @@ gulp.task('xar', ['build'], function() {
 	var p = require('./package.json');
 
 	return gulp.src(buildDest + '**/*', {base: buildDest})
-			.pipe(zip("coerp_new" + p.version + ".xar"))
+			.pipe(zip("papyri-wl" + p.version + ".xar"))
 			.pipe(gulp.dest("."));
 });
 
@@ -147,8 +143,10 @@ gulp.task('watch-main', function() {
 });
 
 gulp.task('watch-copy', function() {
-	gulp.watch([				
-				sourceDir + '**/*'
+	gulp.watch([
+				sourceDir +  'js/**/*',
+				sourceDir + 'imgs/**/*',
+				sourceDir + '**/*.{xml,html,xql,xqm,xsl}'
 				], ['copy']);
 });
 

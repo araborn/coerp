@@ -11,3 +11,5 @@ build
 admin.xqm
 transformation/old
 transformation/new
+transformation/temp
+transformation/*/*.xml
