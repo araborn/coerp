@@ -1,1 +1,6 @@
-for i in ls catechism/*xml; do saxonb-xslt -s:$i -xsl:transformer.xslt -o:new/$i | echo $i; done
+for i in ls old/catechism_*xml; do saxonb-xslt -s:$i -xsl:transformer-ca.xslt -o:new/$i | echo $i; done
+for i in ls old/bio_*xml; do saxonb-xslt -s:$i -xsl:transformer-all.xslt -o:new/$i | echo $i; done
+for i in ls old/pamphlet_*xml; do saxonb-xslt -s:$i -xsl:transformer-all.xslt -o:new/$i | echo $i; done
+for i in ls old/prayers_*xml; do saxonb-xslt -s:$i -xsl:transformer-all.xslt -o:new/$i | echo $i; done
+for i in ls old/preface_*xml; do saxonb-xslt -s:$i -xsl:transformer-all.xslt -o:new/$i | echo $i; done
+for i in ls old/treatise_*xml; do saxonb-xslt -s:$i -xsl:transformer-all.xslt -o:new/$i | echo $i; done

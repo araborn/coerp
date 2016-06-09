@@ -13,6 +13,13 @@
             <xsl:apply-templates />
         </quote>                
     </xsl:template>
+    <xsl:template match="coerp:psalm">       
+        <quote>
+            <xsl:attribute name="type">psalm</xsl:attribute>
+            <xsl:attribute name="ana"><xsl:value-of select="@ref"/></xsl:attribute>
+            <xsl:apply-templates />
+        </quote>                
+    </xsl:template>
     
     <xsl:template match="coerp:bible/text()">        
         <xsl:analyze-string select="." regex="&#xA;">
@@ -41,5 +48,8 @@
         </pb>
     </xsl:template>
     
+    <xsl:template match="//coerp:head">
+        <head><xsl:value-of select="text()"/></head>        
+    </xsl:template>
     
 </xsl:stylesheet>

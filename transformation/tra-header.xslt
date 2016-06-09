@@ -49,6 +49,10 @@
                             <xsl:attribute name="type" select="substring-before(.//coerp:source/data(.),' ')"/>
                             <xsl:value-of select="substring-after(.//coerp:source/data(.),' ')"/>
                         </idno>
+                        <note type="genre">
+                            <xsl:attribute name="subtype"><xsl:value-of select=".//coerp:genre/@key/data(.)"/></xsl:attribute>
+                            <xsl:value-of select=".//coerp:genre/data(.)"/>
+                        </note>
                         <note type="lists">
                             <list type="format">
                                 <item><term type="format_original"><xsl:value-of select=".//coerp:format_original/data(.)"/></term></item>

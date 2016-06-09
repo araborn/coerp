@@ -15,12 +15,13 @@
     <xsl:template match="coerp:coerp">
         
         <TEI>
+            <xsl:attribute name="xml:id"><xsl:value-of select="substring-before(substring-after(base-uri(),'old/'),'.xml')"/></xsl:attribute>
             <xsl:namespace name="tei"><xsl:text>http://www.tei-c.org/ns/1.0</xsl:text></xsl:namespace>
             <xsl:text>
             <?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
             <?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng" type="application/xml"
 	schematypens="http://purl.oclc.org/dsdl/schematron"?></xsl:text>
-            <xsl:call-template name="header"></xsl:call-template>
+            <xsl:call-template name="header"/>
             <xsl:apply-templates/>
         </TEI>
     </xsl:template>
