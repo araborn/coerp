@@ -11,8 +11,9 @@ var	gulp = require('gulp'),
 var secrets = require('./exist-secrets.json')
 
 var sourceDir = 'app/'
-
+var dataDir = 'transformation/new/old/';
 var buildDest = 'build/';
+var dataDest = buildDest + 'data';
 
 
 // ------ Copy (and compile) sources and assets to build dir ----------
@@ -24,7 +25,13 @@ gulp.task('copy', function() {
 		   	.pipe(gulp.dest(buildDest))
 })
 
-gulp.task('build', ['copy']);
+gulp.task('data', function() {
+	return gulp.src(dataDir + '**/*.xml')
+		.pipe(newer(dataDest))
+		.pipe(gulp.dest(dataDest));
+});
+
+gulp.task('build', ['data','copy']);
 
 
 // ------ Deploy build dir to eXist ----------
@@ -93,7 +100,7 @@ gulp.task('deploy-remote', ['remote-upload', 'remote-post-install']);
 // ------ Update Index ----------
 
 gulp.task('upload-index-conf', function(){
-	return gulp.src('collection.xconf')
+	return gulp.src('text_collection.xconf')
 	                       .pipe(rename('collection.xconf'))
 			.pipe(localExist.dest({target: "/db/system/config/db/apps/coerp_new/data"}));
 });

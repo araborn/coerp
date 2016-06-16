@@ -15,13 +15,15 @@
     <xsl:template match="coerp:coerp">
         
         <TEI>
+            <!--
             <xsl:attribute name="xml:id"><xsl:value-of select="substring-before(substring-after(base-uri(),'old/'),'.xml')"/></xsl:attribute>
+            -->
             <xsl:namespace name="tei"><xsl:text>http://www.tei-c.org/ns/1.0</xsl:text></xsl:namespace>
             <xsl:text>
             <?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
             <?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng" type="application/xml"
 	schematypens="http://purl.oclc.org/dsdl/schematron"?></xsl:text>
-            <xsl:call-template name="header"/>
+            
             <xsl:apply-templates/>
         </TEI>
     </xsl:template>
@@ -30,24 +32,44 @@
     <xsl:template match="//coerp:text">       
         <text>
             <body>               
-                <xsl:apply-templates/>
+                <xsl:call-template name="sample"/>
             </body>
         </text>
     </xsl:template>
-    <xsl:template match="coerp:sample">
+    <xsl:template match="coerp:sample" name="sample">
         <div>
             <xsl:attribute name="xml:id">
                 <xsl:text>sample</xsl:text><xsl:value-of select="@id"/>
             </xsl:attribute>
-            
-            <xsl:apply-templates  select="child::node()"/>
-            
-        </div>
+            <xsl:call-template name="marktext"/>     
+            <!--
+            <xsl:apply-templates   select="child::node()"/>
+            -->
+         </div>
     </xsl:template>
     
+    <xsl:template name="marktext">
+        <xsl:for-each select=" //coerp:head">
+            <div>
+                <xsl:variable name="header" select="."/>
+                <xsl:apply-templates select="."/>
+                <p>
+                    
+                    <xsl:apply-templates select="following::node()[ preceding-sibling::coerp:head[1] = $header]"  /><lb/>
+                </p>
+                <!--
+            <xsl:apply-templates select="child::node()"/>-->
+            </div>
+        </xsl:for-each>        
+    </xsl:template>
+    
+    <xsl:template name="head" match="//coerp:head">             
+            <head><xsl:value-of select="text()"/></head>        
+    </xsl:template>    
+
     
     
-    <xsl:template name="text">
+    <xsl:template name="text" match="coerp:text//text()">
         <xsl:analyze-string select="." regex="&#xA;">
             <xsl:matching-substring>
                 <lb/><xsl:text>&#xa;</xsl:text>

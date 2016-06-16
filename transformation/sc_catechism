@@ -1,0 +1,2 @@
+for i in ls old/catechism_*xml; do saxonb-xslt -s:$i -xsl:transformer-ca.xslt -o:new/$i | echo $i; done
+

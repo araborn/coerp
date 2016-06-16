@@ -2,14 +2,37 @@
 im header
 <date></date>
 Unterschiede der Editionen
-
+<date type="this_edition" from to when></date>
+<date from="" to=""
+    <date when=""
+        Done
+        
 <head></head>
 
 <foreign language="LANG"></foreign>
-<foreign_omitted language="LANG" omitted="BOOLEAN></foreign_omitted>
+<foreign_omitted language="LANG" omitted="BOOLEAN></foreign_omitted> elemente die rausgeschnitten wurden
+
+<foreign xml:lang="LANG| gre | lat | hab">Text</foreign>
 
 <headings_paragraphs></headings_paragraphs>
 
 Congregation_songs
 <lg></lg>
+
+
 <psalm ref="STELLE"></psalm>
+
+
+<sampleN></sampleN> --- Löschen
+
+
+<!-- ## FIxen ## -->
+
+<pb/>
+<fol n="NR"/> Precending-Sibling Fehler, beheben. Fixed
+
+choice type -> ana
+
+<!-- ## Biography ##-->
+
+Jeder Head in ein <div/> eingekastelt, dann <head/> und dann <p><lg/></p>

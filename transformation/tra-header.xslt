@@ -4,7 +4,7 @@
     xmlns:tei="http://www.tei-c.org/ns/1.0"
     exclude-result-prefixes="xs"
     version="2.0">
-    <xsl:output omit-xml-declaration="yes" indent="yes"/>
+    <xsl:output omit-xml-declaration="no" indent="no"/>
     
     <xsl:template name="header" match="//coerp:coerp_header">
         <teiHeader>
@@ -44,10 +44,35 @@
                         <!-- Verknüpfung mit Kommentar Änderug muss noch hergestellt werden-->
                         <title type="main"><xsl:value-of select=".//coerp:title/data(.)"/></title>
                         <title type="short"><xsl:value-of select=".//coerp:short_title/data(.)"/></title>
-                        <date><!--Under Construction--></date>
+                        <date>
+                            <xsl:variable name="from" select=".//coerp:year/coerp:from/data(.)"/>
+                            <xsl:variable name="to" select=".//coerp:year/coerp:to/data(.)"/>
+                            <xsl:if test=" $from != $to">
+                                <xsl:attribute name="from" ><xsl:value-of select="$from"/></xsl:attribute>
+                                <xsl:attribute name="to" ><xsl:value-of select="$to"/></xsl:attribute>
+                                <xsl:value-of select="$from"/> - <xsl:value-of select="$to"/>
+                            </xsl:if>
+                            <xsl:if test=" $from = $to">
+                                <xsl:attribute name="when" ><xsl:value-of select="$from"/></xsl:attribute>                                
+                                <xsl:value-of select="$from"/>
+                            </xsl:if>
+                        </date>
+                        <date type="this_edition">
+                            <xsl:variable name="from" select=".//coerp:this_edition/coerp:from/data(.)"/>
+                            <xsl:variable name="to" select=".//coerp:this_edition/coerp:to/data(.)"/>
+                            <xsl:if test=" $from != $to">
+                                <xsl:attribute name="from" ><xsl:value-of select="$from"/></xsl:attribute>
+                                <xsl:attribute name="to" ><xsl:value-of select="$to"/></xsl:attribute>
+                                <xsl:value-of select="$from"/> - <xsl:value-of select="$to"/>
+                            </xsl:if>
+                            <xsl:if test=" $from = $to">
+                                <xsl:attribute name="when" ><xsl:value-of select="$from"/></xsl:attribute>                                
+                                <xsl:value-of select="$from"/>
+                            </xsl:if>
+                        </date>
                         <idno>
-                            <xsl:attribute name="type" select="substring-before(.//coerp:source/data(.),' ')"/>
-                            <xsl:value-of select="substring-after(.//coerp:source/data(.),' ')"/>
+                            <xsl:attribute name="type" select="substring-before(./coerp:text_profile/coerp:source/data(.),' ')"/>
+                            <xsl:value-of select="substring-after(./coerp:text_profile/coerp:source/data(.),' ')"/>
                         </idno>
                         <note type="genre">
                             <xsl:attribute name="subtype"><xsl:value-of select=".//coerp:genre/@key/data(.)"/></xsl:attribute>

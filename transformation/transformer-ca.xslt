@@ -6,7 +6,7 @@
     version="2.0">
     <xsl:import href="tra-header.xslt"/>
     <xsl:import href="tra-texElem.xslt"/>
-    <xsl:output omit-xml-declaration="yes" indent="yes"/>
+    <xsl:output omit-xml-declaration="no" indent="yes"/>
     <!--Identity template, kopiert Elemente und Attribute, wo keine spezifischere Regel folgt -->
     
     <xsl:template match="/">
@@ -14,14 +14,17 @@
     </xsl:template>
     <xsl:template match="coerp:coerp">
         
-        <TEI>
+        <TEI xmlns="http://www.tei-c.org/ns/1.0">
+           <xsl:namespace name="tei"><xsl:text>http://www.tei-c.org/ns/1.0</xsl:text></xsl:namespace>
             <xsl:attribute name="xml:id"><xsl:value-of select="substring-before(substring-after(base-uri(),'old/'),'.xml')"/></xsl:attribute>
-            <xsl:namespace name="tei"><xsl:text>http://www.tei-c.org/ns/1.0</xsl:text></xsl:namespace>
+            
+            
+            <xsl:variable name="headertex">
             <xsl:text>
             <?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
             <?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng" type="application/xml"
-	schematypens="http://purl.oclc.org/dsdl/schematron"?></xsl:text>
-            <xsl:call-template name="header"/>
+	schematypens="http://purl.oclc.org/dsdl/schematron"?></xsl:text></xsl:variable>
+            <xsl:value-of select="$headertex"/>            
             <xsl:apply-templates/>
         </TEI>
     </xsl:template>
@@ -62,6 +65,12 @@
             </xsl:non-matching-substring>
         </xsl:analyze-string>
     </xsl:template>
+    
+    
+    <xsl:template match="//coerp:head">
+        <head><xsl:value-of select="text()"/></head>        
+    </xsl:template>
+    
     <!--
     <xsl:template match=".//coerp:bible">        
         <note>
