@@ -2,7 +2,7 @@
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
     xmlns:coerp="http://coerp.uni-koeln.de/schema/coerp"
     xmlns:tei="http://www.tei-c.org/ns/1.0"
-    exclude-result-prefixes="xs"
+    exclude-result-prefixes="xs coerp tei"
     version="2.0">
     <xsl:output omit-xml-declaration="no" indent="no"/>
     

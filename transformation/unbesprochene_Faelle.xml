@@ -6,7 +6,7 @@ Unterschiede der Editionen
 <date from="" to=""
     <date when=""
         Done
-        
+    </date>     
 <head></head>
 
 <foreign language="LANG"></foreign>
@@ -25,14 +25,24 @@ Congregation_songs
 
 <sampleN></sampleN> --- Löschen
 
+<superscr></superscr>
 
 <!-- ## FIxen ## -->
 
 <pb/>
 <fol n="NR"/> Precending-Sibling Fehler, beheben. Fixed
 
+<pb n="ZEITENZAHL"/> --> <pb pgn="Zeitenzahl"/> --> <pb n="NUMMERIERUNG" xml:id="FOLN" ana="ZEITENZAHL"/>
+
+
 choice type -> ana
 
 <!-- ## Biography ##-->
 
 Jeder Head in ein <div/> eingekastelt, dann <head/> und dann <p><lg/></p>
+        
+        
+        
+        
+<!-- Dokumente -->
+    bio_1609_Featley_R3.xml -> ASCII Code  &#182;, ist ein Element das tatsächlich im Text ist 

@@ -1,12 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
     xmlns:coerp="http://coerp.uni-koeln.de/schema/coerp"
     xmlns:tei="http://www.tei-c.org/ns/1.0"
-    exclude-result-prefixes="xs"
+    exclude-result-prefixes="xs coerp "
     version="2.0">
     <xsl:import href="tra-header.xslt"/>
     <xsl:import href="tra-texElem.xslt"/>
-    <xsl:output omit-xml-declaration="yes" indent="yes"/>
+    <xsl:output method="xml" encoding="UTF-8" version="1.0" omit-xml-declaration="no" indent="yes"/>
     <!--Identity template, kopiert Elemente und Attribute, wo keine spezifischere Regel folgt -->
     
     <xsl:template match="/">
@@ -14,11 +15,11 @@
     </xsl:template>
     <xsl:template match="coerp:coerp">
         
-        <TEI>
-            <!--
+        <TEI>                       
             <xsl:attribute name="xml:id"><xsl:value-of select="substring-before(substring-after(base-uri(),'old/'),'.xml')"/></xsl:attribute>
-            -->
+            <!--
             <xsl:namespace name="tei"><xsl:text>http://www.tei-c.org/ns/1.0</xsl:text></xsl:namespace>
+            -->
             <xsl:text>
             <?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
             <?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng" type="application/xml"
@@ -63,9 +64,6 @@
         </xsl:for-each>        
     </xsl:template>
     
-    <xsl:template name="head" match="//coerp:head">             
-            <head><xsl:value-of select="text()"/></head>        
-    </xsl:template>    
 
     
     

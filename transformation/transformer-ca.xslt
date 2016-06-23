@@ -67,9 +67,7 @@
     </xsl:template>
     
     
-    <xsl:template match="//coerp:head">
-        <head><xsl:value-of select="text()"/></head>        
-    </xsl:template>
+    
     
     <!--
     <xsl:template match=".//coerp:bible">        

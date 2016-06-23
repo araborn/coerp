@@ -1,0 +1,1 @@
+for i in ls old/bio_*xml; do saxonb-xslt -s:$i -xsl:transformer-all.xslt -o:new/$i | echo $i; done

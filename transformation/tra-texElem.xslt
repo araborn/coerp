@@ -1,10 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
     xmlns:coerp="http://coerp.uni-koeln.de/schema/coerp"
     xmlns:tei="http://www.tei-c.org/ns/1.0"
-    exclude-result-prefixes="xs"
+    exclude-result-prefixes="xs coerp tei"
     version="2.0">
-    <xsl:output omit-xml-declaration="yes" indent="yes"/>
+    <xsl:output method="xml" encoding="UTF-8" version="1.0"  indent="yes"/>
     
     <xsl:template match="//coerp:sampleN"></xsl:template>
     
@@ -87,7 +88,7 @@
         <choice><xsl:attribute name="ana"><xsl:value-of select="@type"/></xsl:attribute><sic><xsl:value-of select="@reading"/></sic><corr><xsl:value-of select="text()"/></corr></choice></xsl:template>
     
     <xsl:template match="//coerp:sup">
-        <high rend="high"><xsl:value-of select="."/></high>
+        <hi rend="high"><xsl:value-of select="."/></hi>
     </xsl:template>
     
     <xsl:template match="coerp:pb">     
@@ -95,16 +96,24 @@
         
         <pb>
             <xsl:attribute name="n" select="$amount"/>
-            
-                <xsl:if test="preceding-sibling::*[1]/@n">
-                    <xsl:attribute name="xml:id" select="preceding-sibling::*[1]/@n/data(.)"></xsl:attribute>
-                
-                </xsl:if>
-            
+                <xsl:if test=" preceding-sibling::*[1]/@n">   
+                    <xsl:variable name="xmlid" select="string(preceding-sibling::*[1]/@n/data(.))"/>
+                    <xsl:attribute name="xml:id" select=" replace($xmlid,' ','-') "></xsl:attribute>
+                    <!--  replace(preceding-sibling::*[1]/@n,' ','-') " -->
+                </xsl:if>            
         </pb>
+        
+        <xsl:if test="./@pgn">
+            <fw type="pagenum">
+                <xsl:value-of select="./@pgn/data(.)"/>
+            </fw>
+        </xsl:if>
+        
     </xsl:template>
     
     
-    
+    <xsl:template match="//coerp:head">
+        <head><xsl:value-of select="text()"/></head>        
+    </xsl:template>
     
 </xsl:stylesheet>
