@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<text>
+    Thank you for your interest in COERP.
+    
+    Your registration data:
+    e-mail address: {$email}
+    
+    To finish your registration, please click here:
+    {$link}
+    {$config:signatur-plaintext}      
+</text>

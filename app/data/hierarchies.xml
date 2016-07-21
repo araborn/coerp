@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hierarchies>
+    <hierarchy name="First Order">
+        <description>God's word directed to the Christian community as represented in the Bible</description>
+        <genres>
+            <genre name="Bible" type="core"> <!-- SingleSuperGenre -->
+                <description/>
+                <tag>bible</tag>
+            </genre>
+<!--            <genre name="Apocrypha" type="minor">
+                <description/>
+                <tag>apocrypha</tag>
+            </genre>-->
+            <!--<genre name="Church Father" type="minor"> <!-\- selbst zu Testzwecken auf Typ minor gesetzt, Typ eigentlich noch genau zuzuordnen -\->
+                <description/>
+                <tag>church_fathers</tag>
+            </genre>-->
+        </genres>
+    </hierarchy>
+    <hierarchy name="Second Order">
+        <description>Christian believers addressing God in prayers</description>
+        <genres>
+            <genre name="Prayer" type="core"> <!-- name = private prayer ? -->
+                <description/>
+                <tag>prayers</tag>
+            </genre>
+            <genre name="Congregational Song" type="core">
+                <description/>
+                <tag>congregational_songs</tag>
+            </genre>
+<!--            <genre name="Liturgical Prayer" type="minor">
+                <description/>
+                <tag>liturgical_prayer</tag>
+            </genre>-->
+        </genres>
+    </hierarchy>
+    <hierarchy name="Third Order">
+        <description>communication forms between Christians: religious instruction and theological discussion</description>
+        <genres>
+            <genre name="Sermon" type="core">
+                <description/>
+                <tag>sermon</tag>
+            </genre>
+            <genre name="Treatise" type="core">
+                <description/>
+                <genre name="Doctrinal Treatise">
+                    <description/>
+                    <tag>treatise_doctrinal</tag>
+                </genre>
+                <genre name="Controversial Treatise">
+                    <description/>
+                    <tag>treatise_controversial</tag>
+                </genre>
+                <genre name="Exegetical Treatise">
+                    <description/>
+                    <tag>treatise_exegetical</tag>
+                </genre>
+                <genre name="Contemplative Treatise">
+                    <description/>
+                    <tag>treatise_contemplative</tag>
+                </genre>
+            </genre>
+            <genre name="Catechism" type="core">
+                <description/>
+                <genre name="Plain Catechism">
+                    <description/>
+                    <tag>catechism_plain</tag>
+                </genre>
+                <genre name="Mimetic Catechism">
+                    <description/>
+                    <tag>catechism</tag>
+                </genre>
+            </genre>
+            <genre name="Religious Biography" type="minor">
+                <description/>
+                <tag>biography</tag>
+            </genre>
+<!--            <genre name="Rule" type="minor">
+                <description/>
+                <tag>rule</tag>
+            </genre>-->
+<!--            <genre name="Penitential" type="minor"> <!-\- selbst zu Testzwecken auf Typ minor gesetzt, Typ eigentlich noch genau zuzuordnen -\->
+                <description/>
+                <tag>penitential</tag>
+            </genre>-->
+            <genre name="Preface" type="associated">
+                <genre name="Preface Catechism">
+                    <description/>
+                    <tag>preface_catechism</tag>
+                </genre>
+                <genre name="Preface Biography">
+                    <description/>
+                    <tag>preface_biography</tag>
+                </genre>
+                <genre name="Preface Treatise Controversial">
+                    <description/>
+                    <tag>preface_treatise_controversial</tag>
+                </genre>
+                <genre name="Preface Treatise Doctrinal">
+                    <description/>
+                    <tag>preface_treatise_doctrinal</tag>
+                </genre>
+            </genre>
+            <genre name="Pamphlet" type="associated">
+                <genre name="Letter Pamphlet">
+                    <description/>
+                    <tag>pamphlet_letter</tag>
+                </genre>
+                <genre name="Petition Pamphlet">
+                    <description/>
+                    <tag>pamphlet_petition</tag>
+                </genre>
+                <genre name="Treatise Pamphlet">
+                    <description/>
+                    <tag>pamphlet_treatise</tag>
+                </genre>
+                <genre name="Sermon Pamphlet">
+                    <description/>
+                    <tag>pamphlet_sermon</tag>
+                </genre>
+            </genre>
+<!--            <genre name="Letter" type="associated">
+                <genre name="Private Letter">
+                    <description/>
+                    <tag>letter_private</tag>
+                </genre>
+                <genre name="Pastoral Letter">
+                    <description/>
+                    <tag>letter_pastoral</tag>
+                </genre>
+                <genre name="Open Letter">
+                    <description/>
+                    <tag>letter_open</tag>
+                </genre>
+            </genre>-->
+<!--            <genre name="Newspaper Article" type="associated">
+                <description/>
+                <tag>newspaper_article</tag>
+            </genre>-->
+        </genres>
+    </hierarchy>
+</hierarchies>

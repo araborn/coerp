@@ -1,0 +1,4 @@
+rm new/*.xml
+cd ..
+rm build/data/texts/*.xml
+ 

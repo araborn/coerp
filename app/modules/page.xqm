@@ -15,134 +15,45 @@ declare namespace functx = "http://www.functx.com";
 
 
 declare function page:createNavigation ($node as node(), $model as map(*)) {
-let $list := doc("/db/apps/coerp_new/data/lists.xml")
-
-return <ul class="MainNavList"> {
-  for $Tab in $list/lists/list[@type="navigation"]/tab
-           return (<div class="MainNavContent ">
-           {if($Tab/term/data(.) = "Logo") then
-                    <a href="{$helpers:app-root}/index.html"> <li class="HeadTab"><img src="{$helpers:app-root}/resources/img/CoERP-Logo-4_neu.png" alt="Logo" id="logo"/></li></a>
-           else  if($Tab/term/data(.) = "Search") then 
-                <div id="searchTab">
-                <form  action="{$helpers:app-root}/search" method="post" id="SearchForm">
-                    <div id="searchDiv">
-                    
-                        <input id="search" type="search" name="term" placeholder="Search ..." />
-                        <div id="search_adDiv" class="searchButtons">Advanced Search</div>
-                       
-                    </div>
-                    {page:createAdvSearch()}
-                     </form>
-                    <div id="searchButton" class="searchButtons ">
-                        <i  class="glyphicon glyphicon-search " id="search_icon" ></i>
-                    </div>
-                    
-                </div>
-           else if ( $Tab/term/attribute() = "genres") then 
-                    (
-                                <div class="MainNavTab emboss"> <li class="HeadTab" id="Tab_{$Tab/term/data(.)}">{$Tab/term/data(.)}</li></div>,
-                           (
-                           <div class="SecNavTab"><ul id="List_genres" class="MainNavList"> {(
-                                 for $item in page:analyzedGenres() return
-                                 <div class="SubNavTab_div emboss {$item/@list/data(.)}" id="{$item/@type/data(.)}"><a href="{$helpers:app-root}/genre/{$item/@att/data(.)}"><li class="SubNavTab">{$item/@dat/data(.)}</li></a></div>
-                               )}
-                                </ul></div> )
-                     )         
-           else
-                     <div class="MainNavTab emboss"> <li class="HeadTab" id="Tab_{$Tab/term/data(.)}">{$Tab/term/data(.)}</li></div> 
-           }
-           {( 
-                if(exists($Tab/list/tab)) then <div class="SecNavTab PageBorders-All"> <ul class="{$Tab/list/attribute()}" id="List_{$Tab/term/attribute()}">{
-                for $SecTab in $Tab/list/tab return ( 
-                    if(exists($SecTab/list/tab)) then <div class="ListTab emboss"><li class="SubNavTab_List" id="Tab_{$SecTab/term/attribute()}">{$SecTab/term/data(.)}</li> {
-                        <div class="SubNavList_div PageBorders-All emboss"><ul class="{$SecTab/list/attribute()}" id="List_{$SecTab/term/attribute()}"> {
-                            for $ThiTab in $SecTab/list/tab  return
-                            if($SecTab/term/attribute() != "periods" and exists($ThiTab/term[@xml:id]) ) then
-                                if(page:checkData("genre",$ThiTab/term/attribute()) = fn:true() ) then 
-                                <div class="ThiNavTab_div emboss"><a href="{$helpers:app-root}/genre/{$ThiTab/term/attribute()}"><li class="ThiNavTab">{$ThiTab/term/data(.)}</li></a></div> 
-                                else <div class="EmptyTab inset"><li class="ThiNavTab">{$ThiTab/term/data(.)}</li></div>
-                         else if ($Tab/term/attribute() eq "periods") then
-                            if(page:checkDateRange($ThiTab/term/data(.)) != fn:false()) then 
-                                <div class="ThiNavTab_div"><a href="{$helpers:app-root}/periods/{$ThiTab/term/data(.)}"><li class="ThiNavTab">{$ThiTab/term/data(.)}</li></a></div> 
-                            else <div class="EmptyTab inset"><li class="ThiNavTab">{$ThiTab/term/data(.)}</li></div>
-                         else 
-                                <div class="ThiNavTab_div"><a href="{$helpers:app-root}/genre/{$ThiTab/term/attribute()}"><li class="ThiNavTab">{$ThiTab/term/data(.)}</li></a></div> 
-
-                    }</ul></div>}
-                                </div>
-                    else if(exists($SecTab/term[@type="line"])) then <div class="NavLine"></div>
-                    else if(exists($SecTab/term[@type="headline"])) then <div class="SubNavTab_head emboss"><li class="SubNavTab">{$SecTab/term/data(.)}</li>  </div>
-                     else if(exists($SecTab/term[@xml:id="individual_period"])) then 
-                            <div class=" emboss" id="div1_period"><li class="SubNavTab" id="individual_period">{$SecTab/term/data(.)}</li>
-                                <div class="emboss" id="div_period">
-                                    <ul class="SubNavList" id="ul_period">
-                                     <li class="" id="li_period">
-                                        <form action="{$helpers:app-root}/periods" method="post" id="PeriodForm">
-                                            <label for="per_from" class="per_label">From</label>
-                                            <input  type="number" name="per_from"  class="per_custom_input" id="per_from"  value="1150" min="1150" max="1699"/>
-                                            <label for="per_to" class="per_label">To</label>
-                                            <input  type="number" name="per_to" class="per_custom_input" id="per_to" value="1699" min="1150" max="1699"/>
+    let $list := doc("/db/apps/coerp_new/data/lists.xml")/lists/list
+    let $hierarchies := for $hit in $list/tab where $hit/term/@xml:id/data(.) eq "hierarchies" 
+                                        return page:createNavigationsItems($hit)
+    let $sets := for $hit in $list/tab where $hit/term/@xml:id/data(.) eq "sets" 
+                                        return page:createNavigationsItems($hit)
                                             
-                                        </form>
-                                        <div id="periodButton" class="searchButtons ">
-                                            <i  class="glyphicon glyphicon-search " id="search_icon" ></i>
-                                        </div>
-                                        <script>
-                                        $("#periodButton").click(function() {{
-                                            var date = $("#per_from").val()+"-"+$("#per_to").val();
-                                             window.location.href = "{$helpers:app-root}/periods/"+date;
-                                    }});</script>
-                                     </li>
-                                    </ul>
-                                </div>
-                            </div>
-                     else if(exists($SecTab/term[@type="link"])) then <div class="SubNavTab_div emboss"><a href="{$helpers:app-root}/page/{$SecTab/term[@xml:id]/attribute()[1]}.html"><li class="SubNavTab">{$SecTab/term/data(.)}</li></a></div>
-                     else if(exists($SecTab/term[@xml:id]) and $Tab/term/attribute()/data(.) != "denominations" and $Tab/term/attribute()/data(.) != "authors") then 
-                 (:    let $param := if($Tab/term[@xml:id] = "denominations") then "denom" else "genre" :)
-                        if(page:checkData( "genre",$SecTab/term/attribute()) = fn:true() ) then  
-                        <div class="SubNavTab_div emboss"><a href="{$helpers:app-root}/genre/{$SecTab/term/attribute()}"><li class="SubNavTab">{$SecTab/term/data(.)}</li></a>  </div>
-                        else <div class="EmptyTab inset"><li class="SubNavTab">{$SecTab/term/data(.)}</li></div>
-                     else if(exists($SecTab/term[@xml:id]) and $Tab/term/attribute()/data(.) = "denominations" ) then
-                                             <div class="SubNavTab_div emboss"><a href="{$helpers:app-root}/denom/{$SecTab/term/attribute()}"><li class="SubNavTab">{$SecTab/term/data(.)}</li></a>  </div>
-                    else if( exists($SecTab/term[@xml:id]) and $Tab/term/attribute()/data(.) = "authors" ) then (
-                                             <div class="ListTab emboss"><li class="SubNavTab_List" id="">{$SecTab/term/data(.)}</li><div class="SubNavList_div emboss">
-                                             <ul class="SubNavList">{
-                                      
-                                      
-                                      for $abc in helpers:lettersOfTheAlphabeHight()
-                                             return if( page:PrintAuthors(substring-after($SecTab/term/attribute(),"_"),$abc) != "" ) then 
-                                             <div class="ThiNavTab_div emboss authors ListTab"><li class="ThiNavTab_List BFont">{$abc}</li>
-                                             <div class="ThiNavList_div">
-                                                <ul class="ThiNavList">
-                                                {
-                                                    for $item in page:PrintAuthors(substring-after($SecTab/term/attribute(),"_"),$abc)
-                                           (:         let $CName := if(contains($item,",")) then concat(substring-before($item,","),"-",substring-after($item,", ")) else $item 
-                                                    let $name := page:DecodeAuthors($item):)
-                                                  return  <div class="QuadNavTab_div">
-                                                  <form action="{$helpers:app-root}/{substring-after($SecTab/term/attribute(),"_")}" method="post">
-                                                    <input type="hidden" value="{$item}" name="name"/><li>{$item}</li>
-                                                  </form></div>
-                                                }
-                                                </ul>
-                                             </div>
-                                             </div>
-                                             
-                                             else ()
-                                              (:   page:PrintAuthors(substring-after($SecTab/term/attribute(),"_"),$abc):)
-                                                }</ul>
-                                             </div></div>
-                        )
-                     
-                     else ()   
-                    )
-                    }</ul></div> 
-
-                    else ()
-           )}</div>)
-           }</ul>
-
+                                           
+    
+    return map {
+        "hierarchies" := $hierarchies,
+        "sets" := $sets
+    }
 };
 
+declare function page:createNavigationsItems($hit) {
+    for $tab in $hit/list/tab                                                
+                                            return   if(exists($tab/term)) then <item title="{$tab/term/data(.)}" type="{$tab/term/@type}">
+                                                    {
+                                                    for $item in $tab/list/tab                                                         
+                                                        return  <item title="{$item/term/data(.)}" type="{$item/term/@type}"/>
+                                                    }
+                                                </item>
+                                                else <item title="{$tab/term/data(.)}" type="{$tab/term/@type}"/>
+};
+declare function page:printNavigations($node as node(), $model as map(*), $get as xs:string) {    
+    page:CaseNavigation($model($get))
+        
+};
+
+declare function page:CaseNavigation($item) {
+switch($item/@type/data(.))
+        case "title" return <div class="title">{$item/@title/data(.)}</div>
+        case "headline" return <div class="headline">{$item/@title/data(.)}</div>
+        case "line" return <div class="line"/>
+        case "list" return (<div class="list">{$item/@title/data(.)}</div>,<ul>
+                                            {for $hit in $item/item return <li>{page:CaseNavigation($hit)}</li>}
+                                      </ul>)
+        default return $item
+};
 
 declare function page:checkData($param as xs:string, $type as xs:string) as xs:boolean {
       let $return :=   if (corpus:scanDB(collection("/db/apps/coerp_new/data/texts"),$param,$type) != "") then fn:true()

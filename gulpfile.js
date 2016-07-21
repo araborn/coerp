@@ -6,14 +6,15 @@ var	gulp = require('gulp'),
 	plumber = require('gulp-plumber'),
 	zip = require('gulp-zip'),
 	sourcemaps = require('gulp-sourcemaps'),
-	rename = require('gulp-rename');
+	rename = require('gulp-rename'),
+	replace = require('gulp-replace');
 
 var secrets = require('./exist-secrets.json')
 
 var sourceDir = 'app/'
-var dataDir = 'transformation/new/old/';
+var dataDir = 'transformation/new/';
 var buildDest = 'build/';
-var dataDest = buildDest + 'data';
+var dataDest = buildDest + 'data/texts';
 
 
 // ------ Copy (and compile) sources and assets to build dir ----------
@@ -27,6 +28,7 @@ gulp.task('copy', function() {
 
 gulp.task('data', function() {
 	return gulp.src(dataDir + '**/*.xml')
+	             .pipe(replace('xmlns:tei','xmlns'))
 		.pipe(newer(dataDest))
 		.pipe(gulp.dest(dataDest));
 });
@@ -100,9 +102,9 @@ gulp.task('deploy-remote', ['remote-upload', 'remote-post-install']);
 // ------ Update Index ----------
 
 gulp.task('upload-index-conf', function(){
-	return gulp.src('text_collection.xconf')
+	return gulp.src('collection/texts_collection.xconf')
 	                       .pipe(rename('collection.xconf'))
-			.pipe(localExist.dest({target: "/db/system/config/db/apps/coerp_new/data"}));
+			.pipe(localExist.dest({target: "/db/system/config/db/apps/coerp_new/data/texts"}));
 });
 
 gulp.task('update-index', ['upload-index-conf'], function() {
@@ -113,7 +115,7 @@ gulp.task('update-index', ['upload-index-conf'], function() {
 gulp.task('upload-index-conf-remote', function(){
 	return gulp.src('collection.xconf')
 	                        .pipe(rename('collection.xconf'))
-			.pipe(remoteExist.dest({target: "/db/system/config/db/apps/coerp_new/data"}));
+			.pipe(remoteExist.dest({target: "/db/system/config/db/apps/coerp_new/data/texts"}));
 });
 
 gulp.task('update-index-remote', ['upload-index-conf-remote'], function() {
@@ -151,9 +153,7 @@ gulp.task('watch-main', function() {
 
 gulp.task('watch-copy', function() {
 	gulp.watch([
-				sourceDir +  'js/**/*',
-				sourceDir + 'imgs/**/*',
-				sourceDir + '**/*.{xml,html,xql,xqm,xsl}'
+				sourceDir + '**/*'
 				], ['copy']);
 });
 

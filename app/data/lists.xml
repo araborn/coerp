@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lists>
+    <list type="navigation">
+        <tab>
+            <term>Logo</term>
+        </tab>
+        <tab>            
+            <term type="list" xml:id="hierarchies">Hierarchies</term>
+            <list type="MainNavList">                
+                <tab>
+                    <term type="headline">First Order</term>
+                </tab>
+                <tab>
+                    <term type="title" xml:id="bible">Bible</term>
+                </tab>
+                <tab>
+                    <term type="line"/>
+                </tab>
+                <tab>
+                    <term type="headline">Second Order</term>
+                </tab>
+                <tab>
+                    <term type="title" xml:id="prayer">Prayer</term>
+                </tab>
+                <tab>
+                    <term type="title" xml:id="congregational_song">Congregational Song</term>
+                </tab>
+                <tab>
+                    <term type="line"/>
+                </tab>
+                <tab>
+                    <term type="headline">Third Order</term>
+                </tab>
+                <tab>
+                    <term type="title" xml:id="sermon">Sermon</term>
+                </tab>
+                <tab>
+                    <term type="list" xml:id="treatise">Treatise</term>
+                    <list type="SubNavList">
+                        <tab>
+                            <term type="title" xml:id="treatise_doctrinal">Doctrinal Treatise</term>
+                        </tab>
+                        <tab>
+                            <term type="title" xml:id="treatise_controversial">Controversial Treatise</term>
+                        </tab>
+                        <tab>
+                            <term type="title" xml:id="treatise_exegetical">Exegetical Treatise</term>
+                        </tab>
+                        <tab>
+                            <term type="title" xml:id="treatise_contemplative">Contemplative Treatise</term>
+                        </tab>
+                    </list>
+                </tab>
+                <tab>
+                    <term type="list" xml:id="catechism">Catechism</term>
+                    <list type="SubNavList">
+                        <tab>
+                            <term type="title" xml:id="catechism_plain">Plain Catechism</term>
+                        </tab>
+                        <tab>
+                            <term type="title" xml:id="catechism_mimetic">Mimetic Catechism</term>
+                        </tab>
+                    </list>
+                </tab>
+                <tab>
+                    <term type="title" xml:id="biography">Religous Biography</term>
+                </tab>
+                <tab>
+                    <term type="list" xml:id="preface">Preface</term>
+                    <list type="SubNavList">
+                        <tab>
+                            <term type="title" xml:id="preface_catechism">Preface Catechism</term>
+                        </tab>
+                        <tab>
+                            <term type="title" xml:id="preface_biography">Preface Biography</term>
+                        </tab>
+                        <tab>
+                            <term type="title" xml:id="preface_treatise_controversial">Preface Treatise Controversial</term>
+                        </tab>
+                        <tab>
+                            <term type="title" xml:id="preface_treatise_doctrinal">Preface Treatise Doctrinal</term>
+                        </tab>
+                    </list>
+                </tab>
+                <tab>
+                    <term type="list" xml:id="pamphlet">Pamphlet</term>
+                    <list type="SubNavList">
+                        <tab>
+                            <term type="title" xml:id="pamphlet_letter">Letter Pamphlet</term>
+                        </tab>
+                        <tab>
+                            <term type="title" xml:id="pamphlet_petition">Petition Pamphlet</term>
+                        </tab>
+                        <tab>
+                            <term type="title" xml:id="pamphlet_treatise">Treatise Pamphlet</term>
+                        </tab>
+                        <tab>
+                            <term type="title" xml:id="pamphlet_sermon">Sermon Pamphlet</term>
+                        </tab>
+                    </list>
+                </tab>
+            </list>
+        </tab>
+        <tab>
+            <term xml:id="sets">Sets</term>
+            <list type="MainNavList">
+                <tab>
+                    <term type="headline">core</term>
+                </tab>
+                <tab>
+                    <term  type="title" xml:id="bible">Bible</term>
+                </tab>
+                <tab>
+                    <term type="title"  xml:id="prayer">Prayer</term>
+                </tab>
+                <tab>
+                    <term  type="title" xml:id="congregational_song">Congregational Song</term>
+                </tab>
+                <tab>
+                    <term  type="title" xml:id="sermon">Sermon</term>
+                </tab>
+                <tab>
+                    <term  type="list" xml:id="treatise">Treatise</term>
+                    <list type="SubNavList">
+                        <tab>
+                            <term  type="title" xml:id="treatise_doctrinal">Doctrinal Treatise</term>
+                        </tab>
+                        <tab>
+                            <term  type="title" xml:id="treatisecontroversial">Controversial Treatise</term>
+                        </tab>
+                        <tab>
+                            <term  type="title" xml:id="treatise_exegetical">Exegetical Treatise</term>
+                        </tab>
+                        <tab>
+                            <term  type="title" xml:id="treatise_contemplative">Contemplative Treatise</term>
+                        </tab>
+                    </list>
+                </tab>
+                <tab>
+                    <term  type="list" xml:id="catechism">Catechism</term>
+                    <list type="SubNavList">
+                        <tab>
+                            <term  type="title" xml:id="catechism_plain">Plain Catechism</term>
+                        </tab>
+                        <tab>
+                            <term  type="title" xml:id="catechism_mimetic">Mimetic Catechism</term>
+                        </tab>
+                    </list>
+                </tab>
+                <tab>
+                    <term type="line"/>
+                </tab>
+                <tab>
+                    <term type="headline">minor</term>
+                </tab>
+                <tab>
+                    <term  type="title" xml:id="biography">Religious Biography</term>
+                </tab>
+                <tab>
+                    <term type="line"/>
+                </tab>
+                <tab>
+                    <term type="headline">associated</term>
+                </tab>
+                <tab>
+                    <term  type="list" xml:id="preface">Preface</term>
+                    <list type="SubNavList">
+                        <tab>
+                            <term  type="title" xml:id="preface_catechism">Preface Catechism</term>
+                        </tab>
+                        <tab>
+                            <term type="title"  xml:id="preface_biography">Preface Biography</term>
+                        </tab>
+                        <tab>
+                            <term  type="title" xml:id="preface_treatise_controversial">Preface Treatise Controversial</term>
+                        </tab>
+                        <tab>
+                            <term  type="title" xml:id="preface_treatise_doctrinal">Preface Treatise Doctrinal</term>
+                        </tab>
+                    </list>
+                </tab>
+                <tab>
+                    <term  type="list" xml:id="pamphlet">Pamphlet</term>
+                    <list type="SubNavList">
+                        <tab>
+                            <term  type="title" xml:id="pamphlet_letter">Letter Pamphlet</term>
+                        </tab>
+                        <tab>
+                            <term  type="title" xml:id="pamphlet_petition">Petition Pamphlet</term>
+                        </tab>
+                        <tab>
+                            <term  type="title" xml:id="pamphlet_treatise">Treatise Pamphlet</term>
+                        </tab>
+                        <tab>
+                            <term  type="title" xml:id="pamphlet_sermon">Sermon Pamphlet</term>
+                        </tab>
+                    </list>
+                </tab>
+            </list>
+        </tab>
+        <tab>
+            <term xml:id="genres">Genres</term> <!-- Wird automatisch befüllt -->
+        </tab>
+        <tab>
+            <term xml:id="periods">Periods</term>
+            <list type="MainNavList">
+                <tab>
+                    <term>Middle English</term>
+                    <list type="SubNavList">
+                        <tab>
+                            <term>1150-1199</term>
+                        </tab>
+                        <tab>
+                            <term>1200-1249</term>
+                        </tab>
+                        <tab>
+                            <term>1250-1299</term>
+                        </tab>
+                        <tab>
+                            <term>1300-1349</term>
+                        </tab>
+                        <tab>
+                            <term>1350-1399</term>
+                        </tab>
+                        <tab>
+                            <term>1400-1499</term>
+                        </tab>
+                        <tab>
+                            <term>1450-1499</term>
+                        </tab>
+                    </list>
+                </tab>
+                <tab>
+                    <term xml:id="early_modern_english">Early Modern English</term>
+                    <list type="SubNavList">
+                        <tab>
+                            <term>1500-1549</term>
+                        </tab>
+                        <tab>
+                            <term>1550-1599</term>
+                        </tab>
+                        <tab>
+                            <term>1600-1649</term>
+                        </tab>
+                        <tab>
+                            <term>1650-1699</term>
+                        </tab>
+                    </list>
+                </tab>
+                <tab>
+                    <term xml:id="late_modern_english">Late Modern English</term>
+                </tab>
+                <tab>
+                    <term xml:id="individual_period">Individual Period</term>
+                </tab>
+            </list>
+        </tab>
+        <tab>
+            <term xml:id="denominations">Denominations</term>
+            <list type="MainNavList">
+                <tab>
+                    <term xml:id="Anglican">Anglican</term>
+                </tab>
+                <tab>
+                    <term xml:id="Catholic">Catholic</term>
+                </tab>
+                <tab>
+                    <term xml:id="Nonconformist">Nonconformist</term>
+                </tab>
+                <tab>
+                    <term xml:id="Unknown">Unknown</term>
+                </tab>
+            </list>
+        </tab>
+        <tab>
+            <term xml:id="authors">Authors</term>  <!-- Wird automatisch befüllt -->
+            <list type="MainNavList">
+                <tab>
+                    <term xml:id="auth_author">Authors</term>
+                </tab>
+                <tab>
+                    <term xml:id="auth_translator">Translators</term>
+                </tab>
+            </list>
+        </tab>        
+        <tab>
+            <term>Search</term>
+        </tab>
+        <tab>
+            <term>Login</term>
+        </tab>
+    </list>
+    <list type="maingenres">
+        <tab>
+            <term xml:id="treatise">Treatise</term>
+        </tab>
+        <tab>
+            <term xml:id="bible">Bible</term>
+        </tab>
+        <tab>
+            <term xml:id="prayer">Prayer</term>
+        </tab>
+        <tab>
+            <term xml:id="congregational_song">Congregational Song</term>
+        </tab>
+        <tab>
+            <term xml:id="sermon">Sermon</term>
+        </tab>
+        <tab>
+            <term xml:id="catechism">Catechism</term>
+        </tab>
+        <tab>
+            <term xml:id="religious_biography">Religious Biography</term>
+        </tab>
+        <tab>
+            <term xml:id="preface">Preface</term>
+        </tab>
+        <tab>
+            <term xml:id="pamphlet">Pamphlet</term>
+        </tab>
+    </list>
+</lists>

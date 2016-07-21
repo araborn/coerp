@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<periods>
+    <period>
+        <name>Middle English</name>
+        <description/>
+        <duration>
+            <from>1150</from>
+            <to>1499</to>
+        </duration>
+    </period>
+    <period>
+        <name>Early Modern English</name>
+        <description/>
+        <duration>
+            <from>1500</from>
+            <to>1699</to>
+        </duration>
+    </period>
+<!--    <period>
+        <name>Late Modern English</name>
+        <description/>
+        <duration>
+            <from>1700</from>
+            <to>1799</to>
+        </duration>
+    </period>-->
+</periods>

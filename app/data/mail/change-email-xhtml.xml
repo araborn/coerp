@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<div xmlns="http://www.w3.org/1999/xhtml">
+    <p>You entered a new e-mail address for your COERP account.</p>
+    <table border="0" cellspadding="0" cellspacing="0">
+        <tr>
+            <td>e-mail address:&#160;</td>
+            <td>{$email cast as xs:string}</td>
+        </tr>
+        <tr>
+            <td>username:&#160;</td>
+            <td>{$name}</td>
+        </tr>
+    </table>
+    <p>
+        Please confirm the new address by clicking here:<br/>
+        <a href="{$link}">{$link}</a>
+    </p>
+    {$config:signatur-xhtml}
+</div>

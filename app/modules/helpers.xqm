@@ -121,19 +121,19 @@ declare function helpers:invisibleWrapper($node as node(), $model as map(*)) {
  : Elemente des Models direkt ansteuern und zurückgeben.
  : Praktische z.B. wenn diese nur aus einem String bestehen, der zurückgegeben werden soll.
  :)
- declare function helpers:get($node as node(), $model as map(*), $key as xs:string) {
-    $model($key)
+ declare function helpers:getValue($node as node(), $model as map(*), $get as xs:string) {
+    $model($get)
 };
 
 (:~
  : Elemente des Models direkt ansteuern und im aufrufenden Element zurückgeben.
  : Praktische z.B. wenn diese nur aus einem String bestehen, der zurückgegeben werden soll.
  :)
-declare 
+(:declare 
     %templates:wrap
 function helpers:getWrapped($node as node(), $model as map(*), $key as xs:string) {
     helpers:get($node, $model, $key)
-};
+};:)
 
 
 

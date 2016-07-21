@@ -5,7 +5,11 @@
     xmlns:tei="http://www.tei-c.org/ns/1.0"
     exclude-result-prefixes="xs coerp tei"
     version="2.0">
-    <xsl:output method="xml" encoding="UTF-8" version="1.0"  indent="yes"/>
+    <xsl:output method="xml" encoding="UTF-8" version="1.0"  indent="yes" use-character-maps="cm1"/>
+    
+    <xsl:character-map name="cm1">
+        <xsl:output-character character="&#182;" string="&amp;#182;"/>
+    </xsl:character-map>
     
     <xsl:template match="//coerp:sampleN"></xsl:template>
     
@@ -93,27 +97,57 @@
     
     <xsl:template match="coerp:pb">     
         <xsl:variable name="amount" select=" count(preceding::coerp:pb)+1"></xsl:variable>
-        
+        <xsl:choose>
+            <xsl:when test="./@pgn and  preceding-sibling::*[1]/@n">
+                <fw type="pageNum">
+                        <xsl:attribute name="n" select="./@pgn/data(.)"/>                
+                        <xsl:variable name="xmlid" select="string(preceding-sibling::*[1]/@n/data(.))"/>                    
+                        <xsl:value-of select="$xmlid"/>                          
+                        <!--  replace(preceding-sibling::*[1]/@n,' ','-') " -->
+                </fw>
+            </xsl:when>
+            <xsl:when test="./@pgn">
+                <fw type="pageNum">
+                        <xsl:attribute name="n" select="./@pgn/data(.)"/>                
+                </fw>
+            </xsl:when>
+            <xsl:when test="preceding-sibling::*[1]/@n">
+                <fw type="pageNum">
+                <xsl:variable name="xmlid" select="string(preceding-sibling::*[1]/@n/data(.))"/>                    
+                <xsl:value-of select="$xmlid"/>
+                </fw>
+            </xsl:when>   
+            <xsl:otherwise></xsl:otherwise>
+        </xsl:choose>
         <pb>
-            <xsl:attribute name="n" select="$amount"/>
-                <xsl:if test=" preceding-sibling::*[1]/@n">   
-                    <xsl:variable name="xmlid" select="string(preceding-sibling::*[1]/@n/data(.))"/>
-                    <xsl:attribute name="xml:id" select=" replace($xmlid,' ','-') "></xsl:attribute>
-                    <!--  replace(preceding-sibling::*[1]/@n,' ','-') " -->
-                </xsl:if>            
+            <xsl:attribute name="n" select="$amount"/>                       
         </pb>
         
-        <xsl:if test="./@pgn">
-            <fw type="pagenum">
-                <xsl:value-of select="./@pgn/data(.)"/>
-            </fw>
-        </xsl:if>
+        
+        <!--
+        <fw type="pageNum">
+            <xsl:if test="./@pgn">                
+                    <xsl:attribute name="n" select="./@pgn/data(.)"/>                
+            </xsl:if>            
+            <xsl:if test=" preceding-sibling::*[1]/@n">   
+                <xsl:variable name="xmlid" select="string(preceding-sibling::*[1]/@n/data(.))"/>                    
+                <xsl:value-of select="$xmlid"/>                          
+            </xsl:if>     
+        </fw>
+        -->
         
     </xsl:template>
     
     
     <xsl:template match="//coerp:head">
         <head><xsl:value-of select="text()"/></head>        
+    </xsl:template>
+    
+    <xsl:template match="//coerp:superscr">
+        <opener><xsl:value-of select="text()"/></opener>
+    </xsl:template>
+    <xsl:template match="//coerp:subscr">
+        <closer><xsl:value-of select="text()"/></closer>
     </xsl:template>
     
 </xsl:stylesheet>

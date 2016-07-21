@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<text>
+    You entered a new e-mail address for your COERP account.
+    
+    e-mail address: {$email}
+    username: {$name}
+    
+    Please confirm the new addresss by clicking here:
+    {$link}
+    
+    {$config:signatur-plaintext}
+</text>

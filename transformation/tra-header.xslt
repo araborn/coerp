@@ -4,14 +4,14 @@
     xmlns:tei="http://www.tei-c.org/ns/1.0"
     exclude-result-prefixes="xs coerp tei"
     version="2.0">
-    <xsl:output omit-xml-declaration="no" indent="no"/>
+    <xsl:output omit-xml-declaration="no" indent="yes"/>
     
     <xsl:template name="header" match="//coerp:coerp_header">
         <teiHeader>
             <fileDesc>
                 <titleStmt>
                     <title><xsl:value-of select=".//coerp:short_title/data(.)"/></title>
-                    <author><xsl:value-of select=".//coerp:author/data(.)"/></author>
+                   
                     <!-- Einbindung des Titles und des Autors-->
                     
                     <respStmt>
@@ -41,6 +41,9 @@
                 <sourceDesc>
                     <bibl>
                         <author><xsl:value-of select=".//coerp:author/data(.)"/></author>
+                        <xsl:if test=".//coerp:translator/data(.)">
+                            <author role="translator"><xsl:value-of select=".//coerp:translator/data(.)"/></author>
+                        </xsl:if>
                         <!-- Verknüpfung mit Kommentar Änderug muss noch hergestellt werden-->
                         <title type="main"><xsl:value-of select=".//coerp:title/data(.)"/></title>
                         <title type="short"><xsl:value-of select=".//coerp:short_title/data(.)"/></title>
