@@ -5,7 +5,7 @@
     exclude-result-prefixes="xs coerp tei"
     version="2.0">
     <xsl:output omit-xml-declaration="no" indent="yes"/>
-    
+    <xsl:variable name="authors" select="document(iri-to-uri('../transformation/authors.xml'))"/>
     <xsl:template name="header" match="//coerp:coerp_header">
         <teiHeader>
             <fileDesc>
@@ -40,9 +40,39 @@
                 </publicationStmt>
                 <sourceDesc>
                     <bibl>
-                        <author><xsl:value-of select=".//coerp:author/data(.)"/></author>
+                        <author role="author">
+                            <xsl:variable name="orig_author" select=".//coerp:author/data(.)"/>
+                            <xsl:for-each select="$authors//term" >
+                                <xsl:if test="./orig/data(.) eq $orig_author">
+                                   <xsl:attribute name="key"><xsl:value-of select="./author/@key/data(.)"/></xsl:attribute>
+                                    <xsl:choose>
+                                        <xsl:when test="empty(./author/text()) = false()">
+                                            <xsl:value-of select="./author/data(.)"/>
+                                        </xsl:when>
+                                        <xsl:otherwise>
+                                            <xsl:value-of select="./orig/data(.)"/>
+                                        </xsl:otherwise>
+                                    </xsl:choose>                                  
+                                </xsl:if>
+                            </xsl:for-each>                              
+                        </author>
                         <xsl:if test=".//coerp:translator/data(.)">
-                            <author role="translator"><xsl:value-of select=".//coerp:translator/data(.)"/></author>
+                            <author role="translator">
+                                <xsl:variable name="orig_translator" select=".//coerp:translator/data(.)"/>
+                                <xsl:for-each select="$authors//term" >
+                                    <xsl:if test="./orig/data(.) eq $orig_translator">
+                                        <xsl:attribute name="key"><xsl:value-of select="./author/@key/data(.)"/></xsl:attribute>
+                                        <xsl:choose>
+                                            <xsl:when test="empty(./author/text()) = false()">
+                                                <xsl:value-of select="./author/data(.)"/>
+                                            </xsl:when>
+                                            <xsl:otherwise>
+                                                <xsl:value-of select="./orig/data(.)"/>
+                                            </xsl:otherwise>
+                                        </xsl:choose>                                  
+                                    </xsl:if>
+                                </xsl:for-each>   
+                            </author>
                         </xsl:if>
                         <!-- Verknüpfung mit Kommentar Änderug muss noch hergestellt werden-->
                         <title type="main"><xsl:value-of select=".//coerp:title/data(.)"/></title>

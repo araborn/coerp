@@ -205,53 +205,53 @@
             <term xml:id="periods">Periods</term>
             <list type="MainNavList">
                 <tab>
-                    <term>Middle English</term>
+                    <term type="list" xml:id="middle_english">Middle English</term>
                     <list type="SubNavList">
                         <tab>
-                            <term>1150-1199</term>
+                            <term type="period" from="1150" to="1199">1150-1199</term>
                         </tab>
                         <tab>
-                            <term>1200-1249</term>
+                            <term type="period" from="1200" to="1249">1200-1249</term>
                         </tab>
                         <tab>
-                            <term>1250-1299</term>
+                            <term type="period" from="1250" to="1299">1250-1299</term>
                         </tab>
                         <tab>
-                            <term>1300-1349</term>
+                            <term type="period" from="1300" to="1349">1300-1349</term>
                         </tab>
                         <tab>
-                            <term>1350-1399</term>
+                            <term type="period" from="1350" to="1399">1350-1399</term>
                         </tab>
                         <tab>
-                            <term>1400-1499</term>
+                            <term type="period" from="1400" to="1499">1400-1499</term>
                         </tab>
                         <tab>
-                            <term>1450-1499</term>
+                            <term type="period" from="1450" to="1499">1450-1499</term>
                         </tab>
                     </list>
                 </tab>
                 <tab>
-                    <term xml:id="early_modern_english">Early Modern English</term>
+                    <term type="list" xml:id="early_modern_english">Early Modern English</term>
                     <list type="SubNavList">
                         <tab>
-                            <term>1500-1549</term>
+                            <term type="period" from="1500" to="1549">1500-1549</term>
                         </tab>
                         <tab>
-                            <term>1550-1599</term>
+                            <term type="period" from="1550" to="1599">1550-1599</term>
                         </tab>
                         <tab>
-                            <term>1600-1649</term>
+                            <term type="period" from="1600" to="1649">1600-1649</term>
                         </tab>
                         <tab>
-                            <term>1650-1699</term>
+                            <term type="period" from="1650" to="1699">1650-1699</term>
                         </tab>
                     </list>
                 </tab>
                 <tab>
-                    <term xml:id="late_modern_english">Late Modern English</term>
+                    <term type="list" xml:id="late_modern_english">Late Modern English</term>
                 </tab>
                 <tab>
-                    <term xml:id="individual_period">Individual Period</term>
+                    <term type="ref" xml:id="individual_period">Individual Period</term>
                 </tab>
             </list>
         </tab>
@@ -259,16 +259,16 @@
             <term xml:id="denominations">Denominations</term>
             <list type="MainNavList">
                 <tab>
-                    <term xml:id="Anglican">Anglican</term>
+                    <term type="title" xml:id="Anglican">Anglican</term>
                 </tab>
                 <tab>
-                    <term xml:id="Catholic">Catholic</term>
+                    <term type="title" xml:id="Catholic">Catholic</term>
                 </tab>
                 <tab>
-                    <term xml:id="Nonconformist">Nonconformist</term>
+                    <term type="title" xml:id="Nonconformist">Nonconformist</term>
                 </tab>
                 <tab>
-                    <term xml:id="Unknown">Unknown</term>
+                    <term type="title" xml:id="Unknown">Unknown</term>
                 </tab>
             </list>
         </tab>

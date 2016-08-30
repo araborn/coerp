@@ -9,7 +9,7 @@
     <xsl:import href="tra-texElem.xslt"/>
     <xsl:output method="xml" encoding="UTF-8" version="1.0" omit-xml-declaration="no" indent="yes"/>
     <!--Identity template, kopiert Elemente und Attribute, wo keine spezifischere Regel folgt -->
-    
+
     <xsl:template match="/">
         <xsl:apply-templates select="coerp:coerp"/>
     </xsl:template>

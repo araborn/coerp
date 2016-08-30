@@ -13,8 +13,9 @@
         <range>
             <create qname="tei:TEI">
                 <field name="author" match="tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:bibl/tei:author" type="xs:string"/>
+                <field name="person_key" match="tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:bibl/tei:author/@key" type="xs:string"/>
                 <field name="role" match="tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:bibl/tei:author/@role" type="xs:string"/>
-                <field name="date" match="tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:bibl/tei:date" type="xs:string"/>
+                <field name="date" match="tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:bibl/tei:date/@when" type="xs:string"/>                
                 <field name="genre" match="tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:bibl/tei:note" type="xs:string"/>           
                 <field name="note-type" match="tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:bibl/tei:note/@type" type="xs:string"/>
                 <field name="genre-subtype" match="tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:bibl/tei:note/@subtype" type="xs:string"/>

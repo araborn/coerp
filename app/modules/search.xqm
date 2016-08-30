@@ -35,7 +35,14 @@ declare function search:FindDocument($text as xs:string) {
 
 };
 
-
+declare function search:range-MultiStats($db as node()*, $name as xs:string*, $case as xs:string*,$content as xs:string*) as node()* {
+    let $name := concat('("',string-join($name,'","'),'")')
+    let $case := concat('("',string-join($case,'","'),'")')
+    let $content := concat('"',string-join($content,'","'),'"')
+    let $search-funk := concat('//range:field(',$name,',',$case,',',$content,')')
+    let $search-build := concat("$db",$search-funk)
+    return util:eval($search-build)
+};
 
 declare function search:RangeSearch_simple($db as node()*,$param as xs:string, $term as xs:string) {
         let $search_terms := concat('("',$param,'"),"',$term,'"')
@@ -45,7 +52,16 @@ declare function search:RangeSearch_simple($db as node()*,$param as xs:string, $
 
 };
 
+declare function search:range-date($db as node()*,$from as xs:string, $to as xs:string,$param as xs:string) {
+    for $date in (xs:integer($from) to xs:integer($to)) return search:range-date-func($db,xs:string($date),$param)
+};
 
+declare function search:range-date-func($db as node()*,$date as xs:string,$param as xs:string) {
+        let $search_terms := concat('("',$param,'"),"',$date,'"')
+        let $search_funk := concat("//range:field-eq(",$search_terms,")")
+        let $search_build := concat("$db",$search_funk)
+        return util:eval($search_build)
+};
 
 (: ########### SEARCH SEITEN AUFBAU ############# :)
 

@@ -39,21 +39,57 @@
     </head>
     <body id="body">
         <div id="side">
-            <div id="navigation">
-                <div>
-                    <wrap data-template="page:createNavigation">
+            <div id="navigation">                
+                <wrap data-template="page:createNavigation">
+                    <div class="NAV_MAIN_tab">
+                    <span class="NAV_HEADER_tab">Hierachies</span>
+                    <div>                        
                         <wrap data-template="helpers:invisibleEach" data-template-from="hierarchies" data-template-to="hit">
                             <i data-template="page:printNavigations" data-template-get="hit"/>                        
-                        </wrap>
-                    </wrap>
+                        </wrap>                    
+                    </div>
                 </div>
-                <div>
-                    <wrap data-template="page:createNavigation">
+                <div class="NAV_MAIN_tab">
+                    <span class="NAV_HEADER_tab">Sets</span>
+                    <div>                        
                         <wrap data-template="helpers:invisibleEach" data-template-from="sets" data-template-to="hit">
                             <i data-template="page:printNavigations" data-template-get="hit"/>                        
-                        </wrap>
-                    </wrap>
+                        </wrap>                    
+                    </div>
                 </div>
+                <div class="NAV_MAIN_tab">
+                    <span class="NAV_HEADER_tab">Genres</span>             
+                    <div>                        
+                        <wrap data-template="helpers:invisibleEach" data-template-from="genres" data-template-to="hit">
+                            <i data-template="page:printNavigations" data-template-get="hit"/>                        
+                        </wrap>                    
+                    </div>
+                </div>
+                    <div class="NAV_MAIN_tab">
+                        <span class="NAV_HEADER_tab">Periods</span>             
+                        <div>                        
+                            <wrap data-template="helpers:invisibleEach" data-template-from="periods" data-template-to="hit">
+                                <i data-template="page:printNavigations" data-template-get="hit"/>                        
+                            </wrap>                       
+                        </div>
+                    </div>
+                    <div class="NAV_MAIN_tab">
+                        <span class="NAV_HEADER_tab">Denominations</span>             
+                        <div>                        
+                            <wrap data-template="helpers:invisibleEach" data-template-from="denom" data-template-to="hit">
+                                <i data-template="page:printNavigations" data-template-get="hit"/>                        
+                            </wrap>                       
+                        </div>
+                    </div>
+                    <div class="NAV_MAIN_tab">
+                        <span class="NAV_HEADER_tab">Authors</span>             
+                        <div>                        
+                            <wrap data-template="helpers:invisibleEach" data-template-from="authors" data-template-to="hit">
+                                <i data-template="page:printNavigations" data-template-get="hit"/>                        
+                            </wrap>                       
+                        </div>
+                    </div>
+                </wrap>
             </div>
             <div id="content" class="container"/>
             <div class="whiteBorder ScrollToTop"><i class="glyphicon glyphicon-triangle-top"/></div>
