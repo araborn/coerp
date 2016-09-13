@@ -107,12 +107,12 @@ else if (ends-with($exist:resource, "index.html")) then
      let $ordertype := if (request:get-parameter("ordertype",'') != "") then request:get-parameter("ordertype",'') else "alpha"
      return
       (
-    session:set-attribute("param","genre"),
+    session:set-attribute("param","genre-subtype"),
     session:set-attribute("term",$exist:resource),
     session:set-attribute("ordertype",$ordertype),
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
         <forward url="{$exist:controller}/page/list.html" />
-        <set-attribute name="param" value="genre"/>
+        <set-attribute name="param" value="genre-subtype"/>
         <set-attribute name="term" value="{$exist:resource}"/>
         <set-attribute name="ordertype" value="{$ordertype}"/>
         <view>
@@ -143,7 +143,7 @@ else if (ends-with($exist:resource, "index.html")) then
     let $ordertype := if (request:get-parameter("ordertype",'') != "") then request:get-parameter("ordertype",'') else "crono"
      return
       (
-    session:set-attribute("param","periods"),
+    session:set-attribute("param","date"),
     session:set-attribute("term",$exist:resource),
     session:set-attribute("ordertype",$ordertype),
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
@@ -178,6 +178,19 @@ else if (ends-with($exist:resource, "index.html")) then
     )
     else if (contains($exist:path, "text")) then
     (
+        let $xml := $exist:resource
+        return (
+        session:set-attribute("xml",$xml),
+        <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
+        <forward url="{$exist:controller}/page/texts.html" />
+        <set-attribute name="xml" value="{$xml}"/>
+        <view>
+            <forward url="{$exist:controller}/modules/view.xql">
+            </forward>
+        </view>
+    </dispatch> 
+        )
+    (:
         let $text := if($exist:resource != "xml") then search:FindDocument($exist:resource) else search:FindDocument(substring-after( substring-before($exist:path,"/xml"),"text/"))
         return if($exist:resource = "xml") then 
         
@@ -195,7 +208,7 @@ else if (ends-with($exist:resource, "index.html")) then
             <set-attribute name="textView" value="true" />
             </forward>
         </view>
-    </dispatch> )
+    </dispatch> ):)
     )
     else if(contains($exist:resource,".html") and not(contains($exist:resource,"index"))) then 
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">

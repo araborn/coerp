@@ -19,17 +19,18 @@ declare namespace tei="http://www.tei-c.org/ns/1.0";
 declare function page:createNavigation ($node as node(), $model as map(*)) {
     let $list := doc("/db/apps/coerp_new/data/lists.xml")/lists/list
     let $hierarchies := for $hit in $list/tab where $hit/term/@xml:id/data(.) eq "hierarchies" 
-                                        return page:createNavigationsItems($hit)
+                                        return page:createNavigationsItems($hit,"genre-subtype")
     let $sets := for $hit in $list/tab where $hit/term/@xml:id/data(.) eq "sets" 
-                                        return page:createNavigationsItems($hit)
+                                        return page:createNavigationsItems($hit,"genre-subtype")
      
      let $genres := page:findGenres()
      
      let $periods := for $hit in $list/tab where $hit/term/@xml:id/data(.) eq "periods" 
-                                        return page:createNavigationsItems($hit)
+                                        return page:createNavigationsItems($hit,"periods")
                                            
      let $denom := for $hit in $list/tab where $hit/term/@xml:id/data(.) eq "denominations" 
-                                        return page:createNavigationsItems($hit)
+                                        return page:createNavigationsItems($hit,"denom")
+                                        
      let $authors := page:findAuthors()
                                         
     return map {
@@ -45,20 +46,27 @@ declare function page:createNavigation ($node as node(), $model as map(*)) {
 
 
 
-declare function page:createNavigationsItems($hit) {
+declare function page:createNavigationsItems($hit,$ref as xs:string) {
     for $tab in $hit/list/tab                                                
-                                            return   if(exists($tab/term)) then <item title="{$tab/term/data(.)}" type="{$tab/term/@type}">
+                                            return   if(exists($tab/list)) then 
+                                            <item title="{$tab/term/data(.)}" type="{$tab/term/@type}" id="{$tab/term/@xml:id}">
                                                     {
                                                     for $item in $tab/list/tab                                                         
                                                         return  if($item/term/@type eq "period") then 
                                                                         <item title="{$item/term/data(.)}" type="{$item/term/@type}" 
                                                                                 from="{$item/term/@from}" to="{$item/term/@to}" 
                                                                                 check="{page:checkPeriods($item/term/@from,$item/term/@to)}"
+                                                                                id="{$item/term/data(.)}"
+                                                                                ref="{$ref}"
                                                                             />
-                                                        else <item title="{$item/term/data(.)}" type="{$item/term/@type}"/>
+                                                        else <item title="{$item/term/data(.)}" 
+                                                                            type="{$item/term/@type}" 
+                                                                            id="{$item/term/@xml:id}" 
+                                                                            ref="{$ref}"
+                                                                            check="{page:checkEntry($ref,$item/term/@xml:id)}"/>
                                                     }
                                                 </item>
-                                                else <item title="{$tab/term/data(.)}" type="{$tab/term/@type}"/>
+                                                else <item title="{$tab/term/data(.)}" type="{$tab/term/@type}" id="{$tab/term/@xml:id}" ref="{$ref}"/>
 };
 declare function page:printNavigations($node as node(), $model as map(*), $get as xs:string) {    
     page:CaseNavigation($model($get))
@@ -67,19 +75,34 @@ declare function page:printNavigations($node as node(), $model as map(*), $get a
 
 declare function page:CaseNavigation($item) {
 switch($item/@type/data(.))
-        case "title" return <div class="NAV_title">{$item/@title/data(.)}</div>
+        case "title" return (:<div class="NAV_title"><a href="{$helpers:app-root}/{$item/@ref/data(.)}/{$item/@id/data(.)}">{$item/@title/data(.)}</a></div>:)
+        (
+                                        if($item/@check eq "true") then <div class="NAV_title" id="{$item/@ref/data(.)}">
+                                                <a href="{$helpers:app-root}/{$item/@ref/data(.)}/{$item/@id/data(.)}">{$item/@title/data(.)}</a>
+                                            </div>
+                                        else <div class="NAV_none" id="{$item/@ref/data(.)}">{$item/@title/data(.)}</div>
+                                        )
+        
         case "headline" return <div class="NAV_headline">{$item/@title/data(.)}</div>
         case "line" return <div class="NAV_line"/>
-        case "list" return (<div class="NAV_LIST_tab">{$item/@title/data(.)}</div>,<ul class="NAV_LIST_list">
-                                            {for $hit in $item/item return <li>{page:CaseNavigation($hit)}</li>}
-                                      </ul>)
-        case "genre_list" return <div class="NAV_title" id="{$item/@ref/data(.)}">{$item/@title/data(.)}</div>
-        case "author_list" return (<div class="NAV_LIST_tab">{$item/@title/data(.)}</div>,<ul class="NAV_LIST_list">
-                                            {for $hit in $item/item return <li>{page:CaseNavigation($hit)}</li>}
-                                      </ul>)
+        case "list" return (<div class="NAV_LIST_tab">{$item/@title/data(.)}</div>,
+                                        <div class="NAV_LIST_list {$item/@id/data(.)} PageBorders-none-left">
+                                            <ul>
+                                                {for $hit in $item/item return <li>{page:CaseNavigation($hit)}</li>}
+                                            </ul>
+                                      </div>)
+        case "genre_list" return <div class="NAV_title" id="{$item/@id/data(.)}"><a href="{$helpers:app-root}/{$item/@ref/data(.)}/{$item/@id/data(.)}">{$item/@title/data(.)}</a></div>
+        case "author_list" return (<div class="NAV_LIST_SEC_tab PageBorders-none-left">{$item/@title/data(.)}</div>,
+                                        <div class="NAV_LIST_SEC_list PageBorders-none-left">
+                                            <ul>
+                                                {for $hit in $item/item return <li>{page:CaseNavigation($hit)}</li>}
+                                            </ul>
+                                      </div>)
         case "period" return (
-                                        if($item/@check eq "true") then <div class="NAV_title" id="{$item/@ref/data(.)}">{$item/@title/data(.)}</div>
-                                        else <div class="NAV_lost" id="{$item/@ref/data(.)}">{$item/@title/data(.)}</div>
+                                        if($item/@check eq "true") then <div class="NAV_title" id="{$item/@ref/data(.)}">
+                                                <a href="{$helpers:app-root}/{$item/@ref/data(.)}/{$item/@id/data(.)}">{$item/@title/data(.)}</a>
+                                            </div>
+                                        else <div class="NAV_none" id="{$item/@ref/data(.)}">{$item/@title/data(.)}</div>
                                         )
         default return $item
 };
@@ -94,7 +117,7 @@ declare function page:findGenres(){
     let $simple := for $hit in $simple 
                                 let $title := for $genre in $genres where $hit eq $genre/@ref return $genre/@title/data(.)
                                 let $title := distinct-values($title)
-                                return <item ref="{$hit}" type="genre_list" title="{$title}"/>
+                                return <item id="{$hit}" type="genre_list" title="{$title}" ref="genre"/>
    
     return $simple
 };
@@ -102,6 +125,11 @@ declare function page:findGenres(){
  declare function page:checkPeriods($from as xs:string, $to as xs:string) {
         if(count(search:range-date(collection("/db/apps/coerp_new/data/texts"),$from,$to,"date")) > 1) then "true"
         else "false"      
+ };
+ 
+ declare function page:checkEntry($param,$term) {
+    if(count(corpus:scanDB(collection("/db/apps/coerp_new/data/texts"),$param,$term) ) > 1) then "true"
+        else "false"
  };
  
  declare function page:findAuthors() {
@@ -121,14 +149,14 @@ declare function page:findGenres(){
                                 let $title := distinct-values($title)
                                 order by $hit
                                 return <item key="{$hit}" type="author_list" title="{$hit}">
-                                            {for $name in $title return <item key="{$hit}" title="{$name}" type="title"/>}
+                                            {for $name in $title order by $name return <item key="{$hit}" title="{$name}" type="title" ref="author" id="{$name}" check="true"/>}
                                             </item>
      let $translators := for $hit in $s_translator 
                                 let $title := for $translator in $translators where $hit eq $translator/@key return $translator/@title/data(.)
                                 let $title := distinct-values($title)
                                 order by $hit
                                 return <item key="{$hit}" type="author_list" title="{$hit}">
-                                            {for $name in $title return <item key="{$hit}" title="{$name}" type="title"/>}
+                                            {for $name in $title order by $name return <item key="{$hit}" title="{$name}" type="title" ref="translator" id="{$name}" check="true"/>}
                                             </item>                           
     
     let $authors := <item title="Authors" type="list">{$authors}</item>

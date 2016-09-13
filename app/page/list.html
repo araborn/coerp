@@ -1,106 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <div xmlns="http://www.w3.org/1999/xhtml" class="templates:surround?with=templates/page.html&amp;at=content">
-    <div class="row-fluid">        
-        <div class="content" id="list">
-                <i class="corpus:printRecorder"/>
-                <div class="corpus:scanDB_map">
-                    <div class="corpus:MapNavBar?get=results">
-                        <div id="list_results" class="list_header whiteBorder"> 
-                            <div>Objects found : <i class="helpers:get?key=sum"/></div>
-                            <div class="clear"/>
-                            <div class="LetterNavBar PageThinBorder-bottom">
-                                <div class="LetterNavBarList" style="display:block !important">
-                                    <span class="templates:each?from=spec&amp;to=value">
-                                        <i class="corpus:printLetterNavBar?value=value"/>
-                                    </span>
-                                </div>
-                           </div>
-                            <div class="clear"/>
-                            <div class="LetterNavBar PageThinBorder-bottom">
-                                <div class="LetterNavBarListButton">Denominations</div>
-                                <div class="LetterNavBarList"  >
-                                    <span class="templates:each?from=denoms&amp;to=value">
-                                        <i class="corpus:printSectionFilter?value=value&amp;typus=denom&amp;eye=yes"/>
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="clear"/>
-                            <div class="LetterNavBar PageThinBorder-bottom">
-                                <div class="LetterNavBarListButton">Genres</div>
-                                <div class="LetterNavBarList">
-                                    <span class="templates:each?from=genres&amp;to=value">
-                                        <i class="corpus:printSectionFilter?value=value&amp;typus=genre&amp;eye=yes"/>
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="clear"/>
-                            <div class="LetterNavBar">
-                                
-                                
-                                <div class="LetterNavBarListButton">Order By </div>
-                                <div class="LetterNavBarList">
-                                    <i class="corpus:printOrderNavElements"/>
-                                </div>
-                            </div>
-                            <div class="clear"/>
-                            <script>
-                                $(document).ready(function() { 
-                                $(".ListNavBarButtons").children("span").click(function() {
-                                $(this).next("form").submit();
-                                });
-                                
-                                $(".LetterNavBarList").children().children(" span:last-child").children("span").children("span").css("display","none");
-                                
-                                $(".LetterNavBarListButton").click(function() {
-                                    $(this).next("div").toggle();
-                                    
-                                })
-                                
-                                $(".ButtonEyeToggle").click(function() {
-                                if($(this).children("a").children("i").hasClass("ButtonEye")) {
-                                var object = $(this).children("a").children("i");
-                                if( object.hasClass("glyphicon-eye-open")) {
-                                object.removeClass("glyphicon-eye-open");
-                                object.addClass("glyphicon-eye-close");
-                                }
-                                else {
-                                object.removeClass("glyphicon-eye-close");
-                                object.addClass("glyphicon-eye-open");
-                                }
-                                }
-                                });
-                                $(".ListHiddenCategory").children("i").tooltip( {
-                                items:"[title]",
-                                    content : $(this).parent().attr("title"),
-                                    track : true,
-                                    tooltipClass: "CustomTooltip"
-                                });
-                                });
-                            </script>
-                        </div>
-                        <div class="templates:each?from=spec&amp;to=value">
-                            <i class="corpus:printLetterColumm?value=value"/>
-                            <div class="corpus:getResultsSpecified?get=results">
-                                <div class="templates:each?from=specified&amp;to=result">
-                                    <div class="corpus:AnalyzeResults?get=result">
-                                            <div class="list_main whiteBorder">
-                                                <div class="list_author"><i class="helpers:get?key=author"/></div>
-                                                <div class="list_short_title"><i class="corpus:printShortTitle"/></div>
-                                                <div class="list_inner"><span class="list_left">Year</span><span class="list_right"><i class="helpers:get?key=year"/></span></div>
-                                                <div class="list_inner genre"><span class="list_left">Genre</span><span class="list_right"><i class="helpers:get?key=genre"/></span></div>
-                                                <div class="list_inner"><span class="list_left">Title</span><span class="list_right"><i class="helpers:get?key=title"/></span></div>
-                                                <div class="list_inner denom"><span class="list_left">Denomination</span><span class="list_right"><i class="helpers:get?key=denom"/></span></div>
-                                                <div class="list_inner helpers:CheckData?target=translator"><span class="list_left">Translator</span><span class="list_right"><i class="helpers:get?key=translator"/></span></div>
-                                                <div class="list_inner helpers:CheckData?target=author_preface"><span class="list_left">Author Preface</span><span class="list_right"><i class="helpers:get?key=author_preface"/></span></div>
-                                                <div class="list_inner"><span class="list_left" style="color:red">File Name <i style="font-size:8px">(Nur eine Kontrollvariable)</i></span><span class="list_right"><i class="helpers:get?key=filename"/></span></div>
-                                            </div>
-                                    </div>
-                                </div>
-                                <div class="clear"/>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-        </div>
-    </div>
+    <wrap data-template="corpus:mapScanDB">
+<!--        <i data-template="helpers:getValue" data-template-get="param"/> /                 <i data-template="helpers:getValue" data-template-get="term"/>-->
+        <wrap data-template="helpers:invisibleEach" data-template-from="results" data-template-to="result">
+
+            <wrap data-template="corpus:mapEntry">
+                <table class="table whiteBorder">
+                    <tr>
+                        <td><i data-template="helpers:getValue" data-template-get="author"/></td><td><i data-template="helpers:getValue" data-template-get="url"/></td>
+                    </tr>
+                    <tr>
+                        <td>Year</td><td><i data-template="helpers:getValue" data-template-get="date"/></td>
+                    </tr>
+                    <tr>
+                        <td>Genre</td><td><i data-template="helpers:getValue" data-template-get="genre"/></td>
+                    </tr>
+                    <tr>
+                        <td>Title</td><td><i data-template="helpers:getValue" data-template-get="long-title"/></td>
+                    </tr>                
+            </table>
+            </wrap>
+        </wrap>
+    </wrap>
 </div>

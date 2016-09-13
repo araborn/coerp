@@ -1,11 +1,11 @@
 mkdir new/old
 
 for i in  old/catechism_*.xml; do saxonb-xslt -s:$i -xsl:transformer-ca.xslt -o:new/$i; done
-# for i in  old/bio_*.xml; do saxonb-xslt -s:$i -xsl:transformer-all.xslt -o:new/$i; done
-# for i in  old/pamphlet_*.xml; do saxonb-xslt -s:$i -xsl:transformer-all.xslt -o:new/$i; done
-# for i in  old/prayers_*.xml; do saxonb-xslt -s:$i -xsl:transformer-all.xslt -o:new/$i; done
+for i in  old/bio_*.xml; do saxonb-xslt -s:$i -xsl:transformer-all.xslt -o:new/$i; done
+for i in  old/pamphlet_*.xml; do saxonb-xslt -s:$i -xsl:transformer-all.xslt -o:new/$i; done
+for i in  old/prayers_*.xml; do saxonb-xslt -s:$i -xsl:transformer-all.xslt -o:new/$i; done
 # for i in  old/preface_*.xml; do saxonb-xslt -s:$i -xsl:transformer-all.xslt -o:new/$i; done
-# for i in  old/treatise_*.xml; do saxonb-xslt -s:$i -xsl:transformer-all.xslt -o:new/$i; done
+for i in  old/treatise_*.xml; do saxonb-xslt -s:$i -xsl:transformer-all.xslt -o:new/$i; done
 mv new/old/*xml new/
 rmdir new/old
 

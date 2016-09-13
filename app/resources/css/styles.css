@@ -60,19 +60,80 @@
 .NAV_MAIN_tab {
     display:block;
     float:left;
+    margin: 7px 10px 5px;
+}
+.NAV_HEADER_tab, 
+.NAV_LIST_tab,
+.NAV_LIST_SEC_tab,
+.NAV_title{
+    cursor:pointer;
+     margin: 1px;
+    padding: 2px 5px;
+}
+
+.NAV_HEADER_tab:hover, 
+.NAV_LIST_tab:hover,
+.NAV_LIST_SEC_tab:hover,
+.NAV_title:hover{
+    text-decoration:underline;
+}
+
+.NAV_LIST_list,
+.NAV_LIST_HEADER_list,
+.NAV_LIST_SEC_list {
+    padding: 5px 10px;
+}
+
+.NAV_MAIN_tab ul {
+        list-style:none;
+        margin:0px;     
+        padding:0px;
+
+}
+
+.NAV_MAIN_tab a {
+    color:black;
+}
+.NAV_none {
+    color:grey;
+    margin: 1px;
+    padding: 2px 5px;
 }
 .NAV_HEADER_tab {
     
     }
+    
+.NAV_HEADER_list {
+    display:none;
+    position: absolute;
+    width:150px;
+}
 
 .NAV_LIST_tab{
 
 }
 
 .NAV_LIST_list{
-    list-style:none;
+    display:none;
+    margin-left: 140px;
+    margin-top: -20px;
+    position: absolute;
+}
+
+.NAV_LIST_SEC_tab {
     
 }
+
+.NAV_LIST_SEC_list{
+    display:none;
+    margin-left: 30px;
+    margin-top: -20px;
+    position: absolute;
+    width:160px;
+    
+}
+
+
 
 .NAV_headline {
         font-size: 15px;
@@ -84,4 +145,150 @@
     margin: 5px 5px 10px 0;
     }
 
+.NAV_title {
+    
+}
+/*## Selected Elements##*/
+.selected {
+    color:red;
+}
 
+.selectedList {
+        color:red;
+
+}
+.selectedSecList {
+        color:red;
+
+}
+
+/*## Navigations Klassen ##*/
+.treatise {
+    width:190px;
+}
+.preface {
+    width:160px;
+}
+
+.pamphlet {
+    width:160px;
+}
+
+.catechism {
+    width:160px;
+    
+}
+.clear {
+    clear:both;
+    
+}
+
+
+/*##Style Elemente ##*/
+/* BORDER STYLES*/
+.whiteBorder {
+    background-color:#fafafa;
+    border-top-left-radius: 10px; 
+    border-top-right-radius: 10px; 
+    border-bottom-right-radius: 10px; 
+    border-bottom-left-radius: 10px; 
+    moz-border-radius-topleft: 10px; 
+    -moz-border-radius-topright: 10px; 
+    -moz-border-radius-bottomright: 10px; 
+    -moz-border-radius-bottomleft: 10px; 
+    -webkit-border-top-left-radius: 10px; 
+    -webkit-border-top-right-radius: 10px; 
+    -webkit-border-bottom-right-radius: 10px; 
+    -webkit-border-bottom-left-radius: 10px;
+
+}
+
+.PageBorders {
+
+    background-color:#fafafa;
+    border-top-left-radius: 2px; 
+    border-top-right-radius: 2px; 
+    border-bottom-right-radius: 2px; 
+    border-bottom-left-radius: 2px; 
+    moz-border-radius-topleft: 2px; 
+    -moz-border-radius-topright: 2px; 
+    -moz-border-radius-bottomright: 2px; 
+    -moz-border-radius-bottomleft: 2px; 
+    -webkit-border-top-left-radius: 2px; 
+    -webkit-border-top-right-radius: 2px; 
+    -webkit-border-bottom-right-radius: 2px; 
+    -webkit-border-bottom-left-radius: 2px;
+
+}
+
+.PageBorders-none-left {
+
+    background-color:#fafafa;
+    border-top-left-radius: 2px; 
+    border-top-right-radius: 2px; 
+    border-bottom-right-radius: 2px; 
+    border-bottom-left-radius: 2px; 
+    moz-border-radius-topleft: 2px; 
+    -moz-border-radius-topright: 2px; 
+    -moz-border-radius-bottomright: 2px; 
+    -moz-border-radius-bottomleft: 2px; 
+    -webkit-border-top-left-radius: 2px; 
+    -webkit-border-top-right-radius: 2px; 
+    -webkit-border-bottom-right-radius: 2px; 
+    -webkit-border-bottom-left-radius: 2px;
+
+}
+
+
+.PageBorders-none-top {
+
+ background-color:#fafafa;
+    border-top-left-radius: 2px; 
+    border-top-right-radius: 2px; 
+    border-bottom-right-radius: 2px; 
+    border-bottom-left-radius: 2px; 
+    moz-border-radius-topleft: 2px; 
+    -moz-border-radius-topright: 2px; 
+    -moz-border-radius-bottomright: 2px; 
+    -moz-border-radius-bottomleft: 2px; 
+    -webkit-border-top-left-radius: 2px; 
+    -webkit-border-top-right-radius: 2px; 
+    -webkit-border-bottom-right-radius: 2px; 
+    -webkit-border-bottom-left-radius: 2px;
+
+}
+
+
+.PageBorders-none-top-left {
+
+    background-color:#fafafa;
+    border-top-left-radius: 2px; 
+    border-top-right-radius: 2px; 
+    border-bottom-right-radius: 2px; 
+    border-bottom-left-radius: 2px; 
+    moz-border-radius-topleft: 2px; 
+    -moz-border-radius-topright: 2px; 
+    -moz-border-radius-bottomright: 2px; 
+    -moz-border-radius-bottomleft: 2px; 
+    -webkit-border-top-left-radius: 2px; 
+    -webkit-border-top-right-radius: 2px; 
+    -webkit-border-bottom-right-radius: 2px; 
+    -webkit-border-bottom-left-radius: 2px;
+
+}
+
+.PageBorders-All {
+    border-top-left-radius: 0px; 
+    border-top-right-radius: 10px; 
+    border-bottom-right-radius: 10px; 
+    border-bottom-left-radius: 0px; 
+    moz-border-radius-topleft: 0px; 
+    -moz-border-radius-topright: 10px; 
+    -moz-border-radius-bottomright: 10px; 
+    -moz-border-radius-bottomleft: 10px; 
+    -webkit-border-top-left-radius: 0px; 
+    -webkit-border-top-right-radius: 10px; 
+    -webkit-border-bottom-right-radius: 10px; 
+    -webkit-border-bottom-left-radius: 00px;
+
+}

@@ -5,8 +5,24 @@ module namespace doc="http://localhost:8080/exist/apps/coerp_new/doc";
 import module namespace helpers="http://localhost:8080/exist/apps/coerp_new/helpers" at "helpers.xqm";
 declare namespace templates="http://exist-db.org/xquery/templates";
 
-declare namespace coerp="http://coerp.uni-koeln.de/schema/coerp";
+declare namespace tei="http://www.tei-c.org/ns/1.0";
 
+declare function doc:getText($node as node(), $model as map(*),$xml as xs:string) {
+    let $file := doc(concat("/db/apps/coerp_new/data/texts/",$xml,".xml"))
+    let $stylesheet := doc("/db/apps/coerp_new/xslt/texts.xsl")
+        return transform:transform($file, $stylesheet, ())
+
+};
+
+declare function doc:test($node as node(), $model as map(*),$xml as xs:string) {
+    let $file := doc(concat("/db/apps/coerp_new/data/texts/",$xml,".xml"))
+    return map {
+    "xml" := $xml,
+    "title" := $file//tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:bibl/tei:title[@type = "short"]/data(.)
+    }
+};
+
+(:
 declare function doc:test($node as node()*, $model as map(*), $text as xs:string) as xs:string*{
 
 let $test := "im Alive"
@@ -17,7 +33,7 @@ return ($test,xmldb:decode-uri($text))
 
 
 declare    %templates:wrap function doc:fetchDatasetByRequestedId($node as node(), $model as map(*), $text as xs:string) {
-    let $dataset := doc( concat("/db/apps/coerp_new/data/texts/",$text)) (: corpus:getDatasetByShortTitle(request:get-attribute("$exist:resource")) :)
+    let $dataset := doc( concat("/db/apps/coerp_new/data/texts/",$text)) (\: corpus:getDatasetByShortTitle(request:get-attribute("$exist:resource")) :\)
     return map:entry("dataset", $dataset)
 };
 
@@ -61,7 +77,7 @@ declare function doc:getDownloadElements($node as node(), $model as map(*), $tex
     
 };
 
-(:#### Text Layout Darstellung ####:)
+(\:#### Text Layout Darstellung ####:\)
 
 declare function doc:AnaylzeTextLayout($node as node(),$model as map(*)) {
     if($model("text_layout") eq "true") then
@@ -109,13 +125,13 @@ declare function doc:mapTagValue($node as node(), $model as map(*)) {
      let $data := $model($tag)
      return (
      
-     (:doc:mapTagValue( $model("tag")) 
-     :) 
-         (: map {
+     (\:doc:mapTagValue( $model("tag")) 
+     :\) 
+         (\: map {
             "tag_name" :=   ,
              "tag_value":= 
              }
-             :)
+             :\)
      switch($tag)
         case "la_format" return map {
                     "tag_name" := "Format",
@@ -196,7 +212,7 @@ declare function doc:mapTagValue($node as node(), $model as map(*)) {
 
 
 
-(:
+(\:
 declare function doc:mapTagValue($data as xs:string) {
     switch($data) 
     case "la_format" return map {
@@ -206,7 +222,7 @@ declare function doc:mapTagValue($data as xs:string) {
     default return "Unformated"
 
 };
-:)
+:\)
 declare function doc:fullTextLayout($node as node(), $model as map(*)) {
     let $doc := $model("dataset")//coerp:coerp_header/coerp:text_layout
     return map {
@@ -236,14 +252,14 @@ declare function doc:fullTextLayout($node as node(), $model as map(*)) {
 };
 
 
-(: ### NEW HEADER FETCHING ###:)
+(\: ### NEW HEADER FETCHING ###:\)
 declare function doc:get-text-layout($node as node(), $model as map(*), $text as xs:string){
     let $xml := doc( concat("/db/apps/coerp_new/data/texts/",$text))//coerp:text_profile
     let $stylesheet := doc("/db/apps/coerp_new/xslt/texts.xsl")
     return transform:transform($xml, $stylesheet, ())
 };
 
-(:#### Text Darstellung ####:)
+(\:#### Text Darstellung ####:\)
 
 declare function doc:getText($dataset as document-node()) {
     $dataset/*/coerp:text
@@ -334,10 +350,10 @@ declare function doc:formatText($node) as item()* {
         default return doc:passFormat($node)
 };
 
-(:
+(\:
  : Hilfsfunktion zum rekursiven Aufruf von dataset:formatText()
  : ruft formatText() für alle Kindknoten des übergebenen Elements auf.
- :)
+ :\)
 declare function doc:passFormat($nodes as node()*) {
     for $node in $nodes/node() return doc:formatText($node)
-};
+};:)
