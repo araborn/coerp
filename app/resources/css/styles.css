@@ -37,12 +37,13 @@
        max-width:728px;
         margin:10px auto;
         width:100%;
-}
-.content {
-    background-color:white;
-    margin-top:20px;
+   }
+   .content {
+       background-color:white;
+       margin-top:20px;
+   }
 
-}
+
 /*### NAVIGATION ###*/
 
 #navigation {
@@ -182,7 +183,31 @@
     clear:both;
     
 }
+#indi_period {
+    width: 225px;
+}
+.per_label {
+    width: 45px;
+}
+/*### List Style ###*/
+.LIST-sortButton {
+    padding: 10px 5px;
+}
 
+.LIST-sortButton a{
+    border: 1px solid black;
+    margin: 2px 5px;
+    padding: 2px 5px;
+}
+
+.LIST-sortButton a:hover {
+    cursor:pointer;
+        background-color:lightgrey;
+
+}
+.LIST-sortButton a.selected {
+    background-color:grey;
+}
 
 /*##Style Elemente ##*/
 /* BORDER STYLES*/

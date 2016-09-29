@@ -104,17 +104,20 @@ else if (ends-with($exist:resource, "index.html")) then
     </dispatch>  
     
     else if (contains($exist:path , "genre")) then
-     let $ordertype := if (request:get-parameter("ordertype",'') != "") then request:get-parameter("ordertype",'') else "alpha"
+         let $term := substring-after($exist:path,"genre/")
+         let $ordertype := if (contains($term,"/")) then substring-after($term,"/") else "date" 
+         let $term := if (contains($term,"/")) then substring-before($term,"/") else $term 
+
      return
       (
     session:set-attribute("param","genre-subtype"),
-    session:set-attribute("term",$exist:resource),
-    session:set-attribute("ordertype",$ordertype),
+    session:set-attribute("term",$term),
+    session:set-attribute("orderBy",$ordertype),
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
         <forward url="{$exist:controller}/page/list.html" />
         <set-attribute name="param" value="genre-subtype"/>
-        <set-attribute name="term" value="{$exist:resource}"/>
-        <set-attribute name="ordertype" value="{$ordertype}"/>
+        <set-attribute name="term" value="{$term}"/>
+        <set-attribute name="orderBy" value="{$ordertype}"/>
         <view>
             <forward url="{$exist:controller}/modules/view.xql">
             </forward>
@@ -140,16 +143,18 @@ else if (ends-with($exist:resource, "index.html")) then
     </dispatch> 
     )
     else if(contains($exist:path,"periods")) then 
-    let $ordertype := if (request:get-parameter("ordertype",'') != "") then request:get-parameter("ordertype",'') else "crono"
-     return
+         let $term := substring-after($exist:path,"periods/")
+         let $ordertype := if (contains($term,"/")) then substring-after($term,"/") else "date" 
+         let $term := if (contains($term,"/")) then substring-before($term,"/") else $term 
+         return
       (
     session:set-attribute("param","date"),
-    session:set-attribute("term",$exist:resource),
+    session:set-attribute("term",$term),
     session:set-attribute("ordertype",$ordertype),
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
         <forward url="{$exist:controller}/page/list.html" />
         <set-attribute name="param" value="periods"/>
-        <set-attribute name="term" value="{$exist:resource}"/>
+        <set-attribute name="term" value="{$term}"/>
         <set-attribute name="ordertype" value="{$ordertype}"/>
         <view>
             <forward url="{$exist:controller}/modules/view.xql">
@@ -159,17 +164,19 @@ else if (ends-with($exist:resource, "index.html")) then
     )
      else if (contains($exist:path,"author") or contains($exist:path,"translator")) then
      let $ordertype := if (request:get-parameter("ordertype",'') != "") then request:get-parameter("ordertype",'') else "alpha"
-     let $term :=request:get-parameter("name",'')
+     let $term := ($exist:resource,(if (contains($exist:path,"author")) then "author" else "translator"))
+     let $param := ("author","role")
+     
      return
       (
-    session:set-attribute("param", substring-after($exist:path,"/")),
+    session:set-attribute("param", $param),
      session:set-attribute("term",$term),
     session:set-attribute("ordertype",$ordertype),
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
         <forward url="{$exist:controller}/page/list.html" />
-        <set-attribute name="param" value="{substring-after($exist:path,"/")}"/>
-             <set-attribute name="term" value="{$term}"/>
-        <set-attribute name="ordertype" value="{$ordertype}"/>
+            <set-attribute name="param" value="{$param}"/>
+            <set-attribute name="term" value="{$term}"/>
+            <set-attribute name="ordertype" value="{$ordertype}"/>
         <view>
             <forward url="{$exist:controller}/modules/view.xql">
             </forward>

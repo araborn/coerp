@@ -24,7 +24,7 @@ return $test
 declare function corpus:scanDB($db as node()*, $param as xs:string, $term as xs:string) {
         
         let $results := switch($param) 
-                                    case "genre-subtype" return search:range-MultiStats($db,$param,"eq",$term)
+                                    case "genre-subtype" case "genre" return search:range-MultiStats($db,"genre-subtype","eq",$term)
                                     case "date" return search:range-date($db,substring-before($term,"-"),substring-after($term,"-"),"date")
                                     default return "Error"
      return $results
@@ -32,13 +32,22 @@ declare function corpus:scanDB($db as node()*, $param as xs:string, $term as xs:
         
 };
 
-declare function corpus:mapScanDB($node as node(), $model as map(*),$param as xs:string, $term as xs:string) {
+declare function corpus:mapScanDB($node as node(), $model as map(*),$param as xs:string+, $term as xs:string+, $orderBy as xs:string?) {
         let $db := collection("/db/apps/coerp_new/data/texts")
-        let $results := corpus:scanDB($db,$param,$term)
+        let $eq := for $par in $param return "eq"
+        let $results := if($param eq "date") then search:range-date($db,substring-before($term,"-"),substring-after($term,"-"),"date")
+                                    else search:range-MultiStats($db,$param,$eq,$term)
+        let $results := switch($orderBy) 
+                                    case "date" return for $hit in $results order by $hit//tei:date[@type="this_edition"]/@when return $hit
+                                    case "title" return for $hit in $results order by $hit//tei:title[@type="short"]/data(.) return $hit
+                                    case "author" return for $hit in $results order by $hit//tei:author[@role="author"]/data(.) return $hit
+                                    default return $results
         return map {
             "results" := $results,
             "term" := $term,
-            "param" := $param
+            "param" := $param,
+            "order" := $orderBy,
+            "count" := count($results)
         }
 };
 
@@ -55,4 +64,22 @@ declare function corpus:mapEntry($node as node(), $model as map(*)) {
         "url" := $url
         
     }
+};
+
+declare function corpus:createSortBy($node as node(), $model as map(*),$sort as xs:string,$orderBy as xs:string) {
+    let $link := if(contains($helpers:request-path,"/date") )
+            then substring-before($helpers:request-path,"/date")
+        else if (contains($helpers:request-path,"/author"))
+            then substring-before($helpers:request-path,"/author")
+        else if (contains($helpers:request-path,"/title"))
+            then substring-before($helpers:request-path,"/title")
+        else $helpers:request-path   
+     let $name := switch($sort) 
+            case "date" return "Chronolgical"
+            case "title" return "Title"
+            case "author" return "Author"
+            default return "Error"
+     return if($orderBy eq $sort) then <a href="{$link}" class="selected"><span >{$name}</span></a>
+    else
+    <a href="{$link}/{$sort}"><span >{$name}</span></a>
 };

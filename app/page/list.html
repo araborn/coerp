@@ -1,25 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <div xmlns="http://www.w3.org/1999/xhtml" class="templates:surround?with=templates/page.html&amp;at=content">
-    <wrap data-template="corpus:mapScanDB">
-<!--        <i data-template="helpers:getValue" data-template-get="param"/> /                 <i data-template="helpers:getValue" data-template-get="term"/>-->
-        <wrap data-template="helpers:invisibleEach" data-template-from="results" data-template-to="result">
-
-            <wrap data-template="corpus:mapEntry">
+        <div class="whiteBorder LIST-sortButton">
+            <span>Sort by : </span>
+            <span><get data-template="corpus:createSortBy" data-template-sort="date"/></span>
+            <span><get data-template="corpus:createSortBy" data-template-sort="title"/></span>
+            <span><get data-template="corpus:createSortBy" data-template-sort="author"/></span>
+        </div>    
+    <map data-template="corpus:mapScanDB">
+        <i data-template="helpers:getValue" data-template-get="param"/> / 
+        <i data-template="helpers:getValue" data-template-get="term"/> /
+        <i data-template="helpers:getValue" data-template-get="order"/> /
+        <i data-template="helpers:getValue" data-template-get="count"/>
+        <each data-template="helpers:invisibleEach" data-template-from="results" data-template-to="result">
+            <map data-template="corpus:mapEntry">
                 <table class="table whiteBorder">
                     <tr>
-                        <td><i data-template="helpers:getValue" data-template-get="author"/></td><td><i data-template="helpers:getValue" data-template-get="url"/></td>
+                        <td><get data-template="helpers:getValue" data-template-get="author"/></td><td><i data-template="helpers:getValue" data-template-get="url"/></td>
                     </tr>
                     <tr>
-                        <td>Year</td><td><i data-template="helpers:getValue" data-template-get="date"/></td>
+                        <td>Year</td><td><get data-template="helpers:getValue" data-template-get="date"/></td>
                     </tr>
                     <tr>
-                        <td>Genre</td><td><i data-template="helpers:getValue" data-template-get="genre"/></td>
+                        <td>Genre</td><td><get data-template="helpers:getValue" data-template-get="genre"/></td>
                     </tr>
                     <tr>
-                        <td>Title</td><td><i data-template="helpers:getValue" data-template-get="long-title"/></td>
+                        <td>Title</td><td><get data-template="helpers:getValue" data-template-get="long-title"/></td>
                     </tr>                
             </table>
-            </wrap>
-        </wrap>
-    </wrap>
+            </map>
+        </each>
+    </map>
 </div>

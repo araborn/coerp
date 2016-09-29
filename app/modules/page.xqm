@@ -19,9 +19,9 @@ declare namespace tei="http://www.tei-c.org/ns/1.0";
 declare function page:createNavigation ($node as node(), $model as map(*)) {
     let $list := doc("/db/apps/coerp_new/data/lists.xml")/lists/list
     let $hierarchies := for $hit in $list/tab where $hit/term/@xml:id/data(.) eq "hierarchies" 
-                                        return page:createNavigationsItems($hit,"genre-subtype")
+                                        return page:createNavigationsItems($hit,"genre")
     let $sets := for $hit in $list/tab where $hit/term/@xml:id/data(.) eq "sets" 
-                                        return page:createNavigationsItems($hit,"genre-subtype")
+                                        return page:createNavigationsItems($hit,"genre")
      
      let $genres := page:findGenres()
      
@@ -75,14 +75,13 @@ declare function page:printNavigations($node as node(), $model as map(*), $get a
 
 declare function page:CaseNavigation($item) {
 switch($item/@type/data(.))
-        case "title" return (:<div class="NAV_title"><a href="{$helpers:app-root}/{$item/@ref/data(.)}/{$item/@id/data(.)}">{$item/@title/data(.)}</a></div>:)
+        case "title" return 
         (
                                         if($item/@check eq "true") then <div class="NAV_title" id="{$item/@ref/data(.)}">
                                                 <a href="{$helpers:app-root}/{$item/@ref/data(.)}/{$item/@id/data(.)}">{$item/@title/data(.)}</a>
                                             </div>
                                         else <div class="NAV_none" id="{$item/@ref/data(.)}">{$item/@title/data(.)}</div>
-                                        )
-        
+                                        )        
         case "headline" return <div class="NAV_headline">{$item/@title/data(.)}</div>
         case "line" return <div class="NAV_line"/>
         case "list" return (<div class="NAV_LIST_tab">{$item/@title/data(.)}</div>,
@@ -104,6 +103,33 @@ switch($item/@type/data(.))
                                             </div>
                                         else <div class="NAV_none" id="{$item/@ref/data(.)}">{$item/@title/data(.)}</div>
                                         )
+        case "ref" return (
+                    let $radius := for $doc in collection("/db/apps/coerp_new/data/texts")//tei:bibl where $doc/tei:date[@type ="this_edition"] order by $doc/tei:date[@type ="this_edition"]/@when  return $doc/tei:date/@when
+                    let $start := $radius[1]
+                    let $end := $radius[count($radius)]
+                    return
+                    (<div class=" NAV_LIST_tab">{$item/@title/data(.)}</div>,
+                                <div class="NAV_LIST_list PageBorders-none-left" id="indi_period">
+                                        <form action="{$helpers:app-root}/periods" method="post" id="PeriodForm">
+                                            <span>
+                                                <label for="per_from" class="per_label">From</label>
+                                                <input  type="number" name="per_from"  class="per_custom_input" id="per_from"  value="{$start}" min="{$start}" max="{$end}"/>
+                                            </span>
+                                            <span>
+                                                <label for="per_to" class="per_label">To</label>
+                                                <input  type="number" name="per_to" class="per_custom_input" id="per_to" value="{$end}" min="{$start}" max="{$end}"/>
+                                            </span>
+                                        </form>
+                                        <div id="periodButton" class="searchButtons ">
+                                            <i  class="glyphicon glyphicon-search " id="search_icon" ></i>
+                                        </div>
+                                        <script>
+                                        $("#periodButton").click(function() {{
+                                            var date = $("#per_from").val()+"-"+$("#per_to").val();
+                                             window.location.href = "{$helpers:app-root}/periods/"+date;
+                                    }});</script>
+                                </div>)
+        )
         default return $item
 };
 
@@ -134,10 +160,13 @@ declare function page:findGenres(){
  
  declare function page:findAuthors() {
     let $db := collection("/db/apps/coerp_new/data/texts")
-    let $authors := for $hit in $db//tei:author[@role = "author"]/data(.)                                
+    let $authorlist := doc("/db/apps/coerp_new/authors.xml")
+    let $authors := for $hit in $db//tei:author[@role = "author"]/@key/data(.)          
                             return <item key="{substring($hit,1,1)}" title="{$hit}" />
-    let $translators := for $hit in $db//tei:author[@role = "translator"]/data(.)
+    let $translators := for $hit in $db//tei:author[@role = "translator"]/@key/data(.)
                             return <item key="{substring($hit,1,1)}" title="{$hit}" />
+    
+    
     
     let $s_author := for $hit in $authors/@key return $hit
     let $s_author := distinct-values($s_author)
