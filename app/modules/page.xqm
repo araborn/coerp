@@ -162,9 +162,13 @@ declare function page:findGenres(){
     let $db := collection("/db/apps/coerp_new/data/texts")
     let $authorlist := doc("/db/apps/coerp_new/authors.xml")
     let $authors := for $hit in $db//tei:author[@role = "author"]/@key/data(.)          
-                            return <item key="{substring($hit,1,1)}" title="{$hit}" />
+                                let $authorL := $authorlist//author[@key = "hit"]
+                                let $authorname := $authorL/orig/data(.)
+                            return <item key="{substring($authorname,1,1)}" title="{$hit}" />
     let $translators := for $hit in $db//tei:author[@role = "translator"]/@key/data(.)
-                            return <item key="{substring($hit,1,1)}" title="{$hit}" />
+                                let $authorL := $authorlist//author[@key = "hit"]
+                                let $authorname := $authorL/orig/data(.)
+                            return <item key="{substring($authorname,1,1)}" title="{$hit}" />
     
     
     
@@ -178,14 +182,14 @@ declare function page:findGenres(){
                                 let $title := distinct-values($title)
                                 order by $hit
                                 return <item key="{$hit}" type="author_list" title="{$hit}">
-                                            {for $name in $title order by $name return <item key="{$hit}" title="{$name}" type="title" ref="author" id="{$name}" check="true"/>}
+                                            {for $name in $title order by $name return <item key="{$hit}" title="{$authorlist//author[@key = $name]/orig/data(.)}" type="title" ref="author" id="{$name}" check="true"/>}
                                             </item>
      let $translators := for $hit in $s_translator 
                                 let $title := for $translator in $translators where $hit eq $translator/@key return $translator/@title/data(.)
                                 let $title := distinct-values($title)
                                 order by $hit
                                 return <item key="{$hit}" type="author_list" title="{$hit}">
-                                            {for $name in $title order by $name return <item key="{$hit}" title="{$name}" type="title" ref="translator" id="{$name}" check="true"/>}
+                                            {for $name in $title order by $name return <item key="{$hit}" title="{$authorlist//author[@key = $name]/orig/data(.)}" type="title" ref="translator" id="{$name}" check="true"/>}
                                             </item>                           
     
     let $authors := <item title="Authors" type="list">{$authors}</item>
