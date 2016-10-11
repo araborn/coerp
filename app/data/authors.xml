@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<authors>
+<authors xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:noNamespaceSchemaLocation="authors.xsd">
    <author key="RiVe1550">
-      <orig>&gt;Verstegan, Richard</orig>
-      <correct>Verstegan, Richard</correct>
+      <orig>Verstegan, Richard</orig>
+      <correct/>
       <bio_info>Text</bio_info>
    </author>
    <author key="HeAi1571">
@@ -782,11 +783,6 @@
    </author>
    <author key="MaPa1504">
       <orig>Parker, Matthew</orig>
-      <correct/>
-      <bio_info>Text</bio_info>
-   </author>
-   <author key="CaPa1512">
-      <orig>Parr, Catharine</orig>
       <correct/>
       <bio_info>Text</bio_info>
    </author>

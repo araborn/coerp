@@ -9,7 +9,24 @@ declare namespace tei="http://www.tei-c.org/ns/1.0";
 
 declare function doc:getText($node as node(), $model as map(*),$xml as xs:string) {
     let $file := doc(concat("/db/apps/coerp_new/data/texts/",$xml,".xml"))
-    let $stylesheet := doc("/db/apps/coerp_new/xslt/texts.xsl")
+    let $genre := $file//tei:note[@type="genre"]/@subtype/data(.)
+    let $stylesheet := switch($genre) 
+                                    case "catechism" case "preface_catechism" return "catechism"
+                                    default return "texts"
+                                    
+    let $stylesheet := doc(concat("/db/apps/coerp_new/xslt/",$stylesheet,".xsl"))
+    
+        return transform:transform($file, $stylesheet, ())
+
+};
+
+declare function doc:getControll($node as node(), $model as map(*),$xml as xs:string) {
+    let $file := doc(concat("/db/apps/coerp_new/data/texts/",$xml,".xml"))
+    let $genre := $file//tei:note[@type="genre"]/@subtype/data(.)
+    let $stylesheet := "controll"
+                                    
+    let $stylesheet := doc(concat("/db/apps/coerp_new/xslt/",$stylesheet,".xsl"))
+    
         return transform:transform($file, $stylesheet, ())
 
 };

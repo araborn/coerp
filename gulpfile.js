@@ -132,7 +132,7 @@ gulp.task('xar', ['build'], function() {
 	var p = require('./package.json');
 
 	return gulp.src(buildDest + '**/*', {base: buildDest})
-			.pipe(zip("papyri-wl" + p.version + ".xar"))
+			.pipe(zip("coerp_new" + p.version + ".xar"))
 			.pipe(gulp.dest("."));
 });
 

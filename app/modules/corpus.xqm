@@ -32,10 +32,10 @@ declare function corpus:scanDB($db as node()*, $param as xs:string, $term as xs:
         
 };
 
-declare function corpus:mapScanDB($node as node(), $model as map(*),$param as xs:string+, $term as xs:string+, $orderBy as xs:string?) {
+declare function corpus:mapScanDB($node as node(), $model as map(*),$type as xs:string, $param as xs:string+, $term as xs:string+, $orderBy as xs:string?) {
         let $db := collection("/db/apps/coerp_new/data/texts")
         let $eq := for $par in $param return "eq"
-        let $results := if($param eq "date") then search:range-date($db,substring-before($term,"-"),substring-after($term,"-"),"date")
+        let $results := if($type eq "date") then search:range-date($db,substring-before($term,"-"),substring-after($term,"-"),"date")
                                     else search:range-MultiStats($db,$param,$eq,$term)
         let $results := switch($orderBy) 
                                     case "date" return for $hit in $results order by $hit//tei:date[@type="this_edition"]/@when return $hit
@@ -69,15 +69,15 @@ declare function corpus:mapEntry($node as node(), $model as map(*)) {
 declare function corpus:createSortBy($node as node(), $model as map(*),$sort as xs:string,$orderBy as xs:string) {
     let $link := if(contains($helpers:request-path,"/date") )
             then substring-before($helpers:request-path,"/date")
-        else if (contains($helpers:request-path,"/author"))
-            then substring-before($helpers:request-path,"/author")
+        else if (contains($helpers:request-path,"/authors"))
+            then substring-before($helpers:request-path,"/authors")
         else if (contains($helpers:request-path,"/title"))
             then substring-before($helpers:request-path,"/title")
         else $helpers:request-path   
      let $name := switch($sort) 
             case "date" return "Chronolgical"
             case "title" return "Title"
-            case "author" return "Author"
+            case "authors" return "Author"
             default return "Error"
      return if($orderBy eq $sort) then <a href="{$link}" class="selected"><span >{$name}</span></a>
     else

@@ -1,418 +1,50 @@
- 
-        #TextElements {
-         cursor: pointer !important;
-         display: block;
-         margin-left: 475px;
-         margin-top: 20px;
-         padding: 3px 0 7px 10px;
-         position: fixed;
-         width: 300px;
-         z-index: 1;
-        }
-
-        #text-elements h3 {
-        border-bottom:1px solid #cac3db;
-        font-size:15px;
-        
-        }
-
-        #TextElementList {
-            margin-left: 35px;
-            margin-top: -60px;
-        }
-        
-        
-        .text_display {
-                    display:none;
-                }
-        
-        #highlightButtons {
-            display:none;
-            padding-bottom: 5px;
-            padding-top: 3px;
-        }
-        
-        #highlightButtons ul {
-                list-style-type: none;
-                margin: 0;
-                padding-left: 8px;
-        }
-        #highlightButtons li {
-        }
-        
-
-        
-        #highlightButtons i {
-            
-        }
-        
-        .ButtonLine {
-            padding: 5px 0 5px 4px;
-}
-        
-        .ButtonLine h6 {
-               float: left;
-            font-size: 16px;
-            margin: 0;
-            width: 150px;
-        }
-        .ButtonTexts {
-             display: inline-block;
-             width: 160px;
-        }
-        .InnerButtons {
-            padding-left: 40px !important;
-            
-        }
-        #TextElementBar {
-            color:#CC270B;
-            font-size: 20px;
-    font-weight: 300 !important;
-        }
-        #DownloadElementBar {
-            color: #cc270b;
-            font-size: 20px;
-            font-weight: 300 !important;
-            display: block;
-          
-        }
-        #DownloadElementList {
-            
-            margin-left: 35px;
-        }
-        #DownloadElementsButtons {
-            display:none;
-        }
-        #DownloadElementsButtons ul {
-            list-style-type:none;
-        }
-        .DownloadButtons {
-            
-        }
-        #TextElementBar:hover {
-            color:#FF310E;
-        }
-        
-        .pull-right {
-        right: 0px;
-        }
-        /*
-        #highlightButtons ul {
-        list-style-type: none;
-        padding: 0px 0px 0px 20px;
-        }
-        
-        
-        #highlightButtons li {
-        width: 210px;
-        margin: 5px 0px 0px 0px;
-        }
-        */
-        
+     .tx-text { 
      
-        
-        
-        #toTop {
-        display: none;
-        position: fixed;
-        bottom: 5px;
-        right: 5px;
-        width: 64px;
-        height: 64px;
-        background-image: url('http://geniuscarrier.com/images/up.png');
-        background-repeat: no-repeat;
-        opacity: 0.4;
+     }
+     
+     .tx-controll {
+         
+     }
+     
+     .tx-sample-inner {
+        }
+        .tx-sample {
+            padding:10px;
+        }
+        .tx-paragraph {
         
         }
-        #toTop:hover {
-        opacity: 0.8;
+        .tx-headline {
         
         }
         
-        /* 
-        REFERENCE ELEMENTS
-        werden kursiv und in verschiedenen gesetzten Farbtönen hervorgehoben 
-        */
-        
-        .bible, .psalm, .quotation {
-        display: inline;
+        .tx-pb {
+            
+        }
+        .tx-fw {
+            
         }
         
-        .bible-selected, .psalm-selected, .quotation-selected {
-        font-style: italic;
-        }
-        
-        .bible-selected {
-        color: #336699;
-        }
-        
-        .psalm-selected {
-        color: #007a3d;
-        }
-        
-        .quotation-selected {
-        color: #7a005c;
-        }
-        
-        
-        
-        /* LINGUISTIC ELEMENTS */
-        .foreign, .foreign_omitted, .verse {
-        display: inline;
-        }
-        
-        .foreign-selected {
-        border-bottom: 3px dotted #2FEB12;
-        }
-        .foreign_omitted-selected {
-        color: #FF7F50;
-        }
-        
-        .verse  {
-        display: inline;
-        }
-        
-        .verse-selected {
-        border-bottom: 3px dotted #cc6600;
-        }
-        
-        
-        /* 
-        STRUCTURAL ELEMENTS 
-        werden insgesamt leicht eingerückt und durch farbige Linien am linken Rand markiert 
-        Ausnahme sind Seiten- und Foliowechsel, die durch die entsprechenden Zahlen am rechten Rand
-        der Texte markiert werden, bzw. durch eine horizontale Linie.
-        Samples werden farblich hervorgehoben
-        */
-        
-        .sample {
-        margin: 3px 45px 5px 20px;
-        padding: 5px 2px 2px 5px;
-        }
-        
-        .sampleType    {
-        margin: 15px;
-        padding: 15px;
-        }
-        
-        
-        .head, .speaker, .metatext, .superscr, .subscr {
-        margin: 5px;
-        padding: 10px;
-        }
-        
-        .pb, .fol {
-        width: 50%;
-        text-align: right;
-        font-style: italic;
-        visibility: hidden;
-        }
-        
-        .pb {
-        border-bottom: 1px solid #DDDDDD;
-        }
-        
-        .sample-selected  {
-        background-color: #E0EEEE;
-        }
-        
-        .sampleType-selected    {
-        color: #7a005c;
-        }
-        
-        .pb-selected {
-        visibility: visible;
-        }
-        
-        .fol-selected {
-        visibility: visible;
-        }
-        
-        .head {
-        font-weight: bold;
-        }
-        
-        .head-selected {
-        border-left: 2px solid #003399;
-        }
-        
-        .speaker-selected {
-        border-left: 2px solid #a31919;
-        }
-        
-        .metatext-selected {
-        border-left: 2px solid #CC6600;
-        }
-        
-        .superscr-selected, .subscr-selected {
-        border-left: 2px solid #660033;
-        }
-        
-        /* COMMENT ELEMENTS */
-        /* werden durch Kursivschrift und größeren Zeichenabstand hervorgehoben */
-        
-        .comment, .comment_editor {
-        display: inline;
-        }
-        
-        .comment-selected {
-        font-style: italic;
-        letter-spacing: 0.12em;
-        }
-        
-        .comment_editor-selected {
-        font-style: italic;
-        }
-        
-        /* SAMPLE ELEMENTS */
-        /* existieren nur bei den congregational songs. Sie können ein- oder ausgeblendet werden */
-        
-        .metricalPsalm, .canticle, .otherBibleVersification  {
-        visibility: visible;
-        }
-        
-        .metricalPsalm-selected, .canticle-selected, .otherBibleVersification-selected  {
-        font-style: italic;
-        color: #BEBEBE;
-        } 
-        
-        #set_right_drop {
-        margin-left:20px;
-        
-        }
-        legend i, h6 i {
-        margin-left:20px;
-        }
-        
-        .InText {
-        margin-left:2px;
-        }
-        .comment-selected {
-            cursor:pointer !important;
+        /**## Catechism Style ##**/
+        .tx-speaker {
+            border:1px dotted;
+            display: block;
         }
       
         
-        /*#########Author & Text Profile ######*/
-        #TextHeadline {
-            width:100%;
+        .tx-speaker-paragraph  {
+            
         }
-          .Profiles {
-            float:left;
-            display:block;
-        }
-        
-        
-        #TextAuthorProfile {
-           padding-top: 38px;
-        }
-        
-        #TextTextProfile {
-           padding-top:8px;
-        }
-   
-      #TextTitle {
-        }
-        .TextTooltip {
-            display:none;
-            float:left;
-            width:100%;
-            margin-bottom:5px;
-        }
-        
-        
-        #ToolAuthorProfile {
+        .tx-speaker-paragraph p {
             
         }
         
-        #ToolTextProfile {
-            padding-top:11px;
-        }
-        #TextLayoutProfile {
-            margin-bottom: 5px;
-            margin-top: 10px;
-        }
-        #ToolTextLayout{
-            margin-left: 25px;
-            width: 94%;
+        .tx-high {
+            vertical-align: super;
         }
         
-           .TextLeft {
-            display: inline-block;
-            width: 23%;
-            vertical-align:top;
-        }
-        
-        .TextRight {
-            display: inline-block;
-             width: 77%;
-        }
-        
-        .TextLine {
-            padding: 1px 0 2px;
-            display: block;
-            border-bottom:1px solid #cac3db;
-        }
-        /*
-        #ToolAuthorProfile .TextLeft {
-            width:37%;
-        } 
-        
-         #ToolAuthorProfile .TextRight {
-            width:63%;
-        } 
-        */
-        .TextTooltipButton, .TextTooltipButtonSingle {
-            color: #001e7f;
-            cursor: pointer !important;
-            float: left;
-            font-style: italic;
-           text-align:right;
-            width: 30%;
-        }
-        .TextTooltipButton:hover {
-            color:#003DFF;
-            
-        }
-        
-        .IconDown {
-            margin-left: 20px;
-        }
-        
-        #TextProfileStyle {
-           
-        }
-        
-        #TextAnnotation, #TextDownload {
-            width:100%;
-            
+        h3.tx-head {
+            font-size: 16px;
         }
         
         
-        #TextShortTitle {
-            
-        }
-        
-        #TitleLine {
-            
-        }
-        
-        .Titels {
-            float:left;
-            display:block;
-            width:70%;
-         
-        }
-        
-        .TextHeader {
-            margin-left: 27px;
-    margin-right: 45px;
-    margin-top: 10px;
-        }
-       .Titels h3 {
-            margin-bottom:0 !important;
-            margin-top:0 !important;
-        }
-        
-       .Titels h4 {
-            margin-top:40px !important;
-        }
