@@ -16,7 +16,7 @@
     </xsl:template>
     
     <xsl:template match="text">
-        <div class="whiteBorder">
+        <div class="tx-innerText">
             <xsl:apply-templates select="child::node()"/>     
         </div>
     </xsl:template>
@@ -47,9 +47,11 @@
         <span>
             <xsl:attribute name="class"><xsl:value-of select="./@ana"/></xsl:attribute>
             <a>
-                <xsl:attribute name="title"><xsl:value-of select="./sic/data(.)"/></xsl:attribute>
+                <xsl:attribute name="title"><xsl:value-of select="./@ana"/> : <xsl:value-of select="./sic/data(.)"/></xsl:attribute>
                 <xsl:value-of select="./corr/data(.)"/>
+                <i class="glyphicon glyphicon-comment InText" style="display: none;"/>
             </a>            
+            
         </span>
     </xsl:template>
     <xsl:template match="quote">

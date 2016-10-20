@@ -19,7 +19,7 @@ declare function doc:getText($node as node(), $model as map(*),$xml as xs:string
         return transform:transform($file, $stylesheet, ())
 
 };
-
+(:
 declare function doc:getControll($node as node(), $model as map(*),$xml as xs:string) {
     let $file := doc(concat("/db/apps/coerp_new/data/texts/",$xml,".xml"))
     let $genre := $file//tei:note[@type="genre"]/@subtype/data(.)
@@ -29,6 +29,50 @@ declare function doc:getControll($node as node(), $model as map(*),$xml as xs:st
     
         return transform:transform($file, $stylesheet, ())
 
+};:)
+
+declare function doc:getControll($node as node(), $model as map(*), $xml as xs:string) {
+    let $file := doc(concat("/db/apps/coerp_new/data/texts/",$xml,".xml"))
+    let $biblical := if(exists($file//tei:quote[@type ="biblical"])) then <item type="biblical" title="Bible References"/> else ()
+    let $psalm := if(exists($file//tei:quote[@type ="psalm"])) then <item type="psalm" title="Psalmtext"/> else ()
+    let $references := if(exists($biblical) or exists($psalm)) then <item title="References">{($biblical,$psalm)}</item> else ()
+    
+    let $sample := <item type="tx-sample" title="Samples"/>
+    let $pb := if(exists($file//tei:pb)) then  <item type="tx-pb" title="Page Breaks"/> else()
+    let $fw := if(exists($file//tei:fw)) then  <item type="tx-fw" title="Folio Sheet Delimiters"/> else () 
+    let $head := if(exists($file//tei:head)) then <item type="tx-head" title="Headings"/> else () 
+    let $speakers := if(exists($file//tei:sp)) then <item type="tx-speaker" title="Speakers"/> else ()
+    
+    let $structural := <item title="Structural">{($sample,$pb,$fw,$head,$speakers)}</item>
+    
+    let $illegible := if(exists($file//tei:choice[@ana ="illegible"])) then <item type="illegible" title="Illegible"/> else ()
+    let $print := if(exists($file//tei:choice[@ana ="print"])) then <item type="print" title="Print"/> else ()
+    let $print-error := if(exists($file//tei:choice[@ana ="print-error"])) then <item type="print-error" title="Print Error"/> else ()
+    
+    let $comment := <item title="Comment">{($illegible,$print,$print-error)}</item>
+    
+    return map {
+        "datas" := ($references,$structural,$comment)
+    }   
+};
+
+declare function doc:mapControll($node as node(), $model as map(*), $type as xs:string) {
+ map {
+        "items" := $model($type)/item
+    }
+};
+
+declare function doc:printTDControll($node as node(), $model as map(*),$type as xs:string) {
+    <tr>
+        <td>C</td>
+        <td class="ct-button" id="{$model($type)/@type/data(.)}">{$model($type)/@title/data(.)}</td>
+        <td><i class="glyphicon glyphicon-step-backward" title="next Element"/></td>
+        <td><i class="glyphicon glyphicon-step-forward" title="previous Element"/></td>   
+   </tr>
+};
+
+declare function doc:printHDControll($node as node(), $model as map(*), $type as xs:string) {
+    <span class="ct-header">{$model($type)/@title/data(.)}</span>
 };
 
 declare function doc:test($node as node(), $model as map(*),$xml as xs:string) {

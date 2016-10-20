@@ -9,7 +9,6 @@
        <div class="tx-speaker">
            <xsl:apply-templates/>
        </div>
-   </xsl:template>
-    
+   </xsl:template>  
    
 </xsl:stylesheet>
