@@ -19,20 +19,10 @@ declare function doc:getText($node as node(), $model as map(*),$xml as xs:string
         return transform:transform($file, $stylesheet, ())
 
 };
-(:
-declare function doc:getControll($node as node(), $model as map(*),$xml as xs:string) {
-    let $file := doc(concat("/db/apps/coerp_new/data/texts/",$xml,".xml"))
-    let $genre := $file//tei:note[@type="genre"]/@subtype/data(.)
-    let $stylesheet := "controll"
-                                    
-    let $stylesheet := doc(concat("/db/apps/coerp_new/xslt/",$stylesheet,".xsl"))
-    
-        return transform:transform($file, $stylesheet, ())
-
-};:)
 
 declare function doc:getControll($node as node(), $model as map(*), $xml as xs:string) {
     let $file := doc(concat("/db/apps/coerp_new/data/texts/",$xml,".xml"))
+    
     let $biblical := if(exists($file//tei:quote[@type ="biblical"])) then <item type="biblical" title="Bible References"/> else ()
     let $psalm := if(exists($file//tei:quote[@type ="psalm"])) then <item type="psalm" title="Psalmtext"/> else ()
     let $references := if(exists($biblical) or exists($psalm)) then <item title="References">{($biblical,$psalm)}</item> else ()
