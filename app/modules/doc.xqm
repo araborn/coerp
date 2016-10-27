@@ -22,7 +22,7 @@ declare function doc:getText($node as node(), $model as map(*),$xml as xs:string
 
 declare function doc:getControll($node as node(), $model as map(*), $xml as xs:string) {
     let $file := doc(concat("/db/apps/coerp_new/data/texts/",$xml,".xml"))
-    
+     
     let $biblical := if(exists($file//tei:quote[@type ="biblical"])) then <item type="biblical" title="Bible References"/> else ()
     let $psalm := if(exists($file//tei:quote[@type ="psalm"])) then <item type="psalm" title="Psalmtext"/> else ()
     let $references := if(exists($biblical) or exists($psalm)) then <item title="References">{($biblical,$psalm)}</item> else ()
@@ -46,23 +46,27 @@ declare function doc:getControll($node as node(), $model as map(*), $xml as xs:s
     }   
 };
 
-declare function doc:mapControll($node as node(), $model as map(*), $type as xs:string) {
+declare function doc:mapControll($node as node(), $model as map(*), $name as xs:string) {
  map {
-        "items" := $model($type)/item
+        "items" := $model($name)/item
     }
 };
 
-declare function doc:printTDControll($node as node(), $model as map(*),$type as xs:string) {
-    <tr>
-        <td>C</td>
-        <td class="ct-button" id="{$model($type)/@type/data(.)}">{$model($type)/@title/data(.)}</td>
+declare function doc:printTDControll($node as node(), $model as map(*),$name as xs:string) {
+    <tr id="{$model($name)/@type/data(.)}">
+        <td class="ct-controll" >
+            <label>
+                <input type="checkbox" class="ct-check " />
+                <span class="ct-button ct-{$model($name)/@type/data(.)}" >{$model($name)/@title/data(.)}</span>
+            </label>
+        </td>        
         <td><i class="glyphicon glyphicon-step-backward" title="next Element"/></td>
         <td><i class="glyphicon glyphicon-step-forward" title="previous Element"/></td>   
    </tr>
 };
 
-declare function doc:printHDControll($node as node(), $model as map(*), $type as xs:string) {
-    <span class="ct-header">{$model($type)/@title/data(.)}</span>
+declare function doc:printHDControll($node as node(), $model as map(*), $name as xs:string) {
+    <span class="ct-header">{$model($name)/@title/data(.)}</span>
 };
 
 declare function doc:test($node as node(), $model as map(*),$xml as xs:string) {

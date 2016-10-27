@@ -4,7 +4,7 @@
      
      .tx-controll {
          top: 95px;
-        width: 230px;
+        padding: 5px 10px;
         position:fixed;
         display:block;
         margin-left:610px;
@@ -60,14 +60,18 @@
         h3.tx-head {
             font-size: 16px;
         }
-        .tx-speaker.ct-high, #tx-speaker.ct-high {
+        .tx-speaker.ct-high, .ct-tx-speaker.ct-high {
             border-left: 2px solid #a31919;
         }
         
         /*### Higlight Window###*/
         .ct-header {
-            display:block;
-            cursor:pointer;
+            border-bottom: 1px dotted black;
+             cursor: pointer;
+             display: block;
+             font-size: 16px;
+             margin: 4px 0;
+
         }
         
         .ct-elements {
@@ -79,6 +83,24 @@
             display:block;            
         }
         
+        .ct-controll {
+            width:200px;
+        }
+        
+        .glyphicon-step-backward, 
+        .glyphicon-step-forward{
+            cursor:pointer;
+            font-size:17px;
+        }
+        
+        .glyphicon-step-backward:hover, 
+        .glyphicon-step-forward:hover {
+            color:grey;
+        }
+         
+         label {
+             font-weight:normal;
+         }
         
         /*### Highlights ###*/
         
@@ -86,28 +108,30 @@
             margin: 1px 2px;
             padding: 1px 2px 1px 4px;
             width:155px;
+            cursor:pointer;
         }
         
-        .biblical.ct-high, #biblical.ct-high{
+        .biblical.ct-high, .ct-biblical.ct-high{
             color: #336699;
         }
         
-        .biblical.ct-high,#biblical.ct-high {
+        .biblical.ct-high,.ct-biblical.ct-high {
             font-style: italic;
         }
         
-        .tx-sample.ct-high, #tx-sample.ct-high {
+        .tx-sample.ct-high, .ct-tx-sample.ct-high {
             background-color: #e0eeee;
         }
         
-        .tx-head.ct-high, #tx-head.ct-high {
+        .tx-head.ct-high, .ct-tx-head.ct-high {
             border-left: 2px solid #003399;
         }
         
-        span.print-error.ct-high, #print-error.ct-high,
-        span.illegible.ct-high, #illegible.ct-high,
-        span.print.ct-high, #print.ct-high {
+        span.print-error.ct-high a, .ct-print-error.ct-high,
+        span.illegible.ct-high a, .ct-illegible.ct-high,
+        span.print.ct-high a, .ct-print.ct-high {
             font-style:italic;
+            color:red;
         }
         span.print-error.ct-high a i,span.illegible.ct-high a i, span.print.ct-high a i {
             display:inline;

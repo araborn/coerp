@@ -1,20 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <div xmlns="http://www.w3.org/1999/xhtml" class="templates:surround?with=templates/page.html&amp;at=content">
     <link class="helpers:app-root" rel="stylesheet" href="resources/css/TextStyle.css"/>
-    <script class="helpers:app-root" type="text/javascript" src="resources/js/elements_controll.js"/>
-    <div class="tx-text whiteBorder">
-        <div data-template="doc:getText"/>
-    </div>
+    <script class="helpers:app-root" type="text/javascript" src="resources/js/jquery.scrollTo.min.js"/>
+
     <div class="tx-controll whiteBorder">
         <map data-template="doc:getControll">
-            <each data-template="helpers:invisibleEach" data-template-from="datas" data-template-to="data">
+            <each data-template="helpers:invisibleEach" data-template-from="datas" data-template-to="item">
                 <span>                    
-                    <get data-template="doc:printHDControll"  data-template-type="data"/>
-                    <map data-template="doc:mapControll" data-template-type="data">
+                    <get data-template="doc:printHDControll"  data-template-name="item"/>
+                    <map data-template="doc:mapControll" data-template-name="item">
                         <span class="ct-elements">
                              <table>
                                  <each data-template="helpers:invisibleEach" data-template-from="items" data-template-to="item">
-                                    <get data-template="doc:printTDControll" data-template-type="item"/>
+                                     <get data-template="doc:printTDControll" data-template-name="item"/>
                                 </each>
                             </table>
                         </span>
@@ -23,6 +21,10 @@
             </each>
         </map>
     </div>
+    <div class="tx-text whiteBorder">
+        <div data-template="doc:getText"/>
+    </div>    
+        <script class="helpers:app-root" type="text/javascript" src="resources/js/elements_controll.js"/>
 </div>
         
    
