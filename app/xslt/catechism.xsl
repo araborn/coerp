@@ -6,9 +6,9 @@
     <xsl:import href="texts.xsl"/>
     <xsl:output method="xhtml" encoding="UTF-8" indent="yes"/>
            <xsl:template match="sp">
-       <div class="tx-speaker">
-           <xsl:apply-templates/>
-       </div>
-   </xsl:template>  
-   
+            <div class="tx-speaker">
+                <xsl:attribute name="id" select=" concat('tx-speaker','_',count(preceding::sp)+1)"/>
+                <xsl:apply-templates/>
+            </div>
+   </xsl:template>     
 </xsl:stylesheet>

@@ -23,7 +23,7 @@
     
     <xsl:template match="body/div">
         <div class="tx-sample">
-            <xsl:attribute name="id"><xsl:value-of select="./@xml:id"/></xsl:attribute>
+            <xsl:attribute name="id"><xsl:value-of select="./@xml:id"/></xsl:attribute>            
             <xsl:apply-templates/>
         </div>
     </xsl:template>
@@ -32,7 +32,7 @@
     
     <xsl:template match="pb">
         <p class="tx-pb">
-           <xsl:attribute name="id"><xsl:value-of select="./@n"/></xsl:attribute>
+            <xsl:attribute name="id"><xsl:value-of select="concat('tx-pb','_',./@n)"/></xsl:attribute>
             <xsl:value-of select="./@n"/>
         </p>
     </xsl:template>
@@ -45,7 +45,9 @@
     
     <xsl:template match="choice">
         <span>
+            <xsl:variable name="ana" select="./@ana"/>
             <xsl:attribute name="class"><xsl:value-of select="./@ana"/></xsl:attribute>
+            <xsl:attribute name="id" select=" concat(./@ana,'_',count(preceding::choice[@ana eq $ana])+1)"/>
             <a>
                 <xsl:attribute name="title"><xsl:value-of select="./@ana"/> : <xsl:value-of select="./sic/data(.)"/></xsl:attribute>
                 <xsl:value-of select="./corr/data(.)"/>
@@ -56,7 +58,9 @@
     </xsl:template>
     <xsl:template match="quote">
         <span>
+            <xsl:variable name="type" select="./@type"/>
             <xsl:attribute name="class"><xsl:value-of select="./@type"/></xsl:attribute>
+            <xsl:attribute name="id" select=" concat(./@type,'_',count(preceding::quote[@type eq $type])+1)"/>
             <xsl:apply-templates />
         </span>
     </xsl:template>
@@ -64,7 +68,10 @@
         <span class="tx-high"><xsl:value-of select="."/></span>
     </xsl:template>
     <xsl:template match="div/head">
-        <h3 class="tx-head"><xsl:value-of select="."/></h3>
+        <h3 class="tx-head">
+            <xsl:attribute name="id" select=" concat('tx-head','_',count(preceding::div/head)+1)"/>
+            <xsl:value-of select="."/>
+        </h3>
     </xsl:template>
     
 </xsl:stylesheet>

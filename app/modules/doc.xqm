@@ -60,8 +60,8 @@ declare function doc:printTDControll($node as node(), $model as map(*),$name as 
                 <span class="ct-button ct-{$model($name)/@type/data(.)}" >{$model($name)/@title/data(.)}</span>
             </label>
         </td>        
-        <td><i class="glyphicon glyphicon-step-backward" title="next Element"/></td>
-        <td><i class="glyphicon glyphicon-step-forward" title="previous Element"/></td>   
+        <td><i class="glyphicon glyphicon-step-backward" title="next Element" pos="1"/></td>
+        <td><i class="glyphicon glyphicon-step-forward" title="previous Element" pos="2"/></td>   
    </tr>
 };
 

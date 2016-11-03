@@ -104,6 +104,10 @@
         
         /*### Highlights ###*/
         
+        .ct-scroll {
+            background-color:#d3d3d3;
+        }
+        
         .ct-button {
             margin: 1px 2px;
             padding: 1px 2px 1px 4px;
