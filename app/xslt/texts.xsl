@@ -3,17 +3,15 @@
                         exclude-result-prefixes="xs" 
                         xpath-default-namespace="http://www.tei-c.org/ns/1.0" 
                         version="2.0">
-    <xsl:output method="xhtml" encoding="UTF-8" indent="yes"/>
-    <!-- Header -->
-    <xsl:template match="/">
+    <xsl:output method="xhtml" encoding="UTF-8" indent="no"/>
+    <!-- Header --><!--
+    <xsl:template match="/text">
         <xsl:apply-templates />   
-    </xsl:template>
-    
+    </xsl:template>-->
+    <!--
     <xsl:template match="teiHeader">
-        <div class="header">
-            <xsl:value-of select=".//fileDesc/sourceDesc/bibl/title[@type = 'short']"/>
-        </div>
-    </xsl:template>
+      
+    </xsl:template>-->
     
     <xsl:template match="text">
         <div class="tx-innerText">

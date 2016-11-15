@@ -1,14 +1,7 @@
      .tx-text { 
      
      }
-     
-     .tx-controll {
-         top: 95px;
-        padding: 5px 10px;
-        position:fixed;
-        display:block;
-        margin-left:610px;
-     }
+ 
      
      .tx-sample-inner {
         }
@@ -64,7 +57,68 @@
             border-left: 2px solid #a31919;
         }
         
+        /*## Header Style ###*/
+        
+        #he {
+            
+        }
+        #he-author {
+            
+        }
+        #he-title {
+            
+        }
+        
         /*### Higlight Window###*/
+        #ct { 
+           top: 95px;
+            padding: 5px 10px;
+            position:fixed;        
+            margin-left:635px;
+            
+        }
+        .ct-position {
+            position:fixed;
+            margin-left:45px;
+            top:95px;
+            
+        }
+        #ct-sideButtons {
+        }
+        #ct-sideButtons span i {
+            color:red;
+            font-size:17px;
+        }
+        #ct-annotations-b {
+            
+        }
+        #ct-downloads-b {
+            
+        }
+        #ct-annotations-b, #ct-downloads-b {
+            cursor:pointer;
+            display:block;
+        }
+        #ct-annotations-w {
+            padding: 5px 10px;
+            width: 250px;
+            
+        }
+        #ct-downloads-w{
+            width:100px;
+            padding:5px 10px;
+        }
+        #ct-downloads-w span span {
+            display:block;
+            font-size: 16px;
+        }
+        
+        
+            
+     .ct-controll {       
+        display:none;
+     }
+        
         .ct-header {
             border-bottom: 1px dotted black;
              cursor: pointer;
@@ -83,7 +137,7 @@
             display:block;            
         }
         
-        .ct-controll {
+        .ct-functions {
             width:200px;
         }
         
@@ -103,6 +157,8 @@
          }
         
         /*### Highlights ###*/
+        
+     
         
         .ct-scroll {
             background-color:#d3d3d3;

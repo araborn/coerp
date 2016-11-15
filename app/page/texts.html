@@ -2,27 +2,138 @@
 <div xmlns="http://www.w3.org/1999/xhtml" class="templates:surround?with=templates/page.html&amp;at=content">
     <link class="helpers:app-root" rel="stylesheet" href="resources/css/TextStyle.css"/>
     <script class="helpers:app-root" type="text/javascript" src="resources/js/jquery.scrollTo.min.js"/>
-
-    <div class="tx-controll whiteBorder">
-        <map data-template="doc:getControll">
-            <each data-template="helpers:invisibleEach" data-template-from="datas" data-template-to="item">
-                <span>                    
-                    <get data-template="doc:printHDControll"  data-template-name="item"/>
-                    <map data-template="doc:mapControll" data-template-name="item">
-                        <span class="ct-elements">
-                             <table>
-                                 <each data-template="helpers:invisibleEach" data-template-from="items" data-template-to="item">
-                                     <get data-template="doc:printTDControll" data-template-name="item"/>
-                                </each>
-                            </table>
+    
+    <div id="ct">
+        <div id="ct-sideButtons">
+            <span class="ct-bar" id="ct-annotations-b">
+                <i class="glyphicon glyphicon-wrench"></i>
+                <i class="glyphicon glyphicon-menu-right"></i>
+            </span>
+            <span class="ct-bar" id="ct-downloads-b">
+                <i class="glyphicon glyphicon-download-alt"></i>
+                <i class="glyphicon glyphicon-menu-right"></i>
+            </span>
+        </div>
+        <div class="ct-position">
+            <div class="ct-controll whiteBorder" id="ct-annotations-w">
+                <map data-template="doc:getControll">
+                    <each data-template="helpers:invisibleEach" data-template-from="datas" data-template-to="item">
+                        <span>                    
+                            <get data-template="doc:printHDControll"  data-template-name="item"/>
+                            <map data-template="doc:mapControll" data-template-name="item">
+                                <span class="ct-elements">
+                                     <table>
+                                         <each data-template="helpers:invisibleEach" data-template-from="items" data-template-to="item">
+                                             <get data-template="doc:printTDControll" data-template-name="item"/>
+                                        </each>
+                                    </table>
+                                </span>
+                            </map>
                         </span>
-                    </map>
-                </span>
-            </each>
-        </map>
+                    </each>
+                </map>
+            </div>
+        </div>
+        <div class="ct-position">
+         <div class="ct-controll whiteBorder" id="ct-downloads-w">
+             <span>
+                 <span>
+                     XML
+                 </span>
+                 <span>
+                     Quote
+                 </span>
+                 <span>
+                     Print
+                 </span>
+             </span>
+         </div>
+        </div>
     </div>
+    
+    
     <div class="tx-text whiteBorder">
-        <div data-template="doc:getText"/>
+        <map data-template="doc:getTextInfo">
+            <div id="he">
+                <div id="he-author">
+                    <div>
+                       <span>
+                           <get data-template="helpers:getValue" data-template-get="author"/>
+                       </span>
+                        <span>
+                            Author Profile
+                        </span>
+                    </div>
+                    <div>
+                        <table>
+                            <tr>
+                                <td>Author</td>
+                                <td>
+                                    <get data-template="helpers:getValue" data-template-get="author"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Translator</td>
+                                <td>
+                                    <get data-template="helpers:getValue" data-template-get="translator"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Denomination</td>
+                                <td>
+                                    <get data-template="helpers:getValue" data-template-get="denom"/>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div id="he-title">
+                    <div>
+                        <span>
+                            <get data-template="helpers:getValue" data-template-get="short-title"/>
+                        </span>
+                        <span>
+                            Text Profile
+                        </span>
+                    </div>
+                    <div>
+                        <table>
+                            <tr>
+                                <td>Genre</td>
+                                <td>
+                                    <get data-template="helpers:getValue" data-template-get="genre"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Date</td>
+                                <td>
+                                    <get data-template="helpers:getValue" data-template-get="date"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Full Title</td>
+                                <td>
+                                    <get data-template="helpers:getValue" data-template-get="title"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Source</td>
+                                <td>
+                                    <get data-template="helpers:getValue" data-template-get="source"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Sampling</td>
+                                <td>
+                                    Not Yet
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </map>
+        <xslt data-template="doc:getText"/>
     </div>    
         <script class="helpers:app-root" type="text/javascript" src="resources/js/elements_controll.js"/>
 </div>

@@ -103,7 +103,7 @@ else if (ends-with($exist:resource, "index.html")) then
         </view>
     </dispatch>  
     
-    else if (contains($exist:path , "genre")) then
+    else if (contains($exist:path , "genre/")) then
          let $term := substring-after($exist:path,"genre/")
          let $ordertype := if (contains($term,"/")) then substring-after($term,"/") else "date" 
          let $term := if (contains($term,"/")) then substring-before($term,"/") else $term 
@@ -126,7 +126,7 @@ else if (ends-with($exist:resource, "index.html")) then
         </view>
     </dispatch> 
     )
-    else if (contains($exist:path , "denom")) then
+    else if (contains($exist:path , "denom/")) then
         let $term := substring-after($exist:path,"denom/")
          let $ordertype := if (contains($term,"/")) then substring-after($term,"/") else "date" 
          let $term := if (contains($term,"/")) then substring-before($term,"/") else $term 
@@ -148,7 +148,7 @@ else if (ends-with($exist:resource, "index.html")) then
         </view>
     </dispatch> 
     )
-    else if(contains($exist:path,"periods")) then 
+    else if(contains($exist:path,"periods/")) then 
          let $term := substring-after($exist:path,"periods/")
          let $ordertype := if (contains($term,"/")) then substring-after($term,"/") else "date" 
          let $term := if (contains($term,"/")) then substring-before($term,"/") else $term 
@@ -170,7 +170,7 @@ else if (ends-with($exist:resource, "index.html")) then
         </view>
     </dispatch> 
     )
-     else if (contains($exist:path,"author") or contains($exist:path,"translator")) then     
+     else if (contains($exist:path,"author/") or contains($exist:path,"translator/")) then     
      let $type := if (contains($exist:path,"author")) then "author" else "translator"
      let $term := substring-after($exist:path,concat($type,"/"))
      let $ordertype := if(contains($term,"/")) then substring-after($term,"/") else "date"

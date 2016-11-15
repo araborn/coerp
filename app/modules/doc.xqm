@@ -54,19 +54,36 @@ declare function doc:mapControll($node as node(), $model as map(*), $name as xs:
 
 declare function doc:printTDControll($node as node(), $model as map(*),$name as xs:string) {
     <tr id="{$model($name)/@type/data(.)}">
-        <td class="ct-controll" >
+        <td class="ct-functions" >
             <label>
                 <input type="checkbox" class="ct-check " />
                 <span class="ct-button ct-{$model($name)/@type/data(.)}" >{$model($name)/@title/data(.)}</span>
             </label>
         </td>        
-        <td><i class="glyphicon glyphicon-step-backward" title="next Element" pos="1"/></td>
-        <td><i class="glyphicon glyphicon-step-forward" title="previous Element" pos="2"/></td>   
+        <td><i class="glyphicon glyphicon-step-backward" title="next Element" pos="0"/></td>
+        <td><i class="glyphicon glyphicon-step-forward" title="previous Element" pos="1"/></td>   
    </tr>
 };
 
 declare function doc:printHDControll($node as node(), $model as map(*), $name as xs:string) {
     <span class="ct-header">{$model($name)/@title/data(.)}</span>
+};
+
+
+declare function doc:getTextInfo($node as node(), $model as map(*), $xml as xs:string) {
+    let $file := doc(concat("/db/apps/coerp_new/data/texts/",$xml,".xml"))
+    let $bible := $file//tei:bibl
+    return 
+    map {
+        "author" := $bible/tei:author[@role="author"]/data(.),
+        "translator" := $bible/tei:author[@role="translator"]/data(.),
+        "denom" := "Not Set",
+        "title" := $bible/tei:title[@type ="main"]/data(.),
+        "short-title" := $bible/tei:title[@type = "short"]/data(.),
+        "genre" := $bible/tei:note[@type= "genre"]/data(.),
+        "date" := $bible/tei:date[@type ="this_edition"]/data(.),
+        "source" := concat($bible/tei:idno/@type/data(.)," ",$bible/tei:idno/data(.))
+    }
 };
 
 declare function doc:test($node as node(), $model as map(*),$xml as xs:string) {
