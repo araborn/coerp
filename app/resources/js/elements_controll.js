@@ -23,25 +23,49 @@ $(document).ready(function() {
         getCords($(this).parent().parent().attr("id"),$(this));
     });
     
-    $("#ct-annotations-b").click(function() {
-        toggleExtBars("ct-annotations-w");
+    $(".ct-bar").click(function() {
+        toggleExtBars($(this).attr("resource"));
+        /*if( $(this).children("i").hasClass("glyphicon-menu-right")) {
+            $(this).children("i").removeClass("glyphicon-menu-right");
+            $(this).children("i").addClass("glyphicon-menu-left");
+        }
+        else {        
+            $(this).children("i").removeClass("glyphicon-menu-left");
+            $(this).children("i").addClass("glyphicon-menu-right");
+        }*/
     });
-    $("#ct-downloads-b").click(function() {
-         toggleExtBars("ct-downloads-w");        
+    $(".he-bar").click(function() {
+        toggleExtBars($(this).attr("resource"));
     });
+
+    
+    /* Profile Buttons */
+    
+    $(".he-profile").click(function() {
+        $("#he-"+$(this).attr("resource")+"-content").toggle("slow");
+        if( $(this).children("i").hasClass("glyphicon-menu-down")) {
+            $(this).children("i").removeClass("glyphicon-menu-down");
+            $(this).children("i").addClass("glyphicon-menu-up");
+        }
+        else {        
+            $(this).children("i").removeClass("glyphicon-menu-up");
+            $(this).children("i").addClass("glyphicon-menu-down");
+        }
+        });
     
 });
 
 
+
 function toggleExtBars(elem) {
-        $("#"+elem).toggle("slide","slow");
-        if(elem == "ct-downloads-w") {
+        $("#ct-"+elem+"-w").toggle("slide","slow");
+        if(elem == "downloads") {
             if($("#ct-annotations-w").css("display") == "block") {
                 $("#ct-annotations-w").toggle("slide","slow");
             }
         }
         
-        if(elem == "ct-annotations-w") {
+        if(elem == "annotations") {
             if($("#ct-downloads-w").css("display") == "block") {
                 $("#ct-downloads-w").toggle("slide","slow");
             }

@@ -8,10 +8,10 @@
     <xsl:template match="/text">
         <xsl:apply-templates />   
     </xsl:template>-->
-    <!--
+    
     <xsl:template match="teiHeader">
-      
-    </xsl:template>-->
+      <div style="display:none"><xsl:apply-templates/></div>
+    </xsl:template>
     
     <xsl:template match="text">
         <div class="tx-innerText">

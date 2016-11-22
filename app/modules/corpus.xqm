@@ -27,15 +27,14 @@ declare function corpus:scanDB($db as node()*, $param as xs:string, $term as xs:
                                     case "genre-subtype" case "genre" return search:range-MultiStats($db,"genre-subtype","eq",$term)
                                     case "date" return search:range-date($db,substring-before($term,"-"),substring-after($term,"-"),"date")
                                     default return "Error"
-     return $results
-        
+     return $results        
         
 };
 
 declare function corpus:mapScanDB($node as node(), $model as map(*),$type as xs:string, $param as xs:string+, $term as xs:string+ ) {
         let $db := collection("/db/apps/coerp_new/data/texts")
         let $eq := for $par in $param return "eq"
-        let $results := if($type eq "date") then search:range-date($db,substring-before($term,"-"),substring-after($term,"-"),"date")
+        let $results := if($type eq "periods") then search:range-date($db,substring-before($term,"-"),substring-after($term,"-"),"date")
                                     else search:range-MultiStats($db,$param,$eq,$term)
        let $results := for $result in $results   return 
                                         <item

@@ -26,7 +26,10 @@
             
         }
         
-        span.print-error a, span.illegible a, span.print a {
+        span.print-error a, 
+        span.illegible a, 
+        span.print a,
+        span.editor a{
             color:black;
             text-decoration:none;
         }        
@@ -60,13 +63,93 @@
         /*## Header Style ###*/
         
         #he {
-            
+            margin: 10px 55px 5px 10px;
+            padding: 5px 2px 10px;
         }
         #he-author {
             
         }
+        
+         #he-author-title {
+         font-size:18px;
+            
+        }
+        
+        #he-author-profile {
+            
+        }       
+       
+        
+        #he-author-content, #he-text-content {
+            display:none;
+            margin: 2px 10px 2px 5px;
+            padding: 2px 5px;
+        }
+        
         #he-title {
             
+        }
+        
+        #he-title-title {
+            font-size:25px;
+        }
+        
+        #he-title-profile {
+            
+        }
+        
+        #he-title-content {
+            display:none;
+            margin: 2px 10px 2px 5px;
+            padding: 2px 5px;
+        }
+        
+         #he-title-content table tr,  
+         #he-author-content table tr {
+             border-bottom: 1px solid #cac3db;
+         }
+         
+        #he-title-content table tr td:nth-child(odd),  
+        #he-author-content table tr td:nth-child(odd) {
+            width:150px;
+        }
+         
+        #he-author-title, #he-title-title {
+            float:left;
+            display:block;
+        }
+        
+         .he-profile {
+            text-align:right;
+            display:block;
+            color: #001e7f;
+            font-style:italic;
+            cursor:pointer;
+        }
+        
+        .he-profile:hover {
+            color: #003dff
+        }
+        
+        #he-text-profile {
+            text-align:left;
+            margin-top:10px;
+        }
+        
+        #he-controlls  {
+            text-align:right;
+        }
+        #he-controlls div {
+            display:block;
+        }
+        
+        .he-bar {
+            color: #001e7f;
+            cursor:pointer;
+        }
+        
+        .he-bar:hover {
+            color: #003dff;
         }
         
         /*### Higlight Window###*/
@@ -189,7 +272,8 @@
         
         span.print-error.ct-high a, .ct-print-error.ct-high,
         span.illegible.ct-high a, .ct-illegible.ct-high,
-        span.print.ct-high a, .ct-print.ct-high {
+        span.print.ct-high a, .ct-print.ct-high,
+        span.editor.ct-high a, .ct-editor.ct-high{
             font-style:italic;
             color:red;
         }

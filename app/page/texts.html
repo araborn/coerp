@@ -5,11 +5,11 @@
     
     <div id="ct">
         <div id="ct-sideButtons">
-            <span class="ct-bar" id="ct-annotations-b">
+            <span class="ct-bar" id="ct-annotations-b" resource="annotations">
                 <i class="glyphicon glyphicon-wrench"></i>
                 <i class="glyphicon glyphicon-menu-right"></i>
             </span>
-            <span class="ct-bar" id="ct-downloads-b">
+            <span class="ct-bar" id="ct-downloads-b" resource="downloads">
                 <i class="glyphicon glyphicon-download-alt"></i>
                 <i class="glyphicon glyphicon-menu-right"></i>
             </span>
@@ -57,14 +57,16 @@
             <div id="he">
                 <div id="he-author">
                     <div>
-                       <span>
+                       <span id="he-author-title">
                            <get data-template="helpers:getValue" data-template-get="author"/>
                        </span>
-                        <span>
+                        <span id="he-author-profile" class="he-profile" resource="author">
                             Author Profile
+                            <i class="glyphicon glyphicon-menu-down"/>
                         </span>
                     </div>
-                    <div>
+                    <div class="clear"/>
+                    <div id="he-author-content">
                         <table>
                             <tr>
                                 <td>Author</td>
@@ -87,16 +89,19 @@
                         </table>
                     </div>
                 </div>
+                <div class="clear"/>
                 <div id="he-title">
                     <div>
-                        <span>
+                        <span id="he-title-title">
                             <get data-template="helpers:getValue" data-template-get="short-title"/>
                         </span>
-                        <span>
+                        <span id="he-title-profile" class="he-profile" resource="title">
                             Text Profile
+                            <i class="glyphicon glyphicon-menu-down"/>
                         </span>
                     </div>
-                    <div>
+                    <div class="clear"/>
+                    <div id="he-title-content">
                         <table>
                             <tr>
                                 <td>Genre</td>
@@ -129,10 +134,67 @@
                                 </td>
                             </tr>
                         </table>
+                        <span class="he-profile" id="he-text-profile" resource="text">
+                            Text Layout
+                            <i class="glyphicon glyphicon-menu-down"/>
+                        </span>
+                        <div id="he-text-content">
+                            <table>
+                                <tr>
+                                    <td>
+                                        Dumy
+                                    </td>
+                                    <td>
+                                        Dummy
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Dumy
+                                    </td>
+                                    <td>
+                                        Dummy
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Dumy
+                                    </td>
+                                    <td>
+                                        Dummy
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Dumy
+                                    </td>
+                                    <td>
+                                        Dummy
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
                     </div>
                 </div>
+                <div class="clear"/>
+                <div id="he-controlls">
+                    <div>
+                        <span class="he-bar" resource="annotations">
+                            Annotations
+                            <i class="glyphicon glyphicon-wrench"></i>
+                        </span>
+                    </div>
+                    <div>
+                        <span class="he-bar" resource="downloads">
+                            Downloads
+                            <i class="glyphicon glyphicon-download-alt"></i>
+                        </span>
+                    </div>
+                </div>    
             </div>
+            
         </map>
+        <div class="clear"/>        
         <xslt data-template="doc:getText"/>
     </div>    
         <script class="helpers:app-root" type="text/javascript" src="resources/js/elements_controll.js"/>

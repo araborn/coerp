@@ -38,8 +38,9 @@ declare function doc:getControll($node as node(), $model as map(*), $xml as xs:s
     let $illegible := if(exists($file//tei:choice[@ana ="illegible"])) then <item type="illegible" title="Illegible"/> else ()
     let $print := if(exists($file//tei:choice[@ana ="print"])) then <item type="print" title="Print"/> else ()
     let $print-error := if(exists($file//tei:choice[@ana ="print-error"])) then <item type="print-error" title="Print Error"/> else ()
+    let $editor := if(exists($file//tei:choice[@ana ="editor"])) then <item type="editor" title="Editor"/> else ()
     
-    let $comment := <item title="Comment">{($illegible,$print,$print-error)}</item>
+    let $comment := <item title="Comment">{($illegible,$print,$print-error,$editor)}</item>
     
     return map {
         "datas" := ($references,$structural,$comment)

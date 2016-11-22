@@ -105,7 +105,7 @@ else if (ends-with($exist:resource, "index.html")) then
     
     else if (contains($exist:path , "genre/")) then
          let $term := substring-after($exist:path,"genre/")
-         let $ordertype := if (contains($term,"/")) then substring-after($term,"/") else "date" 
+         let $ordertype := if (contains($term,"/")) then substring-after($term,"/") else "title" 
          let $term := if (contains($term,"/")) then substring-before($term,"/") else $term 
 
      return
