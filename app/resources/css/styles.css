@@ -44,6 +44,24 @@
    }
 
 
+    .ScrollToTop {
+        position:fixed;
+        margin-bottom: 20px;
+        margin-right: 290px;
+        bottom:0px;
+        right:0px;
+        text-align:center;
+        padding-top:5px;
+        width:30px;height:30px;
+        cursor:pointer;
+        display:none;
+    }
+    
+    .ScrollToTop:hover {
+        background-color:grey;
+        color:white;
+    }
+
 /*### NAVIGATION ###*/
 
 #navigation {

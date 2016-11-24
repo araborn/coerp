@@ -87,6 +87,13 @@ declare function doc:getTextInfo($node as node(), $model as map(*), $xml as xs:s
     }
 };
 
+
+declare function doc:links($node as node(), $model as map(*), $xml as xs:string) {
+    map {
+        "xml" := <a href="{$helpers:app-root}/text/{$xml}/xml" target="_blank">XML</a>
+    }
+};
+
 declare function doc:test($node as node(), $model as map(*),$xml as xs:string) {
     let $file := doc(concat("/db/apps/coerp_new/data/texts/",$xml,".xml"))
     return map {

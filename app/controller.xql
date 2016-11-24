@@ -196,7 +196,7 @@ else if (ends-with($exist:resource, "index.html")) then
         </view>
     </dispatch> 
     )
-    else if (contains($exist:path, "text")) then
+    else if (contains($exist:path, "text") and not(contains($exist:path,"xml"))) then
     (
         let $xml := $exist:resource
         return (
@@ -210,6 +210,12 @@ else if (ends-with($exist:resource, "index.html")) then
         </view>
     </dispatch> 
         )
+        )
+        else if( $exist:resource eq "xml") then (        
+     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
+        <forward url="{$exist:controller}/data/texts/{substring-after(substring-before($exist:path,"/xml"),"text/")}.xml"/>
+    </dispatch>
+    )
     (:
         let $text := if($exist:resource != "xml") then search:FindDocument($exist:resource) else search:FindDocument(substring-after( substring-before($exist:path,"/xml"),"text/"))
         return if($exist:resource = "xml") then 
@@ -229,7 +235,7 @@ else if (ends-with($exist:resource, "index.html")) then
             </forward>
         </view>
     </dispatch> ):)
-    )
+    
     else if(contains($exist:resource,".html") and not(contains($exist:resource,"index"))) then 
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
         <forward url="{$exist:controller}/page/{$exist:resource}" />

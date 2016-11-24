@@ -34,7 +34,20 @@ $(document).ready(function() { /* Navigations Funktion*/
             HideSecList()
         }       
     });
-
+    
+    //Check to see if the window is top if not then display button
+	$(window).scroll(function(){
+		if ($(this).scrollTop() > 100) {
+			$('.ScrollToTop').fadeIn();
+		} else {
+			$('.ScrollToTop').fadeOut();
+		}
+	});
+	//Click event to scroll to top
+	$('.ScrollToTop').click(function(){
+		$('html, body').animate({scrollTop : 0},800);
+		return false;
+	});
 });
 
 

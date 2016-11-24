@@ -52,7 +52,7 @@ var localExist = exist.createClient({
 	});
 
 var remoteExist = exist.createClient({
-		host: "papyri.uni-koeln.de",
+		host: "projects.cceh.uni-koeln.de",
 		port: 8080,
 		path: "/xmlrpc",
 		basic_auth: secrets.remote
@@ -113,7 +113,7 @@ gulp.task('update-index', ['upload-index-conf'], function() {
 });
 
 gulp.task('upload-index-conf-remote', function(){
-	return gulp.src('collection.xconf')
+	return gulp.src('collection/texts_collection.xconf')
 	                        .pipe(rename('collection.xconf'))
 			.pipe(remoteExist.dest({target: "/db/system/config/db/apps/coerp_new/data/texts"}));
 });

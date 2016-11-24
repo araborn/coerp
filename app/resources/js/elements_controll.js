@@ -12,6 +12,7 @@ $(document).ready(function() {
             $(this).toggleClass("ct-high");  
         });
         $(this).next("span").toggleClass("ct-high");   
+        
     });
     
     
@@ -42,7 +43,7 @@ $(document).ready(function() {
     /* Profile Buttons */
     
     $(".he-profile").click(function() {
-        $("#he-"+$(this).attr("resource")+"-content").toggle("slow");
+        $("#he-"+$(this).attr("resource")+"-content").toggle("blind","slow");
         if( $(this).children("i").hasClass("glyphicon-menu-down")) {
             $(this).children("i").removeClass("glyphicon-menu-down");
             $(this).children("i").addClass("glyphicon-menu-up");

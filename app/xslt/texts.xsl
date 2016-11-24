@@ -29,13 +29,18 @@
     <!-- ### Allgemeine Inhalte ###-->
     
     <xsl:template match="pb">
-        <p class="tx-pb">
+        <div class="tx-pb">
             <xsl:attribute name="id"><xsl:value-of select="concat('tx-pb','_',./@n)"/></xsl:attribute>
-            <xsl:value-of select="./@n"/>
-        </p>
+            <span>
+                <xsl:value-of select="./@n"/>
+            </span>
+        </div>
     </xsl:template>
     <xsl:template match="fw[@type ='pageNum']">
-        <p class="tx-fw"><xsl:value-of select="."/></p>
+        <p class="tx-fw">
+            <xsl:attribute name="id" select=" concat('tx-fw_',count(preceding::fw[@type  eq 'pageNum'])+1)"></xsl:attribute>
+            <xsl:value-of select="."/>
+        </p>
     </xsl:template>
     <xsl:template match="lb">
         <br/>
@@ -59,6 +64,7 @@
             <xsl:variable name="type" select="./@type"/>
             <xsl:attribute name="class"><xsl:value-of select="./@type"/></xsl:attribute>
             <xsl:attribute name="id" select=" concat(./@type,'_',count(preceding::quote[@type eq $type])+1)"/>
+            <xsl:attribute name="title" select="./@ana"/>
             <xsl:apply-templates />
         </span>
     </xsl:template>
